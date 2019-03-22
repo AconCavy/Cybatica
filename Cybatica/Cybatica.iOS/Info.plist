@@ -35,6 +35,7 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>external-accessory</string>
+		<string>bluetooth-central</string>
 		<string>bluetooth-peripheral</string>
 	</array>
 	<key>CFBundleShortVersionString</key>
@@ -43,8 +44,24 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeName</key>
-			<string>ドキュメントの種類 1</string>
+			<string>NSAppTransportSecurity</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>Dictionary</string>
+			</array>
 		</dict>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>URL の種類 1</string>
+		</dict>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

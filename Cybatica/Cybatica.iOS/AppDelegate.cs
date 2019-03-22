@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿using E4linkBinding;
 using Foundation;
 using UIKit;
 
@@ -23,9 +20,24 @@ namespace Cybatica.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            var appBootstrapper = new AppBootstrapper();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public override void DidEnterBackground(UIApplication uiApplication)
+        {
+            EmpaticaAPI.PrepareForBackground();
+            base.DidEnterBackground(uiApplication);
+            
+        }
+
+        public override void OnActivated(UIApplication uiApplication)
+        {
+            EmpaticaAPI.PrepareForResume();
+            base.OnActivated(uiApplication);
+            
         }
     }
 }
