@@ -7,7 +7,6 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
-using Com.Empatica.Empalink;
 
 namespace Cybatica.Droid
 {

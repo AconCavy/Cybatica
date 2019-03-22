@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rxui:ReactiveContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+    xmlns:vm="clr-namespace:Cybatica.ViewModels"
+    x:Class="Cybatica.Views.EmpaticaParameterPage"
+    x:TypeArguments="vm:EmpaticaParameterViewModel">
+
+    <Grid RowSpacing="1" ColumnSpacing="1" Padding="5,20,5,5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Text="BVP" Grid.Row="1" Grid.Column="0" />
+        <Label x:Name="BVP" Text="1" Grid.Row="1" Grid.Column="1" />
+        <Label Text="HR" Grid.Row="2" Grid.Column="0" />
+        <Label x:Name="HR" Text="1" Grid.Row="2" Grid.Column="1" />
+        <Label Text="IBI" Grid.Row="3" Grid.Column="0" />
+        <Label x:Name="IBI" Text="1" Grid.Row="3" Grid.Column="1" />
+        <Label Text="GSR" Grid.Row="4" Grid.Column="0" />
+        <Label x:Name="GSR" Text="1" Grid.Row="4" Grid.Column="1" />
+        <Label Text="Temperature" Grid.Row="5" Grid.Column="0" />
+        <Label x:Name="Temperature" Text="1" Grid.Row="5" Grid.Column="1" />
+        <Button x:Name="DiscoverDeviceCommand" Text="Discover E4 Devices" Grid.ColumnSpan="2" Grid.Row="6" Grid.Column="0"/>
+        <Button x:Name="Disconnect" Text="Disconnect Device" Grid.ColumnSpan="2" Grid.Row="7" Grid.Column="0"/>
+    </Grid>
+
+
+</rxui:ReactiveContentPage>

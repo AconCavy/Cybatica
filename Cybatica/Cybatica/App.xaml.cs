@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Cybatica.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using ReactiveUI;
+using Splat;
+using Cybatica.ViewModels;
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Cybatica
 {
@@ -10,8 +12,10 @@ namespace Cybatica
         public App()
         {
             InitializeComponent();
-
+            var appBootstrapper = new AppBootstrapper();
             MainPage = new MainPage();
+            //MainPage = new EmpaticaParameterPage(appBootstrapper.CreateEmpaticaParameterViewModel());
+
         }
 
         protected override void OnStart()
