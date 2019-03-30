@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 using ReactiveUI;
 using Splat;
 using Cybatica.ViewModels;
+
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Cybatica
 {
@@ -11,6 +12,7 @@ namespace Cybatica
     {
         public App()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("ODI3NDVAMzEzNzJlMzEyZTMwQ0FnbzJBam1yVXpRUUlTWitVcmEzVG5pYnpCcjY5VVFEZ2wyTlVzR1dSWT0=");
             InitializeComponent();
             var appBootstrapper = new AppBootstrapper();
             MainPage = new MainPage();
