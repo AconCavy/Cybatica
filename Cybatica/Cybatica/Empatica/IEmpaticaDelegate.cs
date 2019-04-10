@@ -2,7 +2,7 @@
 
 namespace Cybatica.Empatica
 {
-    public interface IEmpaticaDelegateService
+    public interface IEmpaticaDelegate
     {
         bool IsAllDevicesDisconnected { get; }
 

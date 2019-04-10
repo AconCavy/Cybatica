@@ -1,10 +1,55 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using DynamicData;
 
 namespace Cybatica.Empatica
 {
     public class EmpaticaSession
     {
+        public SourceList<BatteryLevel> BatteryLevel { get; private set; }
+
+        public SourceList<Acceleration> Acceleration { get; private set; }
+
+        public SourceList<GSR> GSR { get; private set; }
+
+        public SourceList<BVP> BVP { get; private set; }
+
+        public SourceList<IBI> IBI { get; private set; }
+
+        public SourceList<Temperature> Temperature { get; private set; }
+
+        public SourceList<HR> HR { get; private set; }
+
+        public SourceList<Tag> Tag { get; private set; }
+
+        public EmpaticaSession()
+        {
+            BatteryLevel = new SourceList<BatteryLevel>();
+            Acceleration = new SourceList<Acceleration>();
+            GSR = new SourceList<GSR>();
+            BVP = new SourceList<BVP>();
+            IBI = new SourceList<IBI>();
+            Temperature = new SourceList<Temperature>();
+            HR = new SourceList<HR>();
+            Tag = new SourceList<Tag>();
+
+        }
+
+        public void AddBatteryLevel(BatteryLevel batteryLevel) => BatteryLevel.Add(batteryLevel);
+
+        public void AddAcceleration(Acceleration acceleration) => Acceleration.Add(acceleration);
+
+        public void AddGSR(GSR gsr) => GSR.Add(gsr);
+
+        public void AddBVP(BVP bvp) => BVP.Add(bvp);
+
+        public void AddIBI(IBI ibi) => IBI.Add(ibi);
+
+        public void AddTemperature(Temperature temperature) => Temperature.Add(temperature);
+
+        public void AddHR(HR hr) => HR.Add(hr);
+
+        public void AddTag(Tag tag) => Tag.Add(tag);
+
+        /*
         public ReadOnlyCollection<BatteryLevel> BatteryLevel => new ReadOnlyCollection<BatteryLevel>(_batteryLevel);
 
         public ReadOnlyCollection<Acceleration> Acceleration => new ReadOnlyCollection<Acceleration>(_acceleration);
@@ -58,6 +103,7 @@ namespace Cybatica.Empatica
         public void AddHR(HR hr) => _hr.Add(hr);
 
         public void AddTag(Tag tag) => _tag.Add(tag);
+        */
     }
-    
+
 }
