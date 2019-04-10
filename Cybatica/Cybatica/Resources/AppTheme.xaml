@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Cybatica.Resources.AppTheme">
+
+    <Color x:Key="Black1">#000000</Color>
+    <Color x:Key="Black2">#6B6B6B</Color>
+    <Color x:Key="Black3">#000000</Color>
+    <Color x:Key="Black4">#000000</Color>
+    <Color x:Key="Black5">#000000</Color>
+    <Color x:Key="White1">#FFFFFF</Color>
+    <Color x:Key="White2">#000000</Color>
+    <Color x:Key="White3">#000000</Color>
+    <Color x:Key="White4">#000000</Color>
+    <Color x:Key="White5">#000000</Color>
+    <Color x:Key="Base1">#8AEA92</Color>
+    <Color x:Key="Base2">#000000</Color>
+    <Color x:Key="Base3">#D6EAD8</Color>
+    <Color x:Key="Base4">#E0EAE1</Color>
+    <Color x:Key="Accent">#E8AEB7</Color>
+    
+    <Style x:Key="Panel" TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="{StaticResource Base4}"/>
+        <Setter Property="Padding" Value="8,8,8,8"/>
+    </Style>
+
+    <Style x:Key="HeadText" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource Black2}"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontSize" Value="Large"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+    </Style>
+
+    <Style x:Key="NormalText" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource Black2}"/>
+        <Setter Property="FontAttributes" Value="None"/>
+        <Setter Property="FontSize" Value="Default"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+    </Style>
+    
+
+    <Style x:Key="Icon" TargetType="Image">
+        <Setter Property="Scale" Value="16"/>
+    </Style>
+
+    <Style x:Key="Button" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource Base1}"/>
+        <Setter Property="TextColor" Value="{StaticResource Black1}" />
+        <Setter Property="CornerRadius" Value="5"/>
+    </Style>
+</ResourceDictionary>

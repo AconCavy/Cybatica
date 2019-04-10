@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -11,17 +11,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DynamicData" Version="6.8.0.2561" />
+    <PackageReference Include="Fody" Version="4.2.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="ReactiveUI" Version="9.12.1" />
     <PackageReference Include="ReactiveUI.Fody" Version="9.12.1" />
     <PackageReference Include="ReactiveUI.XamForms" Version="9.12.1" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.1.0.38" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.1.0.38" />
-    <PackageReference Include="System.Reactive" Version="4.1.3" />
+    <PackageReference Include="Syncfusion.Licensing" Version="17.1.0.40" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.1.0.40" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.1.0.40" />
+    <PackageReference Include="System.Reactive" Version="4.1.4" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.2" />
-    <PackageReference Include="Xamarin.Forms" Version="3.6.0.264807" />
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.293080" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\AppTheme.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\CybersicknessPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -34,6 +43,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 </Project>

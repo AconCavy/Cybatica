@@ -3,8 +3,75 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
-    x:Class="Cybatica.Views.CybersicknessPage"
     xmlns:vm="clr-namespace:Cybatica.ViewModels"
-    x:TypeArguments="vm:CybersicknessViewModel">
-    
+    xmlns:resource="clr-namespace:Cybatica.Resources"
+    x:Class="Cybatica.Views.CybersicknessPage"
+    x:TypeArguments="vm:CybersicknessViewModel"
+    Title="CYBERSICKNESS">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <resource:AppTheme/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid Margin="8,8,8,8" RowSpacing="8" ColumnSpacing="8">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Style="{StaticResource Panel}" Grid.ColumnSpan="2" Grid.Column="0">
+                <Label Style="{StaticResource HeadText}" Text="CYBERSICKNESS"/>
+                <Label x:Name="Cybersickness" Style="{StaticResource NormalText}" Text="0"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="1" Grid.Column="0">
+                <Label Style="{StaticResource HeadText}" Text="NN MEAN"/>
+                <Label x:Name="NNMean" Style="{StaticResource NormalText}" Text="0"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="1" Grid.Column="1">
+                <Label Style="{StaticResource HeadText}" Text="SDNN"/>
+                <Label x:Name="SDNN" Style="{StaticResource NormalText}" Text="0"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="2" Grid.Column="0">
+                <Label Style="{StaticResource HeadText}" Text="RMSSD"/>
+                <Label x:Name="RMSSD" Style="{StaticResource NormalText}" Text="0"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="2" Grid.Column="1">
+                <Label Style="{StaticResource HeadText}" Text="SDSD"/>
+                <Label x:Name="SDSD" Style="{StaticResource NormalText}" Text="0"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="3" Grid.Column="0">
+                <Label Style="{StaticResource HeadText}" Text="SD1"/>
+                <Label x:Name="SD1" Style="{StaticResource NormalText}" Text="0"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="3" Grid.Column="1">
+                <Label Style="{StaticResource HeadText}" Text="SD2"/>
+                <Label x:Name="SD2" Style="{StaticResource NormalText}" Text="0"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="4" Grid.Column="0">
+                <Label Style="{StaticResource HeadText}" Text="PEAK EDA"/>
+                <Label x:Name="PeakEDA" Style="{StaticResource NormalText}" Text="0"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="4" Grid.Column="1">
+                <Label Style="{StaticResource HeadText}" Text="SCR WIDTH"/>
+                <Label x:Name="SCRWidth" Style="{StaticResource NormalText}" Text="0"/>
+            </StackLayout>
+        
+        </Grid>
+        
+    </ContentPage.Content>
+
 </rxui:ReactiveContentPage>

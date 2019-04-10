@@ -5,11 +5,12 @@ using ReactiveUI;
 
 namespace Cybatica.ViewModels
 {
-    public class MainViewModel : BaseViewModel
+    public class MainViewModel : ReactiveObject
     {
         public MainViewModel()
         {
-
         }
+
+        
     }
 }
