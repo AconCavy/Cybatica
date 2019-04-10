@@ -4,15 +4,154 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
     xmlns:vm="clr-namespace:Cybatica.ViewModels"
+    xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+    xmlns:theme="clr-namespace:Cybatica.Resources"
     x:Class="Cybatica.Views.EmpaticaChartPage"
-    x:TypeArguments="vm:EmpaticaChartViewModel">
-    
+    x:TypeArguments="vm:EmpaticaChartViewModel"
+    Title="REAL-TIME CHART">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <theme:AppTheme/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="Chart" TargetType="chart:SfChart">
+                <!--<Setter Property="WidthRequest" Value="300"/>-->
+                <Setter Property="HeightRequest" Value="300"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource Base4}"/>
+                <Setter Property="AreaBackgroundColor" Value="{StaticResource White1}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView x:Name="ScrollView" Orientation="Vertical" VerticalOptions="Fill" Margin="8,8,8,8">
+            <StackLayout>
+                <chart:SfChart Style="{StaticResource Chart}">
+                    <chart:SfChart.Title>
+                        <chart:ChartTitle Text="BVP" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
+                    </chart:SfChart.Title>
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:NumericalAxis AutoScrollingDelta="10">
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Timestamp" TextColor="{StaticResource Black2}"/>
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.PrimaryAxis>
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis>
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Value" TextColor="{StaticResource Black2}"/>
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.SecondaryAxis>
+                    <chart:SfChart.Series>
+                        <chart:AreaSeries x:Name="BVP" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
+                        </chart:AreaSeries>
+                    </chart:SfChart.Series>
+                </chart:SfChart>
+                <chart:SfChart Style="{StaticResource Chart}">
+                    <chart:SfChart.Title>
+                        <chart:ChartTitle Text="IBI" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
+                    </chart:SfChart.Title>
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:NumericalAxis AutoScrollingDelta="10">
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Timestamp" TextColor="{StaticResource Black2}"/>
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.PrimaryAxis>
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis>
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Value" TextColor="{StaticResource Black2}"/>
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.SecondaryAxis>
+                    <chart:SfChart.Series>
+                        <chart:AreaSeries x:Name="IBI" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
+                        </chart:AreaSeries>
+                    </chart:SfChart.Series>
+                </chart:SfChart>
+
+                <chart:SfChart Style="{StaticResource Chart}">
+                    <chart:SfChart.Title>
+                        <chart:ChartTitle Text="HR" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
+                    </chart:SfChart.Title>
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:NumericalAxis AutoScrollingDelta="10">
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Timestamp" TextColor="{StaticResource Black2}"/>
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.PrimaryAxis>
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis>
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Value" TextColor="{StaticResource Black2}"/>
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.SecondaryAxis>
+                    <chart:SfChart.Series>
+                        <chart:AreaSeries x:Name="HR" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
+                        </chart:AreaSeries>
+                    </chart:SfChart.Series>
+                </chart:SfChart>
+
+                <chart:SfChart Style="{StaticResource Chart}">
+                    <chart:SfChart.Title>
+                        <chart:ChartTitle Text="EDA" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
+                    </chart:SfChart.Title>
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:NumericalAxis AutoScrollingDelta="10">
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Timestamp" TextColor="{StaticResource Black2}"/>
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.PrimaryAxis>
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis>
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Value" TextColor="{StaticResource Black2}"/>
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.SecondaryAxis>
+                    <chart:SfChart.Series>
+                        <chart:AreaSeries x:Name="EDA" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
+                        </chart:AreaSeries>
+                    </chart:SfChart.Series>
+                </chart:SfChart>
+
+                <chart:SfChart Style="{StaticResource Chart}">
+                    <chart:SfChart.Title>
+                        <chart:ChartTitle Text="Temperature" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
+                    </chart:SfChart.Title>
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:NumericalAxis AutoScrollingDelta="10">
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Timestamp" TextColor="{StaticResource Black2}"/>
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.PrimaryAxis>
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis>
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Value" TextColor="{StaticResource Black2}"/>
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.SecondaryAxis>
+                    <chart:SfChart.Series>
+                        <chart:AreaSeries x:Name="Temperature" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
+                        </chart:AreaSeries>
+                    </chart:SfChart.Series>
+                </chart:SfChart>
+                
+            </StackLayout>
+ 
+        </ScrollView>
+        
     </ContentPage.Content>
 
 </rxui:ReactiveContentPage>

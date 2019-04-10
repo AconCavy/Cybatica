@@ -2,6 +2,7 @@
 using ReactiveUI;
 using ReactiveUI.XamForms;
 using Splat;
+using System;
 using System.Reactive.Disposables;
 
 namespace Cybatica.Views
@@ -10,56 +11,52 @@ namespace Cybatica.Views
 	{
         public EmpaticaParameterPage()
         {
+            ViewModel = Locator.Current.GetService<IReactiveObject>(typeof(EmpaticaParameterViewModel).FullName)
+                as EmpaticaParameterViewModel;
+            ViewModel.Navigation = Navigation;
+
             InitializeComponent();
-        }
-
-        public EmpaticaParameterPage(EmpaticaParameterViewModel viewModel)
-        {
-            this.ViewModel = viewModel;
-
-            this.InitializeComponent();
 
             this.WhenActivated(disposable =>
             {
-
-                this.OneWayBind(this.ViewModel,
+                this.OneWayBind(ViewModel,
                     vm => vm.BVP,
                     v => v.BVP.Text,
-                    x => x.ToString())
+                    x => x.ToString("F2"))
                     .DisposeWith(disposable);
 
-                this.OneWayBind(this.ViewModel,
+                this.OneWayBind(ViewModel,
                     vm => vm.HR,
                     v => v.HR.Text,
-                    x => x.ToString())
+                    x => x.ToString("F2"))
                     .DisposeWith(disposable);
 
-                this.OneWayBind(this.ViewModel,
-                   vm => vm.IBI,
-                   v => v.IBI.Text,
-                   x => x.ToString())
-                   .DisposeWith(disposable);
+                this.OneWayBind(ViewModel,
+                    vm => vm.IBI,
+                    v => v.IBI.Text,
+                    x => x.ToString("F2"))
+                    .DisposeWith(disposable);
 
-                this.OneWayBind(this.ViewModel,
-                   vm => vm.GSR,
-                   v => v.GSR.Text,
-                   x => x.ToString())
-                   .DisposeWith(disposable);
+                this.OneWayBind(ViewModel,
+                    vm => vm.GSR,
+                    v => v.GSR.Text,
+                    x => x.ToString("F2"))
+                    .DisposeWith(disposable);
 
-                this.OneWayBind(this.ViewModel,
+                this.OneWayBind(ViewModel,
                     vm => vm.Temperature,
                     v => v.Temperature.Text,
-                    x => x.ToString())
+                    x => x.ToString("F2"))
+                    .DisposeWith(disposable);
+                
+                this.BindCommand(ViewModel,
+                    vm => vm.ManageDevice,
+                    v => v.ManageDeviceCommand)
                     .DisposeWith(disposable);
 
-                this.BindCommand(this.ViewModel,
-                    vm => vm.DiscoverDeviceCommand,
-                    v => v.DiscoverDeviceCommand)
-                    .DisposeWith(disposable);
-
-                this.BindCommand(this.ViewModel,
-                    vm => vm.DisconnectCommand,
-                    v => v.Disconnect)
+                this.BindCommand(ViewModel,
+                    vm => vm.NavigateToChartPage,
+                    v => v.NavigateChartCommand)
                     .DisposeWith(disposable);
             });
         }
@@ -68,7 +65,14 @@ namespace Cybatica.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            //ViewModel.Activator.Activate();
+            ViewModel.Activator.Activate();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            ViewModel.Activator.Deactivate();
+
         }
 
 

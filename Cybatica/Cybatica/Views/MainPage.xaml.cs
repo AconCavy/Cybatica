@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using ReactiveUI;
 using ReactiveUI.XamForms;
 using Cybatica.ViewModels;
+using Splat;
 
 namespace Cybatica.Views
 {
@@ -14,7 +15,9 @@ namespace Cybatica.Views
     {
         public MainPage()
         {
-            this.ViewModel = new MainViewModel();
+            ViewModel = Locator.Current.GetService<IReactiveObject>(typeof(MainViewModel).FullName)
+                as MainViewModel;
+
             InitializeComponent();
         }
     }

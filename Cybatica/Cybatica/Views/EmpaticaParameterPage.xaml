@@ -4,38 +4,78 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
     xmlns:vm="clr-namespace:Cybatica.ViewModels"
+    xmlns:theme="clr-namespace:Cybatica.Resources"
     x:Class="Cybatica.Views.EmpaticaParameterPage"
-    x:TypeArguments="vm:EmpaticaParameterViewModel">
+    x:TypeArguments="vm:EmpaticaParameterViewModel"
+    Title="BIO-DATA">
 
-    <Grid RowSpacing="1" ColumnSpacing="1" Padding="5,20,5,5">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <theme:AppTheme/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-        <Label Text="BVP" Grid.Row="1" Grid.Column="0" />
-        <Label x:Name="BVP" Text="1" Grid.Row="1" Grid.Column="1" />
-        <Label Text="HR" Grid.Row="2" Grid.Column="0" />
-        <Label x:Name="HR" Text="1" Grid.Row="2" Grid.Column="1" />
-        <Label Text="IBI" Grid.Row="3" Grid.Column="0" />
-        <Label x:Name="IBI" Text="1" Grid.Row="3" Grid.Column="1" />
-        <Label Text="GSR" Grid.Row="4" Grid.Column="0" />
-        <Label x:Name="GSR" Text="1" Grid.Row="4" Grid.Column="1" />
-        <Label Text="Temperature" Grid.Row="5" Grid.Column="0" />
-        <Label x:Name="Temperature" Text="1" Grid.Row="5" Grid.Column="1" />
-        <Button x:Name="DiscoverDeviceCommand" Text="Discover E4 Devices" Grid.ColumnSpan="2" Grid.Row="6" Grid.Column="0"/>
-        <Button x:Name="Disconnect" Text="Disconnect Device" Grid.ColumnSpan="2" Grid.Row="7" Grid.Column="0"/>
-    </Grid>
+    <ContentPage.Content>
+        <Grid Margin="8,8,8,8" RowSpacing="8" ColumnSpacing="8">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="0" Grid.Column="0">
+                <Label Style="{StaticResource HeadText}" Text="BVP"/>
+                <Label x:Name="BVP" Style="{StaticResource NormalText}" Text="1"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="0" Grid.Column="1">
+                <Label Style="{StaticResource HeadText}" Text="IBI"/>
+                <Label x:Name="IBI" Style="{StaticResource NormalText}" Text="1"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="1" Grid.Column="0">
+                <Label Style="{StaticResource HeadText}" Text="HR"/>
+                <Label x:Name="HR" Style="{StaticResource NormalText}" Text="1"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="1" Grid.Column="1">
+                <Label Style="{StaticResource HeadText}" Text="EDA"/>
+                <Label x:Name="GSR" Style="{StaticResource NormalText}" Text="1"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="2" Grid.Column="0">
+                <Label Style="{StaticResource HeadText}" Text="TEMPERATURE"/>
+                <Label x:Name="Temperature" Style="{StaticResource NormalText}" Text="1"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="2" Grid.Column="1">
+                <Label Style="{StaticResource HeadText}" Text="ACCELERATION"/>
+                <Label x:Name="Acceleration" Style="{StaticResource NormalText}" Text="1"/>
+            </StackLayout>
 
+            <StackLayout Grid.ColumnSpan="2" Grid.Row="4">
+                <Button x:Name="NavigateChartCommand"
+                    Style="{StaticResource Button}"
+                    Text="View Real-Time Chart"
+                    FontSize="Large"
+                    FontAttributes="Bold"/>
+            </StackLayout>
+            <StackLayout Grid.ColumnSpan="2" Grid.Row="5">
+                <Button x:Name="ManageDeviceCommand"
+                    Style="{StaticResource Button}"
+                    Text="Find Empatica E4"
+                    FontSize="Large"
+                    FontAttributes="Bold"/>
+            </StackLayout>
+
+        </Grid>
+        
+    </ContentPage.Content>
+    
 </rxui:ReactiveContentPage>

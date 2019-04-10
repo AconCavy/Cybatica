@@ -1,23 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Cybatica.ViewModels;
 using ReactiveUI;
 using ReactiveUI.XamForms;
-using Cybatica.ViewModels;
+using Splat;
+using System;
+using System.Reactive.Disposables;
+using Xamarin.Forms.Xaml;
 
 namespace Cybatica.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class EmpaticaChartPage : ReactiveContentPage<EmpaticaChartViewModel>
+    public partial class EmpaticaChartPage : ReactiveContentPage<EmpaticaChartViewModel>
 	{
-		public EmpaticaChartPage ()
-		{
-			InitializeComponent ();
-		}
+
+        public EmpaticaChartPage()
+        {
+            ViewModel = Locator.Current.GetService<IReactiveObject>(typeof(EmpaticaChartViewModel).FullName)
+                as EmpaticaChartViewModel;
+
+            InitializeComponent();
+
+            this.WhenActivated(disposable =>
+            {
+                this.OneWayBind(ViewModel,
+                    vm => vm.BVP,
+                    v => v.BVP.ItemsSource)
+                    .DisposeWith(disposable);
+
+                this.OneWayBind(ViewModel,
+                    vm => vm.IBI,
+                    v => v.IBI.ItemsSource)
+                    .DisposeWith(disposable);
+
+                this.OneWayBind(ViewModel,
+                    vm => vm.HR,
+                    v => v.HR.ItemsSource)
+                    .DisposeWith(disposable);
+
+                this.OneWayBind(ViewModel,
+                    vm => vm.GSR,
+                    v => v.EDA.ItemsSource)
+                    .DisposeWith(disposable);
+
+                this.OneWayBind(ViewModel,
+                    vm => vm.Temperature,
+                    v => v.Temperature.ItemsSource)
+                    .DisposeWith(disposable);
+            });
+        }
 	}
 }
