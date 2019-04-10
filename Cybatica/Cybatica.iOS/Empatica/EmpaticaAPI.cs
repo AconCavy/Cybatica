@@ -12,7 +12,7 @@ using Splat;
 
 namespace Cybatica.iOS.Empatica
 {
-    public class EmpaticaAPI : IEmpaticaAPIService
+    public class EmpaticaAPI : IEmpaticaAPI
     {
         public EmpaticaDevice Device => new EmpaticaDevice(
             serialNumber: _device?.SerialNumber,
@@ -21,14 +21,14 @@ namespace Cybatica.iOS.Empatica
             hardwareId: _device?.HardwareId,
             firmwareVersion: _device?.FirmwareVersion);
 
-        private EmpaticaDelegate _empaticaDelegate;
-        private EmpaticaDeviceDelegate _deviceDelegate;
+        private readonly EmpaticaDelegate _empaticaDelegate;
+        private readonly EmpaticaDeviceDelegate _deviceDelegate;
         private EmpaticaDeviceManager _device;
 
         public EmpaticaAPI()
         {
-            _empaticaDelegate = Locator.Current.GetService<IEmpaticaDelegateService>() as EmpaticaDelegate;
-            _deviceDelegate = Locator.Current.GetService<IEmpaticaDeviceDelegateService>() as EmpaticaDeviceDelegate;
+            _empaticaDelegate = Locator.Current.GetService<IEmpaticaDelegate>() as EmpaticaDelegate;
+            _deviceDelegate = Locator.Current.GetService<IEmpaticaDeviceDelegate>() as EmpaticaDeviceDelegate;
         }
 
         public void AuthenticateWithAPIKey(string APIKey)
@@ -75,5 +75,14 @@ namespace Cybatica.iOS.Empatica
             E4linkBinding.EmpaticaAPI.DiscoverDevicesWithDelegate(empaticaDelegate);
         }
 
+        public void PrepareForBackGround()
+        {
+            E4linkBinding.EmpaticaAPI.PrepareForBackground();
+        }
+
+        public void PrepareForResume()
+        {
+            E4linkBinding.EmpaticaAPI.PrepareForResume();
+        }
     }
 }

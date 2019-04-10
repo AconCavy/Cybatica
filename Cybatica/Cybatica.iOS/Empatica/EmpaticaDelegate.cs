@@ -5,11 +5,10 @@ using Foundation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Xamarin.Forms;
 
 namespace Cybatica.iOS.Empatica
 {
-    public class EmpaticaDelegate : E4linkBinding.EmpaticaDelegate, IEmpaticaDelegateService
+    public class EmpaticaDelegate : E4linkBinding.EmpaticaDelegate, IEmpaticaDelegate
     {
         public bool IsAllDevicesDisconnected
         {

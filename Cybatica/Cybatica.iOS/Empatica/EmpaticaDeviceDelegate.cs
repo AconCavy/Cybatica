@@ -1,13 +1,28 @@
 ﻿using Cybatica.Empatica;
 using E4linkBinding;
-using Xamarin.Forms;
 
 namespace Cybatica.iOS.Empatica
 {
-    public class EmpaticaDeviceDelegate : E4linkBinding.EmpaticaDeviceDelegate, IEmpaticaDeviceDelegateService
+    public class EmpaticaDeviceDelegate : E4linkBinding.EmpaticaDeviceDelegate, IEmpaticaDeviceDelegate
     {
 
         public EmpaticaSession EmpaticaSession { get; private set; }
+        
+        public BatteryLevel BatteryLevel { get; private set; }
+
+        public Acceleration Acceleration { get; private set; }
+
+        public GSR GSR { get; private set; }
+
+        public BVP BVP { get; private set; }
+
+        public IBI IBI { get; private set; }
+
+        public Temperature Temperature { get; private set; }
+
+        public HR HR { get; private set; }
+
+        public Tag Tag { get; private set; }
 
         public EmpaticaSensorStatus SensorStatus { get; private set; }
 
@@ -21,48 +36,56 @@ namespace Cybatica.iOS.Empatica
         public override void DidReceiveAccelerationX(sbyte x, sbyte y, sbyte z, double timestamp, EmpaticaDeviceManager device)
         {
             Acceleration acceleration = new Acceleration(x, y, z, timestamp);
+            Acceleration = acceleration;
             EmpaticaSession.AddAcceleration(acceleration);
         }
 
         public override void DidReceiveBatteryLevel(float level, double timestamp, EmpaticaDeviceManager device)
         {
             BatteryLevel batteryLevel = new BatteryLevel(level, timestamp);
+            BatteryLevel = batteryLevel;
             EmpaticaSession.AddBatteryLevel(batteryLevel);
         }
 
         public override void DidReceiveBVP(float bvp, double timestamp, EmpaticaDeviceManager device)
         {
             BVP bvpValue = new BVP(bvp, timestamp);
+            BVP = bvpValue;
             EmpaticaSession.AddBVP(bvpValue);
         }
 
         public override void DidReceiveGSR(float gsr, double timestamp, EmpaticaDeviceManager device)
         {
             GSR gsrValue = new GSR(gsr, timestamp);
+            GSR = gsrValue;
             EmpaticaSession.AddGSR(gsrValue);
         }
 
         public override void DidReceiveHR(float hr, int qualityIndex, double timestamp, EmpaticaDeviceManager device)
         {
             HR hrValue = new HR(hr, qualityIndex, timestamp);
+            HR = hrValue;
             EmpaticaSession.AddHR(hrValue);
         }
 
         public override void DidReceiveIBI(float ibi, double timestamp, EmpaticaDeviceManager device)
         {
             IBI ibiValue = new IBI(ibi, timestamp);
+            IBI = ibiValue;
             EmpaticaSession.AddIBI(ibiValue);
         }
 
         public override void DidReceiveTagAtTimestamp(double timestamp, EmpaticaDeviceManager device)
         {
             Tag tag = new Tag(timestamp);
+            Tag = tag;
             EmpaticaSession.AddTag(tag);
         }
 
         public override void DidReceiveTemperature(float temp, double timestamp, EmpaticaDeviceManager device)
         {
             Temperature temperature = new Temperature(temp, timestamp);
+            Temperature = temperature;
             EmpaticaSession.AddTemperature(temperature);
         }
 

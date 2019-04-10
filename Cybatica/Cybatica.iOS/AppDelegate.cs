@@ -20,22 +20,24 @@ namespace Cybatica.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            var appBootstrapper = new AppBootstrapper();
+            new AppBootstrapper();
+            Syncfusion.SfChart.XForms.iOS.Renderers.SfChartRenderer.Init();
             LoadApplication(new App());
-
+            UITabBar.Appearance.SelectedImageTintColor = UIColor.FromRGB(232, 174, 183);
             return base.FinishedLaunching(app, options);
         }
 
+        
         public override void DidEnterBackground(UIApplication uiApplication)
         {
-            EmpaticaAPI.PrepareForBackground();
+            //EmpaticaAPI.PrepareForBackground();
             base.DidEnterBackground(uiApplication);
             
         }
 
         public override void OnActivated(UIApplication uiApplication)
         {
-            EmpaticaAPI.PrepareForResume();
+            //EmpaticaAPI.PrepareForResume();
             base.OnActivated(uiApplication);
             
         }
