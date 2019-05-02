@@ -1,5 +1,4 @@
-﻿using Cybatica.Empatica;
-using Cybatica.ViewModels;
+﻿using Cybatica.ViewModels;
 using Cybatica.Views;
 using ReactiveUI;
 using Splat;
@@ -12,7 +11,7 @@ namespace Cybatica
     {
         public App()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(EmpaticaPrivacyInformation.SyncfusionLicenseKey);
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(AppPrivateInformations.SyncfusionLicenseKey);
             new AppBootstrapper();
             InitializeComponent();
 

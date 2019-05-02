@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reactive.Disposables;
-using Cybatica.Empatica;
 using Cybatica.Services;
 using ReactiveUI;
 using Splat;
@@ -29,7 +28,7 @@ namespace Cybatica.ViewModels
         {
             Console.WriteLine("MainViewModel: Activated");
             var _empaticaHandler = Locator.Current.GetService<IEmpaticaHandler>();
-            _empaticaHandler.EmpaticaAPI.AuthenticateWithAPIKey(EmpaticaPrivacyInformation.EmpaticaAPIKey);
+            _empaticaHandler.EmpaticaAPI.AuthenticateWithAPIKey(AppPrivateInformations.EmpaticaAPIKey);
         }
 
         private void HandleDeactivation()

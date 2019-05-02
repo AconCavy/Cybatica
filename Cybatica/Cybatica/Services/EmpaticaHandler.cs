@@ -23,7 +23,7 @@ namespace Cybatica.Services
 
         public void AuthenticateDevice()
         {
-            EmpaticaAPI.AuthenticateWithAPIKey(EmpaticaPrivacyInformation.EmpaticaAPIKey);
+            EmpaticaAPI.AuthenticateWithAPIKey(AppPrivateInformations.EmpaticaAPIKey);
         }
 
         public void ConnectDevice(EmpaticaDevice device)

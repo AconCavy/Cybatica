@@ -256,5 +256,5 @@ paket-files/
 # CodeRush
 .cr/
 
-# Privacy informations
-/Cybatica/Cybatica/Empatica/EmpaticaPrivacyInformation.cs
+# Private informations
+/Cybatica/Cybatica/AppPrivateInformations.cs
