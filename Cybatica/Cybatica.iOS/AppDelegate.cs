@@ -1,6 +1,9 @@
 ﻿using E4linkBinding;
 using Foundation;
 using UIKit;
+using Cybatica.Services;
+using Cybatica.Empatica;
+using Splat;
 
 namespace Cybatica.iOS
 {
@@ -17,28 +20,29 @@ namespace Cybatica.iOS
         //
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         //
+
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
             new AppBootstrapper();
             Syncfusion.SfChart.XForms.iOS.Renderers.SfChartRenderer.Init();
+
             LoadApplication(new App());
+
             UITabBar.Appearance.SelectedImageTintColor = UIColor.FromRGB(232, 174, 183);
             return base.FinishedLaunching(app, options);
-        }
 
+        }
         
         public override void DidEnterBackground(UIApplication uiApplication)
         {
-            //EmpaticaAPI.PrepareForBackground();
-            base.DidEnterBackground(uiApplication);
+            EmpaticaAPI.PrepareForBackground();
             
         }
 
         public override void OnActivated(UIApplication uiApplication)
         {
-            //EmpaticaAPI.PrepareForResume();
-            base.OnActivated(uiApplication);
+            EmpaticaAPI.PrepareForResume();
             
         }
     }

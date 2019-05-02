@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CoreFoundation;
-using Foundation;
-using UIKit;
-using E4linkBinding;
+﻿using CoreFoundation;
 using Cybatica.Empatica;
-using Xamarin.Forms;
+using E4linkBinding;
 using Splat;
 
 namespace Cybatica.iOS.Empatica
@@ -75,7 +68,7 @@ namespace Cybatica.iOS.Empatica
             E4linkBinding.EmpaticaAPI.DiscoverDevicesWithDelegate(empaticaDelegate);
         }
 
-        public void PrepareForBackGround()
+        public void PrepareForBackground()
         {
             E4linkBinding.EmpaticaAPI.PrepareForBackground();
         }

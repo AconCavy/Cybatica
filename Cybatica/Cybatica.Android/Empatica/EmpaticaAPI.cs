@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Cybatica.Empatica;
+﻿using Cybatica.Empatica;
+using System;
 
 namespace Cybatica.Droid.Empatica
 {
     public class EmpaticaAPI : IEmpaticaAPI
     {
         public EmpaticaDevice Device => new EmpaticaDevice();
+
+        public EmpaticaAPI()
+        {
+
+        }
+
 
         public void AuthenticateWithAPIKey(string apiKey)
         {
@@ -32,7 +28,7 @@ namespace Cybatica.Droid.Empatica
             Console.WriteLine("Disconnected on Android");
         }
 
-        public void PrepareForBackGround()
+        public void PrepareForBackground()
         {
             Console.WriteLine("Prepare for background on Android");
         }
