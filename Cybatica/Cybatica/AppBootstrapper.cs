@@ -1,6 +1,7 @@
 ﻿using System;
 using ReactiveUI;
 using Splat;
+using Cybatica.Services;
 using Cybatica.Views;
 using Cybatica.ViewModels;
 using System.Reflection;
@@ -11,17 +12,18 @@ namespace Cybatica
     {
         public AppBootstrapper()
         {
+            RegisterEmpatica();
             RegisterViewModels();
-            RegisterViews();
+            RegisterViews();       
             Locator.CurrentMutable.RegisterViewsForViewModels(Assembly.GetCallingAssembly());
         }
 
         private void RegisterViews()
         {
             Locator.CurrentMutable.RegisterConstant(new MainPage(), typeof(IViewFor<MainViewModel>));
-            Locator.CurrentMutable.RegisterLazySingleton(() =>
-                new EmpaticaParameterPage(), typeof(IViewFor<EmpaticaParameterViewModel>));
-            Locator.CurrentMutable.RegisterLazySingleton(() =>
+            Locator.CurrentMutable.Register(() =>
+                new Views.BioDataPage(), typeof(IViewFor<ViewModels.BioDataViewModel>));
+            Locator.CurrentMutable.Register(() =>
                 new CybersicknessPage(), typeof(IViewFor<CybersicknessViewModel>));
             Locator.CurrentMutable.Register(() =>
                 new EmpaticaChartPage(), typeof(IViewFor<EmpaticaChartViewModel>));
@@ -30,12 +32,15 @@ namespace Cybatica
         private void RegisterViewModels()
         {
             Locator.CurrentMutable.RegisterConstant(new MainViewModel(), typeof(IReactiveObject), typeof(MainViewModel).FullName);
-            Locator.CurrentMutable.RegisterLazySingleton(() => new EmpaticaParameterViewModel(), typeof(IReactiveObject), typeof(EmpaticaParameterViewModel).FullName);
-            Locator.CurrentMutable.RegisterLazySingleton(() => new CybersicknessViewModel(), typeof(IReactiveObject), typeof(CybersicknessViewModel).FullName);
+            Locator.CurrentMutable.Register(() => new ViewModels.BioDataViewModel(), typeof(IReactiveObject), typeof(ViewModels.BioDataViewModel).FullName);
+            Locator.CurrentMutable.Register(() => new CybersicknessViewModel(), typeof(IReactiveObject), typeof(CybersicknessViewModel).FullName);
             Locator.CurrentMutable.Register(() => new EmpaticaChartViewModel(), typeof(IReactiveObject), typeof(EmpaticaChartViewModel).FullName);
         }
 
-        
+        private void RegisterEmpatica()
+        {
+            Locator.CurrentMutable.RegisterConstant(new EmpaticaHandler(), typeof(IEmpaticaHandler));
+        }
 
     }
 }

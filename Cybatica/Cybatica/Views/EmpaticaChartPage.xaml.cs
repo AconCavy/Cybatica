@@ -2,7 +2,6 @@
 using ReactiveUI;
 using ReactiveUI.XamForms;
 using Splat;
-using System;
 using System.Reactive.Disposables;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +9,6 @@ namespace Cybatica.Views
 {
     public partial class EmpaticaChartPage : ReactiveContentPage<EmpaticaChartViewModel>
 	{
-
         public EmpaticaChartPage()
         {
             ViewModel = Locator.Current.GetService<IReactiveObject>(typeof(EmpaticaChartViewModel).FullName)
@@ -44,7 +42,11 @@ namespace Cybatica.Views
                     vm => vm.Temperature,
                     v => v.Temperature.ItemsSource)
                     .DisposeWith(disposable);
+
             });
+
         }
+
 	}
+
 }

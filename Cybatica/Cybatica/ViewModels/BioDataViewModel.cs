@@ -1,75 +1,53 @@
-﻿using Cybatica.Empatica;
-using Cybatica.Services;
+﻿using Cybatica.Services;
 using Cybatica.Views;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
-using ReactiveUI.XamForms;
 using Splat;
 using System;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Cybatica.ViewModels
 {
-    public class EmpaticaParameterViewModel : ReactiveObject, ISupportsActivation 
+    public class BioDataViewModel : ReactiveObject, ISupportsActivation 
     {
-
-        //[Reactive] public float BVP { get; private set; }
-        public extern float BVP { [ObservableAsProperty] get; }
-
-        [Reactive] public float GSR { get; private set; }
-
+        [Reactive] public float BVP { get; private set; }
         [Reactive] public float IBI { get; private set; }
-
         [Reactive] public float HR { get; private set; }
-
+        [Reactive] public float GSR { get; private set; }
         [Reactive] public float Temperature { get; private set; }
 
-        public ICommand ManageDevice { get; private set; }
-
-        public ICommand NavigateToChartPage { get; private set; }
+        public ReactiveCommand<Unit, Unit> ManageDevice { get; private set; }
+        public ReactiveCommand<Unit, Unit> DisconnectDevice { get; private set; }
+        public ReactiveCommand<Unit, Unit> NavigateToChartPage { get; private set; }
 
         public ViewModelActivator Activator { get; }
-
         public INavigation Navigation { get; set; }
 
         private readonly IEmpaticaHandler _handler;
 
-        public EmpaticaParameterViewModel()
+        private readonly IObservable<long> _observer;
+
+        public BioDataViewModel()
         {
             Activator = new ViewModelActivator();
             
             _handler = Locator.Current.GetService<IEmpaticaHandler>();
-            if(_handler == null)
-            {
-                _handler = new EmpaticaHandler();
-                Locator.CurrentMutable.RegisterConstant(_handler, typeof(IEmpaticaHandler));
-            }
 
-            _handler.AuthenticateDevice();
-    
-            this.WhenActivated(disposable =>
-            {
-                HandleActivation();
+            _observer = Observable.Interval(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler);
 
-                Disposable.Create(() => HandleDeactivation())
-                .DisposeWith(disposable);
-
-                this.WhenAnyValue(x => x._handler.DeviceDelegate.BVP)
-                .Select(x => x.Value)
-                .ToPropertyEx(this, x => x.BVP)
-                .DisposeWith(disposable);
+            NavigateToChartPage = ReactiveCommand.CreateFromTask(async () => {
+                var page = Locator.Current.GetService<IViewFor<EmpaticaChartViewModel>>() as EmpaticaChartPage;
+                await Navigation.PushAsync(page);
 
             });
 
-            
             ManageDevice = ReactiveCommand.CreateFromTask(async () =>
             {
-
                 var result = await Application.Current.MainPage.DisplayActionSheet(
                     title: "Choose Device",
                     cancel: "Cancel",
@@ -81,28 +59,28 @@ namespace Cybatica.ViewModels
                     var target = _handler.Devices.First(x => x.SerialNumber.Equals(result));
                     _handler.ConnectDevice(target);
                 }
+
             });
 
-            //DisconnectDevice = ReactiveCommand.Create(_handler.DisconnectDevice);
-            
-            NavigateToChartPage = ReactiveCommand.CreateFromTask(async () => {
-                
-                await Navigation.PushAsync(Locator.Current.GetService<IViewFor<EmpaticaChartViewModel>>() as EmpaticaChartPage);
+            DisconnectDevice = ReactiveCommand.Create(_handler.DisconnectDevice);
+
+            this.WhenActivated(disposable =>
+            {
+                HandleActivation();
+
+                Disposable.Create(() => HandleDeactivation())
+                .DisposeWith(disposable);
+
+                _observer.Subscribe(_ => FetchData()).DisposeWith(disposable);
+
             });
 
         }
 
         public void FetchData()
         {
-            if (_handler.GetDeviceStatus() != EmpaticaDeviceStatus.Connecting)
-            {
-                return;
-            }
-
-            Console.WriteLine("Fetching...");
-
+            BVP = _handler.GetLatestBVP().Value;
             GSR = _handler.GetLatestGSR().Value;
-            //BVP = _handler.GetLatestBVP().Value;
             IBI = _handler.GetLatestIBI().Value;
             Temperature = _handler.GetLatestTemperature().Value;
             HR = _handler.GetLatestHR().Value;
@@ -111,11 +89,13 @@ namespace Cybatica.ViewModels
 
         private void HandleActivation()
         {
-            
+            Console.WriteLine("EmpaticaParameterViewModel: Activated");      
+
         }
 
         private void HandleDeactivation()
         {
+            Console.WriteLine("EmpaticaParameterViewModel: Deactivated");
 
         }
     }

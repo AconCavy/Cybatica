@@ -1,6 +1,7 @@
 ﻿using Splat;
 using System.Collections.ObjectModel;
 using Cybatica.Empatica;
+using System.Threading.Tasks;
 
 namespace Cybatica.Services
 {
@@ -15,7 +16,6 @@ namespace Cybatica.Services
             EmpaticaAPI = Locator.Current.GetService<IEmpaticaAPI>();
             EmpaticaDelegate = Locator.Current.GetService<IEmpaticaDelegate>();
             DeviceDelegate = Locator.Current.GetService<IEmpaticaDeviceDelegate>();
-            Locator.CurrentMutable.RegisterConstant(this, typeof(IEmpaticaHandler));
 
         }
 
@@ -41,49 +41,41 @@ namespace Cybatica.Services
         public Acceleration GetLatestAcceleration()
         {
             return DeviceDelegate.Acceleration;
-            //return _deviceDelegate.EmpaticaSession.Acceleration.LastOrDefault();
         }
 
         public BatteryLevel GetLatestBatteryLevel()
         {
             return DeviceDelegate.BatteryLevel;
-            //return _deviceDelegate.EmpaticaSession.BatteryLevel.LastOrDefault();
         }
 
         public BVP GetLatestBVP()
         {
             return DeviceDelegate.BVP;
-            //return _deviceDelegate.EmpaticaSession.BVP.LastOrDefault();
         }
 
         public GSR GetLatestGSR()
         {
             return DeviceDelegate.GSR;
-            //return _deviceDelegate.EmpaticaSession.GSR.LastOrDefault();
         }
 
         public HR GetLatestHR()
         {
             return DeviceDelegate.HR;
-            //return _deviceDelegate.EmpaticaSession.HR.LastOrDefault();
         }
 
         public IBI GetLatestIBI()
         {
             return DeviceDelegate.IBI;
-            //return _deviceDelegate.EmpaticaSession.IBI.LastOrDefault();
         }
 
         public Tag GetLatestTag()
         {
             return DeviceDelegate.Tag;
-            //return _deviceDelegate.EmpaticaSession.Tag.LastOrDefault();
         }
 
         public Temperature GetLatestTemperature()
         {
             return DeviceDelegate.Temperature;
-            //return _deviceDelegate.EmpaticaSession.Temperature.LastOrDefault();
         }
 
         public EmpaticaDeviceStatus GetDeviceStatus()

@@ -19,11 +19,12 @@
     </TabbedPage.Resources>
 
     <TabbedPage.Children>
+        
         <NavigationPage Title="Bio-Data"
                         BarBackgroundColor="{StaticResource Base3}"
                         BarTextColor="{StaticResource Black1}">
             <x:Arguments>
-                <v:EmpaticaParameterPage/>
+                <v:BioDataPage/>
             </x:Arguments>
         </NavigationPage>
 
@@ -34,9 +35,9 @@
                 <v:CybersicknessPage/>
             </x:Arguments>
         </NavigationPage>
+        
     </TabbedPage.Children>
     
-
 </rxui:ReactiveTabbedPage>
     
 

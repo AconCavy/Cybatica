@@ -2,17 +2,16 @@
 using ReactiveUI;
 using ReactiveUI.XamForms;
 using Splat;
-using System;
 using System.Reactive.Disposables;
 
 namespace Cybatica.Views
 {
-    public partial class EmpaticaParameterPage : ReactiveContentPage<EmpaticaParameterViewModel>
+    public partial class BioDataPage : ReactiveContentPage<BioDataViewModel>
 	{
-        public EmpaticaParameterPage()
+        public BioDataPage()
         {
-            ViewModel = Locator.Current.GetService<IReactiveObject>(typeof(EmpaticaParameterViewModel).FullName)
-                as EmpaticaParameterViewModel;
+            ViewModel = Locator.Current.GetService<IReactiveObject>(typeof(BioDataViewModel).FullName)
+                as BioDataViewModel;
             ViewModel.Navigation = Navigation;
 
             InitializeComponent();
@@ -48,24 +47,31 @@ namespace Cybatica.Views
                     v => v.Temperature.Text,
                     x => x.ToString("F2"))
                     .DisposeWith(disposable);
-                
+
+                this.BindCommand(ViewModel,
+                    vm => vm.NavigateToChartPage,
+                    v => v.NavigateChartCommand)
+                    .DisposeWith(disposable);
+
                 this.BindCommand(ViewModel,
                     vm => vm.ManageDevice,
                     v => v.ManageDeviceCommand)
                     .DisposeWith(disposable);
 
                 this.BindCommand(ViewModel,
-                    vm => vm.NavigateToChartPage,
-                    v => v.NavigateChartCommand)
+                    vm => vm.DisconnectDevice,
+                    v => v.DisconnectDeviceCommand)
                     .DisposeWith(disposable);
+
             });
+
         }
-        
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             ViewModel.Activator.Activate();
+
         }
 
         protected override void OnDisappearing()

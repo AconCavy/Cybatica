@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reactive.Linq;
-using System.Text;
-using Cybatica.Empatica;
+﻿using Cybatica.Empatica;
+using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using System;
+using System.Reactive.Linq;
 
 namespace Cybatica.Services
 {
@@ -37,8 +36,8 @@ namespace Cybatica.Services
             EmpaticaSession = new EmpaticaSession();
 
             var random = new Random();
-            Observable.Interval(TimeSpan.FromSeconds(1))
-                .Take(120)
+            Observable.Interval(TimeSpan.FromMilliseconds(10))
+                .Take(12000)
                 .Subscribe(x =>
                 {
                     BVP = new BVP((float)random.NextDouble(), x);

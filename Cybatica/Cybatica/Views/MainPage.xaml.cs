@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+﻿using Cybatica.ViewModels;
 using ReactiveUI;
 using ReactiveUI.XamForms;
-using Cybatica.ViewModels;
 using Splat;
 
 namespace Cybatica.Views
@@ -19,6 +13,20 @@ namespace Cybatica.Views
                 as MainViewModel;
 
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ViewModel.Activator.Activate();
+
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            ViewModel.Activator.Deactivate();
+
         }
     }
 }

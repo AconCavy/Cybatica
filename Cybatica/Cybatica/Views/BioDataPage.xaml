@@ -5,9 +5,9 @@
     xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
     xmlns:vm="clr-namespace:Cybatica.ViewModels"
     xmlns:theme="clr-namespace:Cybatica.Resources"
-    x:Class="Cybatica.Views.EmpaticaParameterPage"
-    x:TypeArguments="vm:EmpaticaParameterViewModel"
-    Title="BIO-DATA">
+    x:Class="Cybatica.Views.BioDataPage"
+    x:TypeArguments="vm:BioDataViewModel"
+    Title="BIO DATA">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -66,10 +66,17 @@
                     FontSize="Large"
                     FontAttributes="Bold"/>
             </StackLayout>
-            <StackLayout Grid.ColumnSpan="2" Grid.Row="5">
+            <StackLayout Grid.Row="5" Grid.Column="0">
                 <Button x:Name="ManageDeviceCommand"
                     Style="{StaticResource Button}"
                     Text="Find Empatica E4"
+                    FontSize="Large"
+                    FontAttributes="Bold"/>
+            </StackLayout>
+            <StackLayout Grid.Row="5" Grid.Column="1">
+                <Button x:Name="DisconnectDeviceCommand"
+                    Style="{StaticResource Button}"
+                    Text="Disconnect Empatica E4"
                     FontSize="Large"
                     FontAttributes="Bold"/>
             </StackLayout>

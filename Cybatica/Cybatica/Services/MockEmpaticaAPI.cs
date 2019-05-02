@@ -29,9 +29,9 @@ namespace Cybatica.Services
             Console.WriteLine("Disconnect() in mock");
         }
 
-        public void PrepareForBackGround()
+        public void PrepareForBackground()
         {
-            Console.WriteLine("PrepareForBackGround() in mock");
+            Console.WriteLine("PrepareForBackground() in mock");
         }
 
         public void PrepareForResume()

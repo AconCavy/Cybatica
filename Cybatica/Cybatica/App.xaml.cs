@@ -1,25 +1,20 @@
-﻿using Cybatica.Views;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Cybatica.Empatica;
+using Cybatica.ViewModels;
+using Cybatica.Views;
 using ReactiveUI;
 using Splat;
-using Cybatica.ViewModels;
-using Cybatica.Empatica;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Cybatica
 {
     public partial class App : Application
     {
-        private IEmpaticaAPI _empaticaAPI;
-
         public App()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Empatica.EmpaticaPrivacyInformation.SyncfusionLicenseKey);
-
-            InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(EmpaticaPrivacyInformation.SyncfusionLicenseKey);
             new AppBootstrapper();
-
-            _empaticaAPI = Locator.Current.GetService<IEmpaticaAPI>();
+            InitializeComponent();
 
             MainPage = Locator.Current.GetService<IViewFor<MainViewModel>>() as MainPage;
 
@@ -33,14 +28,11 @@ namespace Cybatica
         protected override void OnSleep()
         {
             // Handle when your app sleeps
-            _empaticaAPI.PrepareForBackGround();
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
-            _empaticaAPI.PrepareForResume();
-
         }
     }
 }

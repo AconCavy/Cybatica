@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Cybatica.ViewModels;
 using ReactiveUI;
 using ReactiveUI.XamForms;
-using Cybatica.ViewModels;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using Splat;
+using Xamarin.Forms.Xaml;
 
 namespace Cybatica.Views
 {
-	public partial class CybersicknessPage : ReactiveContentPage<CybersicknessViewModel>
+    public partial class CybersicknessPage : ReactiveContentPage<CybersicknessViewModel>
 	{
         public CybersicknessPage()
         {

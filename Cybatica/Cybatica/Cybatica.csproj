@@ -11,20 +11,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DynamicData" Version="6.8.0.2561" />
-    <PackageReference Include="Fody" Version="4.2.1">
+    <PackageReference Include="DynamicData" Version="6.9.1.2588" />
+    <PackageReference Include="Fody" Version="5.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="ReactiveUI" Version="9.12.1" />
-    <PackageReference Include="ReactiveUI.Fody" Version="9.12.1" />
-    <PackageReference Include="ReactiveUI.XamForms" Version="9.12.1" />
-    <PackageReference Include="Syncfusion.Licensing" Version="17.1.0.40" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.1.0.40" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.1.0.40" />
-    <PackageReference Include="System.Reactive" Version="4.1.4" />
+    <PackageReference Include="ReactiveUI" Version="9.13.1" />
+    <PackageReference Include="ReactiveUI.Fody" Version="9.13.1" />
+    <PackageReference Include="ReactiveUI.XamForms" Version="9.13.1" />
+    <PackageReference Include="Splat" Version="7.1.1" />
+    <PackageReference Include="Syncfusion.Licensing" Version="17.1.0.43" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.1.0.43" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.1.0.43" />
+    <PackageReference Include="System.Reactive" Version="4.1.5" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.2" />
-    <PackageReference Include="Xamarin.Forms" Version="3.6.0.293080" />
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.344457" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,12 +38,18 @@
     <EmbeddedResource Update="Views\EmpaticaChartPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\EmpaticaParameterPage.xaml">
+    <EmbeddedResource Update="Views\BioDataPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\BioDataPage.xaml.cs">
+      <DependentUpon>BioDataPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
