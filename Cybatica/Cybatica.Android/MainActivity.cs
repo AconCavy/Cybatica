@@ -17,11 +17,12 @@ namespace Cybatica.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
+            
             new AppBootstrapper();
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            //Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             LoadApplication(new App());
 
             

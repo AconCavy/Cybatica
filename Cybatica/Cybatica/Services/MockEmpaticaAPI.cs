@@ -5,11 +5,11 @@ using Cybatica.Empatica;
 
 namespace Cybatica.Services
 {
-    public class MockEmpaticaAPI : IEmpaticaAPI
+    public class MockEmpaticaApi : IEmpaticaApi
     {
         public EmpaticaDevice Device { get; private set; }
 
-        public MockEmpaticaAPI()
+        public MockEmpaticaApi()
         {
             Console.WriteLine("MockEmpaticaAPI() in mock");
         }

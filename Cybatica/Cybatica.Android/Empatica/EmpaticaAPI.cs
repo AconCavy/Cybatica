@@ -3,7 +3,7 @@ using System;
 
 namespace Cybatica.Droid.Empatica
 {
-    public class EmpaticaAPI : IEmpaticaAPI
+    public class EmpaticaAPI : IEmpaticaApi
     {
         public EmpaticaDevice Device => new EmpaticaDevice();
 

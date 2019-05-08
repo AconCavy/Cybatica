@@ -8,15 +8,15 @@ namespace Cybatica.Empatica
 
         public SourceList<Acceleration> Acceleration { get; private set; }
 
-        public SourceList<GSR> GSR { get; private set; }
+        public SourceList<Gsr> Gsr { get; private set; }
 
-        public SourceList<BVP> BVP { get; private set; }
+        public SourceList<Bvp> Bvp { get; private set; }
 
-        public SourceList<IBI> IBI { get; private set; }
+        public SourceList<Ibi> Ibi { get; private set; }
 
         public SourceList<Temperature> Temperature { get; private set; }
 
-        public SourceList<HR> HR { get; private set; }
+        public SourceList<Hr> Hr { get; private set; }
 
         public SourceList<Tag> Tag { get; private set; }
 
@@ -24,11 +24,11 @@ namespace Cybatica.Empatica
         {
             BatteryLevel = new SourceList<BatteryLevel>();
             Acceleration = new SourceList<Acceleration>();
-            GSR = new SourceList<GSR>();
-            BVP = new SourceList<BVP>();
-            IBI = new SourceList<IBI>();
+            Gsr = new SourceList<Gsr>();
+            Bvp = new SourceList<Bvp>();
+            Ibi = new SourceList<Ibi>();
             Temperature = new SourceList<Temperature>();
-            HR = new SourceList<HR>();
+            Hr = new SourceList<Hr>();
             Tag = new SourceList<Tag>();
 
         }
@@ -37,15 +37,15 @@ namespace Cybatica.Empatica
 
         public void AddAcceleration(Acceleration acceleration) => Acceleration.Add(acceleration);
 
-        public void AddGSR(GSR gsr) => GSR.Add(gsr);
+        public void AddGsr(Gsr gsr) => Gsr.Add(gsr);
 
-        public void AddBVP(BVP bvp) => BVP.Add(bvp);
+        public void AddBvp(Bvp bvp) => Bvp.Add(bvp);
 
-        public void AddIBI(IBI ibi) => IBI.Add(ibi);
+        public void AddIbi(Ibi ibi) => Ibi.Add(ibi);
 
         public void AddTemperature(Temperature temperature) => Temperature.Add(temperature);
 
-        public void AddHR(HR hr) => HR.Add(hr);
+        public void AddHr(Hr hr) => Hr.Add(hr);
 
         public void AddTag(Tag tag) => Tag.Add(tag);
 

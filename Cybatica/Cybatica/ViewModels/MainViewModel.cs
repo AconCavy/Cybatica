@@ -26,14 +26,12 @@ namespace Cybatica.ViewModels
 
         private void HandleActivation()
         {
-            Console.WriteLine("MainViewModel: Activated");
             var _empaticaHandler = Locator.Current.GetService<IEmpaticaHandler>();
-            _empaticaHandler.EmpaticaAPI.AuthenticateWithAPIKey(AppPrivateInformations.EmpaticaAPIKey);
+            _empaticaHandler.AuthenticateWithApiKey(AppPrivateInformations.EmpaticaAPIKey);
         }
 
         private void HandleDeactivation()
         {
-            Console.WriteLine("MainViewModel: Deactivated");
         }
 
         

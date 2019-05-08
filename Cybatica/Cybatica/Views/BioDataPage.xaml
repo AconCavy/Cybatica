@@ -36,19 +36,19 @@
 
             <StackLayout Style="{StaticResource Panel}" Grid.Row="0" Grid.Column="0">
                 <Label Style="{StaticResource HeadText}" Text="BVP"/>
-                <Label x:Name="BVP" Style="{StaticResource NormalText}" Text="1"/>
+                <Label x:Name="Bvp" Style="{StaticResource NormalText}" Text="1"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="0" Grid.Column="1">
                 <Label Style="{StaticResource HeadText}" Text="IBI"/>
-                <Label x:Name="IBI" Style="{StaticResource NormalText}" Text="1"/>
+                <Label x:Name="Ibi" Style="{StaticResource NormalText}" Text="1"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="1" Grid.Column="0">
                 <Label Style="{StaticResource HeadText}" Text="HR"/>
-                <Label x:Name="HR" Style="{StaticResource NormalText}" Text="1"/>
+                <Label x:Name="Hr" Style="{StaticResource NormalText}" Text="1"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="1" Grid.Column="1">
                 <Label Style="{StaticResource HeadText}" Text="EDA"/>
-                <Label x:Name="GSR" Style="{StaticResource NormalText}" Text="1"/>
+                <Label x:Name="Gsr" Style="{StaticResource NormalText}" Text="1"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="2" Grid.Column="0">
                 <Label Style="{StaticResource HeadText}" Text="TEMPERATURE"/>

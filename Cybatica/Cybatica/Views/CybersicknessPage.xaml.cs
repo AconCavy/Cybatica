@@ -2,6 +2,7 @@
 using ReactiveUI;
 using ReactiveUI.XamForms;
 using Splat;
+using System.Reactive.Disposables;
 using Xamarin.Forms.Xaml;
 
 namespace Cybatica.Views
@@ -18,29 +19,40 @@ namespace Cybatica.Views
             this.WhenActivated(disposable =>
             {
                 this.OneWayBind(ViewModel,
-                    vm => vm.NNMean,
-                    v => v.NNMean.Text,
+                    vm => vm.Nnmean,
+                    v => v.Nnmean.Text,
                     x => x.ToString("F2"));
 
                 this.OneWayBind(ViewModel,
-                    vm => vm.SDNN,
-                    v => v.SDNN.Text,
+                    vm => vm.Sdnn,
+                    v => v.Sdnn.Text,
                     x => x.ToString("F2"));
 
                 this.OneWayBind(ViewModel,
-                    vm => vm.RMSSD,
-                    v => v.RMSSD.Text,
+                    vm => vm.Rmssd,
+                    v => v.Rmssd.Text,
                     x => x.ToString("F2"));
 
                 this.OneWayBind(ViewModel,
-                    vm => vm.SD1,
-                    v => v.SD1.Text,
+                    vm => vm.Sd1,
+                    v => v.Sd1.Text,
                     x => x.ToString("F2"));
 
                 this.OneWayBind(ViewModel,
-                    vm => vm.SD2,
-                    v => v.SD2.Text,
+                    vm => vm.Sd2,
+                    v => v.Sd2.Text,
                     x => x.ToString("F2"));
+                /*
+                this.BindCommand(ViewModel,
+                    vm => vm.Save,
+                    v => v.SaveCommand)
+                    .DisposeWith(disposable);
+
+                this.BindCommand(ViewModel,
+                    vm => vm.Export,
+                    v => v.ExportCommand)
+                    .DisposeWith(disposable);
+                    */
             });
         }
 	}

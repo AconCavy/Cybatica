@@ -19,26 +19,26 @@ namespace Cybatica.Views
             this.WhenActivated(disposable =>
             {
                 this.OneWayBind(ViewModel,
-                    vm => vm.BVP,
-                    v => v.BVP.Text,
+                    vm => vm.Bvp,
+                    v => v.Bvp.Text,
                     x => x.ToString("F2"))
                     .DisposeWith(disposable);
 
                 this.OneWayBind(ViewModel,
-                    vm => vm.HR,
-                    v => v.HR.Text,
+                    vm => vm.Hr,
+                    v => v.Hr.Text,
                     x => x.ToString("F2"))
                     .DisposeWith(disposable);
 
                 this.OneWayBind(ViewModel,
-                    vm => vm.IBI,
-                    v => v.IBI.Text,
+                    vm => vm.Ibi,
+                    v => v.Ibi.Text,
                     x => x.ToString("F2"))
                     .DisposeWith(disposable);
 
                 this.OneWayBind(ViewModel,
-                    vm => vm.GSR,
-                    v => v.GSR.Text,
+                    vm => vm.Gsr,
+                    v => v.Gsr.Text,
                     x => x.ToString("F2"))
                     .DisposeWith(disposable);
 

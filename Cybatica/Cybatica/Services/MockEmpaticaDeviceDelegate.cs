@@ -8,21 +8,21 @@ namespace Cybatica.Services
 {
     public class MockEmpaticaDeviceDelegate : IEmpaticaDeviceDelegate
     {
-        public EmpaticaSession EmpaticaSession { get; }
+        public EmpaticaSession EmpaticaSession { get; private set; }
 
         public BatteryLevel BatteryLevel { get; private set; }
 
         public Acceleration Acceleration { get; private set; }
 
-        public GSR GSR { get; private set; }
+        public Gsr Gsr { get; private set; }
 
-        public BVP BVP { get; private set; }
+        public Bvp Bvp { get; private set; }
 
-        public IBI IBI { get; private set; }
+        public Ibi Ibi { get; private set; }
 
         public Temperature Temperature { get; private set; }
 
-        public HR HR { get; private set; }
+        public Hr Hr { get; private set; }
 
         public Tag Tag { get; private set; }
 
@@ -33,29 +33,34 @@ namespace Cybatica.Services
         public MockEmpaticaDeviceDelegate()
         {
             Console.WriteLine("McokEmpaticaDeviceDelegate() in mock");
-            EmpaticaSession = new EmpaticaSession();
+            InitializeSession();
 
             var random = new Random();
-            Observable.Interval(TimeSpan.FromMilliseconds(10))
-                .Take(12000)
+            Observable.Interval(TimeSpan.FromMilliseconds(500))
+                .Take(1200)
                 .Subscribe(x =>
                 {
-                    BVP = new BVP((float)random.NextDouble(), x);
-                    EmpaticaSession.AddBVP(BVP);
+                    Bvp = new Bvp((float)random.NextDouble(), x);
+                    EmpaticaSession.AddBvp(Bvp);
 
-                    IBI = new IBI((float)random.NextDouble(), x);
-                    EmpaticaSession.AddIBI(IBI);
+                    Ibi = new Ibi((float)random.NextDouble(), x);
+                    EmpaticaSession.AddIbi(Ibi);
 
-                    HR = new HR((float)random.NextDouble(), 1, x);
-                    EmpaticaSession.AddHR(HR);
+                    Hr = new Hr((float)random.NextDouble(), 1, x);
+                    EmpaticaSession.AddHr(Hr);
 
-                    GSR = new GSR((float)random.NextDouble(), x);
-                    EmpaticaSession.AddGSR(GSR);
+                    Gsr = new Gsr((float)random.NextDouble(), x);
+                    EmpaticaSession.AddGsr(Gsr);
 
                     Temperature = new Temperature((float)random.NextDouble(), x);
                     EmpaticaSession.AddTemperature(Temperature);
 
                 });
+        }
+
+        public void InitializeSession()
+        {
+            EmpaticaSession = new EmpaticaSession();
         }
     }
 }

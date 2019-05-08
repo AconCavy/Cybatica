@@ -8,20 +8,22 @@
 
         Acceleration Acceleration { get; }
 
-        GSR GSR { get; }
+        Gsr Gsr { get; }
 
-        BVP BVP { get; }
+        Bvp Bvp { get; }
 
-        IBI IBI { get; }
+        Ibi Ibi { get; }
 
         Temperature Temperature { get; }
 
-        HR HR { get; }
+        Hr Hr { get; }
 
         Tag Tag { get; }
 
         EmpaticaSensorStatus SensorStatus { get; }
 
         EmpaticaDeviceStatus DeviceStatus { get; }
+
+        void InitializeSession();
     }
 }

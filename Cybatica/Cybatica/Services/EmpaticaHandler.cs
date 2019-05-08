@@ -1,98 +1,105 @@
-﻿using Splat;
+﻿using Cybatica.Empatica;
+using Splat;
 using System.Collections.ObjectModel;
-using Cybatica.Empatica;
-using System.Threading.Tasks;
 
 namespace Cybatica.Services
 {
     public class EmpaticaHandler : IEmpaticaHandler
     {
-        public IEmpaticaAPI EmpaticaAPI { get; }
-        public IEmpaticaDelegate EmpaticaDelegate { get; }
-        public IEmpaticaDeviceDelegate DeviceDelegate { get; }
+        public ReadOnlyCollection<EmpaticaDevice> Devices { get; }
+        public bool IsDeviceListEmpty => Devices.Count == 0;
+        public EmpaticaSession EmpaticaSession { get; }
+
+        private readonly IEmpaticaApi _empaticaAPI;
+        private readonly IEmpaticaDelegate _empaticaDelegate;
+        private readonly IEmpaticaDeviceDelegate _deviceDelegate;
 
         public EmpaticaHandler()
         {
-            EmpaticaAPI = Locator.Current.GetService<IEmpaticaAPI>();
-            EmpaticaDelegate = Locator.Current.GetService<IEmpaticaDelegate>();
-            DeviceDelegate = Locator.Current.GetService<IEmpaticaDeviceDelegate>();
+            _empaticaAPI = Locator.Current.GetService<IEmpaticaApi>();
+            _empaticaDelegate = Locator.Current.GetService<IEmpaticaDelegate>();
+            _deviceDelegate = Locator.Current.GetService<IEmpaticaDeviceDelegate>();
+
+            Devices = _empaticaDelegate.Devices;
+            EmpaticaSession = _deviceDelegate.EmpaticaSession;
 
         }
 
-        public ReadOnlyCollection<EmpaticaDevice> Devices => EmpaticaDelegate.Devices;
-
-        public void AuthenticateDevice()
+        public void InitializeSession()
         {
-            EmpaticaAPI.AuthenticateWithAPIKey(AppPrivateInformations.EmpaticaAPIKey);
+            _deviceDelegate.InitializeSession();
+        }
+
+        public void AuthenticateWithApiKey(string key)
+        {
+            _empaticaAPI.AuthenticateWithAPIKey(key);
         }
 
         public void ConnectDevice(EmpaticaDevice device)
         {
-            EmpaticaAPI.Connect(device);
+            _empaticaAPI.Connect(device);
         }
 
         public void DisconnectDevice()
         {
-            EmpaticaAPI.Disconnect();
+            _empaticaAPI.Disconnect();
         }
-
-        public bool IsDeviceListEmpty => Devices.Count == 0;
 
         public Acceleration GetLatestAcceleration()
         {
-            return DeviceDelegate.Acceleration;
+            return _deviceDelegate.Acceleration;
         }
 
         public BatteryLevel GetLatestBatteryLevel()
         {
-            return DeviceDelegate.BatteryLevel;
+            return _deviceDelegate.BatteryLevel;
         }
 
-        public BVP GetLatestBVP()
+        public Bvp GetLatestBvp()
         {
-            return DeviceDelegate.BVP;
+            return _deviceDelegate.Bvp;
         }
 
-        public GSR GetLatestGSR()
+        public Gsr GetLatestGsr()
         {
-            return DeviceDelegate.GSR;
+            return _deviceDelegate.Gsr;
         }
 
-        public HR GetLatestHR()
+        public Hr GetLatestHr()
         {
-            return DeviceDelegate.HR;
+            return _deviceDelegate.Hr;
         }
 
-        public IBI GetLatestIBI()
+        public Ibi GetLatestIbi()
         {
-            return DeviceDelegate.IBI;
+            return _deviceDelegate.Ibi;
         }
 
         public Tag GetLatestTag()
         {
-            return DeviceDelegate.Tag;
+            return _deviceDelegate.Tag;
         }
 
         public Temperature GetLatestTemperature()
         {
-            return DeviceDelegate.Temperature;
+            return _deviceDelegate.Temperature;
         }
 
         public EmpaticaDeviceStatus GetDeviceStatus()
         {
-            return DeviceDelegate.DeviceStatus;
+            return _deviceDelegate.DeviceStatus;
         }
 
         public EmpaticaSensorStatus GetEmpaticaSensorStatus()
         {
-            return DeviceDelegate.SensorStatus;
+            return _deviceDelegate.SensorStatus;
         }
 
         public EmpaticaBLEStatus GetEmpaticaBLEStatus()
         {
-            return EmpaticaDelegate.BLEStatus;
+            return _empaticaDelegate.BLEStatus;
         }
 
-
+        
     }
 }

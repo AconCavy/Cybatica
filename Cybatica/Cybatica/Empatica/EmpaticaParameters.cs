@@ -30,37 +30,37 @@ namespace Cybatica.Empatica
         }
     }
 
-    public struct BVP
+    public struct Bvp
     {
         public float Value { get; }
         public double Timestamp { get; }
 
-        public BVP(float value, double timestamp)
+        public Bvp(float value, double timestamp)
         {
             this.Value = value;
             this.Timestamp = timestamp;
         }
     }
 
-    public struct GSR
+    public struct Gsr
     {
         public float Value { get; }
         public double Timestamp { get; }
 
-        public GSR(float value, double timestamp)
+        public Gsr(float value, double timestamp)
         {
             this.Value = value;
             this.Timestamp = timestamp;
         }
     }
 
-    public struct HR
+    public struct Hr
     {
         public float Value { get; }
         public int QualityIndex { get; }
         public double Timestamp { get; }
 
-        public HR(float value, int qualityIndex, double timestamp)
+        public Hr(float value, int qualityIndex, double timestamp)
         {
             this.Value = value;
             this.QualityIndex = qualityIndex;
@@ -68,12 +68,12 @@ namespace Cybatica.Empatica
         }
     }
 
-    public struct IBI
+    public struct Ibi
     {
         public float Value { get; }
         public double Timestamp { get; }
 
-        public IBI(float value, double timestamp)
+        public Ibi(float value, double timestamp)
         {
             this.Value = value;
             this.Timestamp = timestamp;

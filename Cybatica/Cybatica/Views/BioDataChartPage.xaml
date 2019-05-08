@@ -6,8 +6,8 @@
     xmlns:vm="clr-namespace:Cybatica.ViewModels"
     xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
     xmlns:theme="clr-namespace:Cybatica.Resources"
-    x:Class="Cybatica.Views.EmpaticaChartPage"
-    x:TypeArguments="vm:EmpaticaChartViewModel"
+    x:Class="Cybatica.Views.BioDataChartPage"
+    x:TypeArguments="vm:BioDataChartViewModel"
     Title="REAL-TIME CHART">
 
     <ContentPage.Resources>
@@ -47,7 +47,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:AreaSeries x:Name="BVP" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
+                        <chart:AreaSeries x:Name="Bvp" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
                         </chart:AreaSeries>
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
@@ -74,7 +74,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:AreaSeries x:Name="IBI" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
+                        <chart:AreaSeries x:Name="Ibi" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
                         </chart:AreaSeries>
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
@@ -101,7 +101,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:AreaSeries x:Name="HR" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
+                        <chart:AreaSeries x:Name="Hr" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
                         </chart:AreaSeries>
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
@@ -128,7 +128,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:AreaSeries x:Name="EDA" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
+                        <chart:AreaSeries x:Name="Eda" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
                         </chart:AreaSeries>
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>

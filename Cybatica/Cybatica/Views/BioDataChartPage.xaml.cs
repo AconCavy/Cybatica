@@ -7,35 +7,35 @@ using Xamarin.Forms.Xaml;
 
 namespace Cybatica.Views
 {
-    public partial class EmpaticaChartPage : ReactiveContentPage<EmpaticaChartViewModel>
+    public partial class BioDataChartPage : ReactiveContentPage<BioDataChartViewModel>
 	{
-        public EmpaticaChartPage()
+        public BioDataChartPage()
         {
-            ViewModel = Locator.Current.GetService<IReactiveObject>(typeof(EmpaticaChartViewModel).FullName)
-                as EmpaticaChartViewModel;
+            ViewModel = Locator.Current.GetService<IReactiveObject>(typeof(BioDataChartViewModel).FullName)
+                as BioDataChartViewModel;
 
             InitializeComponent();
 
             this.WhenActivated(disposable =>
             {
                 this.OneWayBind(ViewModel,
-                    vm => vm.BVP,
-                    v => v.BVP.ItemsSource)
+                    vm => vm.Bvp,
+                    v => v.Bvp.ItemsSource)
                     .DisposeWith(disposable);
 
                 this.OneWayBind(ViewModel,
-                    vm => vm.IBI,
-                    v => v.IBI.ItemsSource)
+                    vm => vm.Ibi,
+                    v => v.Ibi.ItemsSource)
                     .DisposeWith(disposable);
 
                 this.OneWayBind(ViewModel,
-                    vm => vm.HR,
-                    v => v.HR.ItemsSource)
+                    vm => vm.Hr,
+                    v => v.Hr.ItemsSource)
                     .DisposeWith(disposable);
 
                 this.OneWayBind(ViewModel,
-                    vm => vm.GSR,
-                    v => v.EDA.ItemsSource)
+                    vm => vm.Gsr,
+                    v => v.Eda.ItemsSource)
                     .DisposeWith(disposable);
 
                 this.OneWayBind(ViewModel,

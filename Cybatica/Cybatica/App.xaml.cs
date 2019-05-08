@@ -4,6 +4,7 @@ using ReactiveUI;
 using Splat;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace Cybatica
 {
@@ -11,6 +12,7 @@ namespace Cybatica
     {
         public App()
         {
+            //ExperimentalFeatures.Enable(ExperimentalFeatures.ShareFileRequest);
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(AppPrivateInformations.SyncfusionLicenseKey);
             new AppBootstrapper();
             InitializeComponent();

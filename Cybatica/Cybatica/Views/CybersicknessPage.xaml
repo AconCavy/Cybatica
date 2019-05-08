@@ -39,37 +39,55 @@
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="1" Grid.Column="0">
                 <Label Style="{StaticResource HeadText}" Text="NN MEAN"/>
-                <Label x:Name="NNMean" Style="{StaticResource NormalText}" Text="0"/>
+                <Label x:Name="Nnmean" Style="{StaticResource NormalText}" Text="0"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="1" Grid.Column="1">
                 <Label Style="{StaticResource HeadText}" Text="SDNN"/>
-                <Label x:Name="SDNN" Style="{StaticResource NormalText}" Text="0"/>
+                <Label x:Name="Sdnn" Style="{StaticResource NormalText}" Text="0"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="2" Grid.Column="0">
                 <Label Style="{StaticResource HeadText}" Text="RMSSD"/>
-                <Label x:Name="RMSSD" Style="{StaticResource NormalText}" Text="0"/>
+                <Label x:Name="Rmssd" Style="{StaticResource NormalText}" Text="0"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="2" Grid.Column="1">
                 <Label Style="{StaticResource HeadText}" Text="SDSD"/>
-                <Label x:Name="SDSD" Style="{StaticResource NormalText}" Text="0"/>
+                <Label x:Name="Sdsd" Style="{StaticResource NormalText}" Text="0"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="3" Grid.Column="0">
                 <Label Style="{StaticResource HeadText}" Text="SD1"/>
-                <Label x:Name="SD1" Style="{StaticResource NormalText}" Text="0"/>
+                <Label x:Name="Sd1" Style="{StaticResource NormalText}" Text="0"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="3" Grid.Column="1">
                 <Label Style="{StaticResource HeadText}" Text="SD2"/>
-                <Label x:Name="SD2" Style="{StaticResource NormalText}" Text="0"/>
+                <Label x:Name="Sd2" Style="{StaticResource NormalText}" Text="0"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="4" Grid.Column="0">
                 <Label Style="{StaticResource HeadText}" Text="PEAK EDA"/>
-                <Label x:Name="PeakEDA" Style="{StaticResource NormalText}" Text="0"/>
+                <Label x:Name="PeakEda" Style="{StaticResource NormalText}" Text="0"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="4" Grid.Column="1">
                 <Label Style="{StaticResource HeadText}" Text="SCR WIDTH"/>
-                <Label x:Name="SCRWidth" Style="{StaticResource NormalText}" Text="0"/>
+                <Label x:Name="ScrWidth" Style="{StaticResource NormalText}" Text="0"/>
             </StackLayout>
-        
+            
+            <!--
+            <StackLayout Grid.Row="5" Grid.Column="0">
+                <Button x:Name="SaveCommand"
+                    Style="{StaticResource Button}"
+                    Text="Save"
+                    FontSize="Large"
+                    FontAttributes="Bold"/>
+            </StackLayout>
+
+            <StackLayout Grid.Row="5" Grid.Column="1">
+                <Button x:Name="ExportCommand"
+                    Style="{StaticResource Button}"
+                    Text="Export"
+                    FontSize="Large"
+                    FontAttributes="Bold"/>
+            </StackLayout>
+            -->
+
         </Grid>
         
     </ContentPage.Content>

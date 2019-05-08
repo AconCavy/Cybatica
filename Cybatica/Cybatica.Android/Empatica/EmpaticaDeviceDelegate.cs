@@ -16,20 +16,25 @@ namespace Cybatica.Droid.Empatica
 
         public Acceleration Acceleration => throw new NotImplementedException();
 
-        public GSR GSR => throw new NotImplementedException();
+        public Gsr Gsr => throw new NotImplementedException();
 
-        public BVP BVP => throw new NotImplementedException();
+        public Bvp Bvp => throw new NotImplementedException();
 
-        public IBI IBI => throw new NotImplementedException();
+        public Ibi Ibi => throw new NotImplementedException();
 
         public Temperature Temperature => throw new NotImplementedException();
 
-        public HR HR => throw new NotImplementedException();
+        public Hr Hr => throw new NotImplementedException();
 
         public Tag Tag => throw new NotImplementedException();
 
         public EmpaticaSensorStatus SensorStatus => throw new NotImplementedException();
 
         public EmpaticaDeviceStatus DeviceStatus => throw new NotImplementedException();
+
+        public void InitializeSession()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

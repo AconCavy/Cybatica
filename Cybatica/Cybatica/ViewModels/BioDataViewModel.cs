@@ -14,10 +14,10 @@ namespace Cybatica.ViewModels
 {
     public class BioDataViewModel : ReactiveObject, ISupportsActivation 
     {
-        [Reactive] public float BVP { get; private set; }
-        [Reactive] public float IBI { get; private set; }
-        [Reactive] public float HR { get; private set; }
-        [Reactive] public float GSR { get; private set; }
+        [Reactive] public float Bvp { get; private set; }
+        [Reactive] public float Ibi { get; private set; }
+        [Reactive] public float Hr { get; private set; }
+        [Reactive] public float Gsr { get; private set; }
         [Reactive] public float Temperature { get; private set; }
 
         public ReactiveCommand<Unit, Unit> ManageDevice { get; private set; }
@@ -31,6 +31,8 @@ namespace Cybatica.ViewModels
 
         private readonly IObservable<long> _observer;
 
+        private bool _isConnecting;
+
         public BioDataViewModel()
         {
             Activator = new ViewModelActivator();
@@ -38,10 +40,13 @@ namespace Cybatica.ViewModels
             _handler = Locator.Current.GetService<IEmpaticaHandler>();
 
             _observer = Observable.Interval(TimeSpan.FromSeconds(1))
+                .Where(_ => _isConnecting)
                 .ObserveOn(RxApp.MainThreadScheduler);
 
+            _isConnecting = false;
+
             NavigateToChartPage = ReactiveCommand.CreateFromTask(async () => {
-                var page = Locator.Current.GetService<IViewFor<EmpaticaChartViewModel>>() as EmpaticaChartPage;
+                var page = Locator.Current.GetService<IViewFor<BioDataChartViewModel>>() as BioDataChartPage;
                 await Navigation.PushAsync(page);
 
             });
@@ -54,7 +59,7 @@ namespace Cybatica.ViewModels
                     destruction: null,
                     buttons: _handler.Devices.Select(x => x.SerialNumber).ToArray());
 
-                if (!(result.Equals("Cancel") || result == null))
+                if (_isConnecting = !(result.Equals("Cancel") || result == null))
                 {
                     var target = _handler.Devices.First(x => x.SerialNumber.Equals(result));
                     _handler.ConnectDevice(target);
@@ -62,7 +67,12 @@ namespace Cybatica.ViewModels
 
             });
 
-            DisconnectDevice = ReactiveCommand.Create(_handler.DisconnectDevice);
+            DisconnectDevice = ReactiveCommand.Create(() => 
+            {
+                _handler.DisconnectDevice();
+                ResetValues();
+                _isConnecting = false;
+            });
 
             this.WhenActivated(disposable =>
             {
@@ -71,7 +81,8 @@ namespace Cybatica.ViewModels
                 Disposable.Create(() => HandleDeactivation())
                 .DisposeWith(disposable);
 
-                _observer.Subscribe(_ => FetchData()).DisposeWith(disposable);
+                _observer.Subscribe(_ => FetchData())
+                .DisposeWith(disposable);
 
             });
 
@@ -79,24 +90,30 @@ namespace Cybatica.ViewModels
 
         public void FetchData()
         {
-            BVP = _handler.GetLatestBVP().Value;
-            GSR = _handler.GetLatestGSR().Value;
-            IBI = _handler.GetLatestIBI().Value;
+            Bvp = _handler.GetLatestBvp().Value;
+            Ibi = _handler.GetLatestIbi().Value;
+            Gsr = _handler.GetLatestGsr().Value;
             Temperature = _handler.GetLatestTemperature().Value;
-            HR = _handler.GetLatestHR().Value;
+            Hr = _handler.GetLatestHr().Value;
+
+        }
+
+        private void ResetValues()
+        {
+            Bvp = 0;
+            Ibi = 0;
+            Gsr = 0;
+            Temperature = 0;
+            Hr = 0;
 
         }
 
         private void HandleActivation()
         {
-            Console.WriteLine("EmpaticaParameterViewModel: Activated");      
-
         }
 
         private void HandleDeactivation()
         {
-            Console.WriteLine("EmpaticaParameterViewModel: Deactivated");
-
         }
     }
 }

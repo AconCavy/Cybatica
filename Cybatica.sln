@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cybatica.Android", "Cybatica\Cybatica.Android\Cybatica.Android.csproj", "{A2BCBB36-1B9E-4628-A8E2-5DD62BA089CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cybatica.iOS", "Cybatica\Cybatica.iOS\Cybatica.iOS.csproj", "{DB5E1451-D844-4405-916A-274EDBF81601}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7D3295C2-FEA3-4312-AA46-14D5D4C3456A} = {7D3295C2-FEA3-4312-AA46-14D5D4C3456A}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cybatica", "Cybatica\Cybatica\Cybatica.csproj", "{7D3295C2-FEA3-4312-AA46-14D5D4C3456A}"
 EndProject

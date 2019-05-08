@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Cybatica.Empatica
 {
-    public interface IEmpaticaAPI
+    public interface IEmpaticaApi
     {
         EmpaticaDevice Device { get; }
 

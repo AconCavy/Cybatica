@@ -7,31 +7,29 @@ namespace Cybatica.Services
     {
         ReadOnlyCollection<EmpaticaDevice> Devices { get; }
 
-        IEmpaticaAPI EmpaticaAPI { get; }
+        bool IsDeviceListEmpty { get; }
 
-        IEmpaticaDelegate EmpaticaDelegate { get; }
+        EmpaticaSession EmpaticaSession { get; }
 
-        IEmpaticaDeviceDelegate DeviceDelegate { get; }
+        void InitializeSession();
 
-        void AuthenticateDevice();
+        void AuthenticateWithApiKey(string key);
 
         void ConnectDevice(EmpaticaDevice device);
 
         void DisconnectDevice();
 
-        bool IsDeviceListEmpty { get; }
-
         Acceleration GetLatestAcceleration();
 
         BatteryLevel GetLatestBatteryLevel();
 
-        BVP GetLatestBVP();
+        Bvp GetLatestBvp();
 
-        GSR GetLatestGSR();
+        Gsr GetLatestGsr();
 
-        HR GetLatestHR();
+        Hr GetLatestHr();
 
-        IBI GetLatestIBI();
+        Ibi GetLatestIbi();
 
         Tag GetLatestTag();
 

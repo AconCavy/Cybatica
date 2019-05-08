@@ -5,7 +5,7 @@ using Splat;
 
 namespace Cybatica.iOS.Empatica
 {
-    public class EmpaticaAPI : IEmpaticaAPI
+    public class EmpaticaAPI : IEmpaticaApi
     {
         public EmpaticaDevice Device => new EmpaticaDevice(
             serialNumber: _device?.SerialNumber,

@@ -22,19 +22,19 @@ namespace Cybatica
         {
             Locator.CurrentMutable.RegisterConstant(new MainPage(), typeof(IViewFor<MainViewModel>));
             Locator.CurrentMutable.Register(() =>
-                new Views.BioDataPage(), typeof(IViewFor<ViewModels.BioDataViewModel>));
+                new BioDataPage(), typeof(IViewFor<BioDataViewModel>));
             Locator.CurrentMutable.Register(() =>
                 new CybersicknessPage(), typeof(IViewFor<CybersicknessViewModel>));
             Locator.CurrentMutable.Register(() =>
-                new EmpaticaChartPage(), typeof(IViewFor<EmpaticaChartViewModel>));
+                new BioDataChartPage(), typeof(IViewFor<BioDataChartViewModel>));
         }
 
         private void RegisterViewModels()
         {
             Locator.CurrentMutable.RegisterConstant(new MainViewModel(), typeof(IReactiveObject), typeof(MainViewModel).FullName);
-            Locator.CurrentMutable.Register(() => new ViewModels.BioDataViewModel(), typeof(IReactiveObject), typeof(ViewModels.BioDataViewModel).FullName);
+            Locator.CurrentMutable.Register(() => new BioDataViewModel(), typeof(IReactiveObject), typeof(BioDataViewModel).FullName);
             Locator.CurrentMutable.Register(() => new CybersicknessViewModel(), typeof(IReactiveObject), typeof(CybersicknessViewModel).FullName);
-            Locator.CurrentMutable.Register(() => new EmpaticaChartViewModel(), typeof(IReactiveObject), typeof(EmpaticaChartViewModel).FullName);
+            Locator.CurrentMutable.Register(() => new BioDataChartViewModel(), typeof(IReactiveObject), typeof(BioDataChartViewModel).FullName);
         }
 
         private void RegisterEmpatica()
