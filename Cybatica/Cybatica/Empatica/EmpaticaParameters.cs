@@ -9,8 +9,13 @@ namespace Cybatica.Empatica
 
         public BatteryLevel(float value, double timestamp)
         {
-            this.Value = value;
-            this.Timestamp = timestamp;
+            Value = value;
+            Timestamp = timestamp;
+        }
+
+        public override string ToString()
+        {
+            return $"{Value},{Timestamp}";
         }
     }
 
@@ -23,10 +28,15 @@ namespace Cybatica.Empatica
 
         public Acceleration(float x, float y, float z, double timestamp)
         {
-            this.XValue = x;
-            this.YValue = y;
-            this.ZValue = z;
-            this.Timestamp = timestamp;
+            XValue = x;
+            YValue = y;
+            ZValue = z;
+            Timestamp = timestamp;
+        }
+
+        public override string ToString()
+        {
+            return $"{XValue},{YValue},{ZValue},{Timestamp}";
         }
     }
 
@@ -37,8 +47,13 @@ namespace Cybatica.Empatica
 
         public Bvp(float value, double timestamp)
         {
-            this.Value = value;
-            this.Timestamp = timestamp;
+            Value = value;
+            Timestamp = timestamp;
+        }
+
+        public override string ToString()
+        {
+            return $"{Value},{Timestamp}";
         }
     }
 
@@ -49,8 +64,13 @@ namespace Cybatica.Empatica
 
         public Gsr(float value, double timestamp)
         {
-            this.Value = value;
-            this.Timestamp = timestamp;
+            Value = value;
+            Timestamp = timestamp;
+        }
+
+        public override string ToString()
+        {
+            return $"{Value},{Timestamp}";
         }
     }
 
@@ -62,9 +82,14 @@ namespace Cybatica.Empatica
 
         public Hr(float value, int qualityIndex, double timestamp)
         {
-            this.Value = value;
-            this.QualityIndex = qualityIndex;
-            this.Timestamp = timestamp;
+            Value = value;
+            QualityIndex = qualityIndex;
+            Timestamp = timestamp;
+        }
+
+        public override string ToString()
+        {
+            return $"{Value},{Timestamp}";
         }
     }
 
@@ -75,8 +100,13 @@ namespace Cybatica.Empatica
 
         public Ibi(float value, double timestamp)
         {
-            this.Value = value;
-            this.Timestamp = timestamp;
+            Value = value;
+            Timestamp = timestamp;
+        }
+
+        public override string ToString()
+        {
+            return $"{Value},{Timestamp}";
         }
     }
 
@@ -87,17 +117,27 @@ namespace Cybatica.Empatica
 
         public Temperature(float value, double timestamp)
         {
-            this.Value = value;
-            this.Timestamp = timestamp;
+            Value = value;
+            Timestamp = timestamp;
+        }
+
+        public override string ToString()
+        {
+            return $"{Value},{Timestamp}";
         }
     }
 
     public struct Tag
     {
-        public double Value { get; }
+        public double Timestamp { get; }
         public Tag(double value)
         {
-            this.Value = value;
+            Timestamp = value;
+        }
+
+        public override string ToString()
+        {
+            return $"{Timestamp}";
         }
     }
 }

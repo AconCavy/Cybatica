@@ -69,24 +69,6 @@
                 <Label Style="{StaticResource HeadText}" Text="SCR WIDTH"/>
                 <Label x:Name="ScrWidth" Style="{StaticResource NormalText}" Text="0"/>
             </StackLayout>
-            
-            <!--
-            <StackLayout Grid.Row="5" Grid.Column="0">
-                <Button x:Name="SaveCommand"
-                    Style="{StaticResource Button}"
-                    Text="Save"
-                    FontSize="Large"
-                    FontAttributes="Bold"/>
-            </StackLayout>
-
-            <StackLayout Grid.Row="5" Grid.Column="1">
-                <Button x:Name="ExportCommand"
-                    Style="{StaticResource Button}"
-                    Text="Export"
-                    FontSize="Large"
-                    FontAttributes="Bold"/>
-            </StackLayout>
-            -->
 
         </Grid>
         

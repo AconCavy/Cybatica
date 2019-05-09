@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Cybatica.ViewModels
@@ -67,10 +68,35 @@ namespace Cybatica.ViewModels
 
             });
 
-            DisconnectDevice = ReactiveCommand.Create(() => 
+            DisconnectDevice = ReactiveCommand.CreateFromTask(async () => 
             {
+                var disconnectAnswer = await Application.Current.MainPage.DisplayAlert(
+                    title: "Alert",
+                    message: "Do you disconnect a device?",
+                    accept: "Yes",
+                    cancel: "No");
+
+                if (!disconnectAnswer)
+                {
+                    return;
+                }
+
                 _handler.DisconnectDevice();
+
+                var saveAnswer = await Application.Current.MainPage.DisplayAlert(
+                    title: "Save",
+                    message: "Do you save this session?",
+                    accept: "Yes",
+                    cancel: "No");
+
+                if (saveAnswer)
+                {
+                    var shareDataExporter = new ShareDataExporter("CybaticaData", "csv");
+                    shareDataExporter.Export(FileSystem.CacheDirectory, _handler.EmpaticaSession);
+                }
+
                 ResetValues();
+                _handler.InitializeSession();
                 _isConnecting = false;
             });
 
@@ -100,11 +126,11 @@ namespace Cybatica.ViewModels
 
         private void ResetValues()
         {
-            Bvp = 0;
-            Ibi = 0;
-            Gsr = 0;
-            Temperature = 0;
-            Hr = 0;
+            Bvp = default;
+            Ibi = default;
+            Gsr = default;
+            Temperature = default;
+            Hr = default;
 
         }
 

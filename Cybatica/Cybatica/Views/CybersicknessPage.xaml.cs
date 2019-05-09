@@ -42,17 +42,7 @@ namespace Cybatica.Views
                     vm => vm.Sd2,
                     v => v.Sd2.Text,
                     x => x.ToString("F2"));
-                /*
-                this.BindCommand(ViewModel,
-                    vm => vm.Save,
-                    v => v.SaveCommand)
-                    .DisposeWith(disposable);
 
-                this.BindCommand(ViewModel,
-                    vm => vm.Export,
-                    v => v.ExportCommand)
-                    .DisposeWith(disposable);
-                    */
             });
         }
 	}

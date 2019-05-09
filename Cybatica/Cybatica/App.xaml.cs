@@ -12,7 +12,7 @@ namespace Cybatica
     {
         public App()
         {
-            //ExperimentalFeatures.Enable(ExperimentalFeatures.ShareFileRequest);
+            ExperimentalFeatures.Enable(ExperimentalFeatures.ShareFileRequest);
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(AppPrivateInformations.SyncfusionLicenseKey);
             new AppBootstrapper();
             InitializeComponent();
