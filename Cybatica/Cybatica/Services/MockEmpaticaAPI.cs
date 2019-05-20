@@ -29,6 +29,11 @@ namespace Cybatica.Services
             Console.WriteLine("Disconnect() in mock");
         }
 
+        public void Discover()
+        {
+            Console.WriteLine("Discover() in mock");
+        }
+
         public void PrepareForBackground()
         {
             Console.WriteLine("PrepareForBackground() in mock");
@@ -39,6 +44,5 @@ namespace Cybatica.Services
             Console.WriteLine("PrepareForResume() in mock");
         }
 
-        
     }
 }

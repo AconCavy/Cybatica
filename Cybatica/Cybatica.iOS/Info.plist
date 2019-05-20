@@ -50,6 +50,10 @@
 				<string>Dictionary</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>ドキュメントの種類 1</string>
+		</dict>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
@@ -63,7 +67,5 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>MinimumOSVersion</key>
-	<string>12.2</string>
 </dict>
 </plist>

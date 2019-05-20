@@ -37,5 +37,10 @@ namespace Cybatica.Droid.Empatica
         {
             Console.WriteLine("Prepare for resume on Android");
         }
+
+        public void Discover()
+        {
+            
+        }
     }
 }

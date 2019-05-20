@@ -14,6 +14,8 @@ namespace Cybatica.Empatica
 
         void Disconnect();
 
+        void Discover();
+
         void PrepareForBackground();
 
         void PrepareForResume();

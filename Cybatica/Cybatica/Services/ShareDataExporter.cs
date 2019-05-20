@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Reactive.Concurrency;
+using System.Reactive.Linq;
 using Xamarin.Essentials;
 
 namespace Cybatica.Services
@@ -29,31 +30,35 @@ namespace Cybatica.Services
         {
             var directoryName = $"{_directoryName}{DateTime.Now.ToFileTime()}";
             var directoryPath = Path.Combine(path, directoryName);
+            var fileName = directoryPath + ".zip";
 
-            if (!Directory.Exists(directoryPath))
+            RxApp.MainThreadScheduler.Schedule(async () =>
             {
-                Directory.CreateDirectory(directoryPath);
-            }
+                await Observable.Start(() =>
+                {
+                    if (!Directory.Exists(directoryPath))
+                    {
+                        Directory.CreateDirectory(directoryPath);
+                    }
 
-            RxApp.TaskpoolScheduler.Schedule(async () =>
-            {
-                var bvp = Path.Combine(directoryPath, $"BVP.{_extention}");
-                File.WriteAllText(bvp, FormatData(empaticaSession.Bvp.Items));
+                    var bvp = Path.Combine(directoryPath, $"BVP.{_extention}");
+                    File.WriteAllText(bvp, FormatData(empaticaSession.Bvp.Items));
 
-                var ibi = Path.Combine(directoryPath, $"IBI.{_extention}");
-                File.WriteAllText(ibi, FormatData(empaticaSession.Ibi.Items));
+                    var ibi = Path.Combine(directoryPath, $"IBI.{_extention}");
+                    File.WriteAllText(ibi, FormatData(empaticaSession.Ibi.Items));
 
-                var hr = Path.Combine(directoryPath, $"HR.{_extention}");
-                File.WriteAllText(hr, FormatData(empaticaSession.Hr.Items));
+                    var hr = Path.Combine(directoryPath, $"HR.{_extention}");
+                    File.WriteAllText(hr, FormatData(empaticaSession.Hr.Items));
 
-                var gsr = Path.Combine(directoryPath, $"GSR.{_extention}");
-                File.WriteAllText(gsr, FormatData(empaticaSession.Gsr.Items));
+                    var gsr = Path.Combine(directoryPath, $"GSR.{_extention}");
+                    File.WriteAllText(gsr, FormatData(empaticaSession.Gsr.Items));
 
-                var temperature = Path.Combine(directoryPath, $"Temperature.{_extention}");
-                File.WriteAllText(temperature, FormatData(empaticaSession.Temperature.Items));
+                    var temperature = Path.Combine(directoryPath, $"Temperature.{_extention}");
+                    File.WriteAllText(temperature, FormatData(empaticaSession.Temperature.Items));
 
-                var fileName = directoryPath + ".zip";
-                ZipFile.CreateFromDirectory(directoryPath, fileName);
+                    ZipFile.CreateFromDirectory(directoryPath, fileName);
+
+                }, RxApp.TaskpoolScheduler);
 
                 await Share.RequestAsync(new ShareFileRequest
                 {

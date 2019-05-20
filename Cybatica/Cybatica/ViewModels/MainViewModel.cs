@@ -1,8 +1,6 @@
-﻿using System;
-using System.Reactive.Disposables;
-using Cybatica.Services;
+﻿using Cybatica.Services;
 using ReactiveUI;
-using Splat;
+using System.Reactive.Disposables;
 
 namespace Cybatica.ViewModels
 {
@@ -26,8 +24,8 @@ namespace Cybatica.ViewModels
 
         private void HandleActivation()
         {
-            var _empaticaHandler = Locator.Current.GetService<IEmpaticaHandler>();
-            _empaticaHandler.AuthenticateWithApiKey(AppPrivateInformations.EmpaticaAPIKey);
+            var _handler = new CybaticaHandler();
+            _handler.AuthenticateWithApiKey(AppPrivateInformations.EmpaticaAPIKey);
         }
 
         private void HandleDeactivation()

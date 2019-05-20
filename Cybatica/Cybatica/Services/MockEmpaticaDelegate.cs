@@ -25,5 +25,6 @@ namespace Cybatica.Services
                 new EmpaticaDevice("2", "2", "2", "2", "2")
             };
         }
+
     }
 }

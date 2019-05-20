@@ -31,9 +31,10 @@ namespace Cybatica.iOS.Empatica
                 E4linkBinding.EmpaticaAPI.AuthenticateWithAPIKey(APIKey,
                     (status, message) =>
                 {
+                    System.Console.WriteLine($"Authenticate on iOS: {status}");
                     if (status)
                     {
-                        Discover(_empaticaDelegate);
+                        Discover();
                     }
                 });
             });
@@ -63,9 +64,9 @@ namespace Cybatica.iOS.Empatica
             _device.ConnectWithDeviceDelegate(_deviceDelegate);
         }
 
-        private void Discover(E4linkBinding.EmpaticaDelegate empaticaDelegate)
+        public void Discover()
         {
-            E4linkBinding.EmpaticaAPI.DiscoverDevicesWithDelegate(empaticaDelegate);
+            E4linkBinding.EmpaticaAPI.DiscoverDevicesWithDelegate(_empaticaDelegate);
         }
 
         public void PrepareForBackground()
