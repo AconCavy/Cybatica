@@ -12,7 +12,6 @@ namespace Cybatica
     {
         public AppBootstrapper()
         {
-            RegisterEmpatica();
             RegisterViewModels();
             RegisterViews();       
             Locator.CurrentMutable.RegisterViewsForViewModels(Assembly.GetCallingAssembly());
@@ -35,11 +34,6 @@ namespace Cybatica
             Locator.CurrentMutable.Register(() => new BioDataViewModel(), typeof(IReactiveObject), typeof(BioDataViewModel).FullName);
             Locator.CurrentMutable.Register(() => new CybersicknessViewModel(), typeof(IReactiveObject), typeof(CybersicknessViewModel).FullName);
             Locator.CurrentMutable.Register(() => new BioDataChartViewModel(), typeof(IReactiveObject), typeof(BioDataChartViewModel).FullName);
-        }
-
-        private void RegisterEmpatica()
-        {
-            Locator.CurrentMutable.RegisterConstant(new EmpaticaHandler(), typeof(IEmpaticaHandler));
         }
 
     }

@@ -28,17 +28,15 @@ namespace Cybatica.ViewModels
         public ViewModelActivator Activator { get; }
         public INavigation Navigation { get; set; }
 
-        private readonly IEmpaticaHandler _handler;
-
+        private readonly CybaticaHandler _handler;
         private readonly IObservable<long> _observer;
-
         private bool _isConnecting;
 
         public BioDataViewModel()
         {
             Activator = new ViewModelActivator();
-            
-            _handler = Locator.Current.GetService<IEmpaticaHandler>();
+
+            _handler = new CybaticaHandler();
 
             _observer = Observable.Interval(TimeSpan.FromSeconds(1))
                 .Where(_ => _isConnecting)
@@ -54,11 +52,13 @@ namespace Cybatica.ViewModels
 
             ManageDevice = ReactiveCommand.CreateFromTask(async () =>
             {
+                var devices = _handler.Devices.Select(x => x.SerialNumber).ToArray();
+                Console.WriteLine(devices.Count().ToString());
                 var result = await Application.Current.MainPage.DisplayActionSheet(
                     title: "Choose Device",
                     cancel: "Cancel",
                     destruction: null,
-                    buttons: _handler.Devices.Select(x => x.SerialNumber).ToArray());
+                    buttons: devices);
 
                 if (_isConnecting = !(result.Equals("Cancel") || result == null))
                 {
@@ -102,11 +102,6 @@ namespace Cybatica.ViewModels
 
             this.WhenActivated(disposable =>
             {
-                HandleActivation();
-
-                Disposable.Create(() => HandleDeactivation())
-                .DisposeWith(disposable);
-
                 _observer.Subscribe(_ => FetchData())
                 .DisposeWith(disposable);
 
@@ -114,13 +109,13 @@ namespace Cybatica.ViewModels
 
         }
 
-        public void FetchData()
+        private void FetchData()
         {
-            Bvp = _handler.GetLatestBvp().Value;
-            Ibi = _handler.GetLatestIbi().Value;
-            Gsr = _handler.GetLatestGsr().Value;
-            Temperature = _handler.GetLatestTemperature().Value;
-            Hr = _handler.GetLatestHr().Value;
+            Bvp = _handler.GetBvp().Value;
+            Ibi = _handler.GetIbi().Value;
+            Gsr = _handler.GetGsr().Value;
+            Temperature = _handler.GetTemperature().Value;
+            Hr = _handler.GetHr().Value;
 
         }
 
@@ -134,12 +129,6 @@ namespace Cybatica.ViewModels
 
         }
 
-        private void HandleActivation()
-        {
-        }
-
-        private void HandleDeactivation()
-        {
-        }
     }
+
 }

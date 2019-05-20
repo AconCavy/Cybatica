@@ -1,6 +1,4 @@
-﻿using ReactiveUI.Fody.Helpers;
-
-namespace Cybatica.Empatica
+﻿namespace Cybatica.Empatica
 {
     public struct BatteryLevel
     {

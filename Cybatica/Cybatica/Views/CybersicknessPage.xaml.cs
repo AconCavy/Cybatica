@@ -34,12 +34,12 @@ namespace Cybatica.Views
                     x => x.ToString("F2"));
 
                 this.OneWayBind(ViewModel,
-                    vm => vm.Sd1,
+                    vm => vm.PpSd1,
                     v => v.Sd1.Text,
                     x => x.ToString("F2"));
 
                 this.OneWayBind(ViewModel,
-                    vm => vm.Sd2,
+                    vm => vm.PpSd2,
                     v => v.Sd2.Text,
                     x => x.ToString("F2"));
 

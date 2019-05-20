@@ -1,12 +1,13 @@
 ﻿using Cybatica.Empatica;
 using Splat;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Cybatica.Services
 {
-    public class EmpaticaHandler : IEmpaticaHandler
+    public class CybaticaHandler : ICybaticaHandler, IEmpaticaHandler
     {
-        public ReadOnlyCollection<EmpaticaDevice> Devices { get; }
+        public ReadOnlyCollection<EmpaticaDevice> Devices => _empaticaDelegate.Devices;
         public bool IsDeviceListEmpty => Devices.Count == 0;
         public EmpaticaSession EmpaticaSession { get; }
 
@@ -14,13 +15,12 @@ namespace Cybatica.Services
         private readonly IEmpaticaDelegate _empaticaDelegate;
         private readonly IEmpaticaDeviceDelegate _deviceDelegate;
 
-        public EmpaticaHandler()
+        public CybaticaHandler()
         {
             _empaticaAPI = Locator.Current.GetService<IEmpaticaApi>();
             _empaticaDelegate = Locator.Current.GetService<IEmpaticaDelegate>();
             _deviceDelegate = Locator.Current.GetService<IEmpaticaDeviceDelegate>();
 
-            Devices = _empaticaDelegate.Devices;
             EmpaticaSession = _deviceDelegate.EmpaticaSession;
 
         }
@@ -43,44 +43,58 @@ namespace Cybatica.Services
         public void DisconnectDevice()
         {
             _empaticaAPI.Disconnect();
+            RestartDiscovery();
         }
 
-        public Acceleration GetLatestAcceleration()
+        public void RestartDiscovery()
+        {
+            if(GetEmpaticaBLEStatus() != EmpaticaBLEStatus.Ready)
+            {
+                return;
+            }
+
+            if (_empaticaDelegate.IsAllDevicesDisconnected)
+            {
+                _empaticaAPI.Discover();
+            }
+        }
+
+        public Acceleration GetAcceleration()
         {
             return _deviceDelegate.Acceleration;
         }
 
-        public BatteryLevel GetLatestBatteryLevel()
+        public BatteryLevel GetBatteryLevel()
         {
             return _deviceDelegate.BatteryLevel;
         }
 
-        public Bvp GetLatestBvp()
+        public Bvp GetBvp()
         {
             return _deviceDelegate.Bvp;
         }
 
-        public Gsr GetLatestGsr()
+        public Gsr GetGsr()
         {
             return _deviceDelegate.Gsr;
         }
 
-        public Hr GetLatestHr()
+        public Hr GetHr()
         {
             return _deviceDelegate.Hr;
         }
 
-        public Ibi GetLatestIbi()
+        public Ibi GetIbi()
         {
             return _deviceDelegate.Ibi;
         }
 
-        public Tag GetLatestTag()
+        public Tag GetTag()
         {
             return _deviceDelegate.Tag;
         }
 
-        public Temperature GetLatestTemperature()
+        public Temperature GetTemperature()
         {
             return _deviceDelegate.Temperature;
         }
@@ -100,6 +114,51 @@ namespace Cybatica.Services
             return _empaticaDelegate.BLEStatus;
         }
 
-        
+        public float GetCybersickness()
+        {
+            return Calculator.CalcCybersickness();
+        }
+
+        public float GetNnmean()
+        {
+            var target = EmpaticaSession.Ibi.Items.ToArray();
+
+            return Calculator.CalcNnmean(target);
+        }
+
+        public float GetSdnn()
+        {
+            var target = EmpaticaSession.Ibi.Items.ToArray();
+
+            return Calculator.CalcSdnn(target);
+        }
+
+        public float GetRmssd()
+        {
+            var target = EmpaticaSession.Ibi.Items.ToArray();
+
+            return Calculator.CalcRmssd(target);
+        }
+
+        public float GetPpSd1()
+        {
+            var target = EmpaticaSession.Ibi.Items.ToArray();
+
+            return Calculator.CalcPpSd1(target);
+        }
+
+        public float GetPpSd2()
+        {
+            var target = EmpaticaSession.Ibi.Items.ToArray();
+
+            return Calculator.CalcPpSd2(target);
+        }
+
+        public float GetScr()
+        {
+            //var target = EmpaticaSession.Gsr.Items.ToArray();
+
+            return Calculator.CalcScr();
+        }
     }
 }
