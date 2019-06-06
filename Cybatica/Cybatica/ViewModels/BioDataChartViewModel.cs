@@ -2,7 +2,6 @@
 using Cybatica.Services;
 using DynamicData;
 using ReactiveUI;
-using Splat;
 using System;
 using System.Collections.ObjectModel;
 
@@ -24,8 +23,15 @@ namespace Cybatica.ViewModels
         private readonly ReadOnlyObservableCollection<Hr> _hr;
         private readonly ReadOnlyObservableCollection<Gsr> _gsr;
         private readonly ReadOnlyObservableCollection<Temperature> _temperature;
-        
+
+        private readonly CybaticaHandler _handler;
         private readonly EmpaticaSession _empaticaSession;
+
+        private readonly IDisposable _observableBvp;
+        private readonly IDisposable _observableIbi;
+        private readonly IDisposable _observableHr;
+        private readonly IDisposable _observableGsr;
+        private readonly IDisposable _observableTemperature;
 
         public ViewModelActivator Activator { get; }
 
@@ -33,33 +39,40 @@ namespace Cybatica.ViewModels
         {
             Activator = new ViewModelActivator();
 
-            _empaticaSession = Locator.Current.GetService<IEmpaticaHandler>().EmpaticaSession;
+            _handler = new CybaticaHandler();
 
-            _empaticaSession.Bvp.Connect()
+            _empaticaSession = _handler.EmpaticaSession;
+
+            var bvp = _empaticaSession.ConnectBvp();
+            _observableBvp = bvp
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _bvp)
                 .Subscribe();
 
-            _empaticaSession.Ibi.Connect()
+            var ibi = _empaticaSession.ConnectIbi();
+            _observableIbi = ibi
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _ibi)
                 .Subscribe();
 
-            _empaticaSession.Hr.Connect()
+            var hr = _empaticaSession.ConnectHr();
+            _observableHr = hr
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _hr)
                 .Subscribe();
 
-            _empaticaSession.Gsr.Connect()
+            var gsr = _empaticaSession.ConnectGsr();
+            _observableGsr = gsr
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _gsr)
                 .Subscribe();
 
-            _empaticaSession.Temperature.Connect()
+            var temperature = _empaticaSession.ConnectTemperature();
+            _observableTemperature = temperature
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _temperature)
@@ -68,19 +81,26 @@ namespace Cybatica.ViewModels
             this.WhenActivated(disposable =>
             {
                 HandleActivation();
-
                 Disposable.Create(() => HandleDeactivation())
                 .DisposeWith(disposable);
+
             });
 
         }
 
         private void HandleActivation()
         {
+            
         }
 
         private void HandleDeactivation()
         {
+            _observableBvp.Dispose();
+            _observableGsr.Dispose();
+            _observableHr.Dispose();
+            _observableIbi.Dispose();
+            _observableTemperature.Dispose();
+
         }
 
     }

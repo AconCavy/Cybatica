@@ -14,12 +14,22 @@ namespace Cybatica
 
         public static float CalcNnmean(IEnumerable<Ibi> ibiList)
         {
+            if(ibiList.Count() == 0)
+            {
+                return 0;
+            }
+            
             var result = ibiList.Select(x => x.Value).Average();
             return result;
         }
 
         public static float CalcSdnn(IEnumerable<Ibi> ibiList)
         {
+            if (ibiList.Count() == 0)
+            {
+                return 0;
+            }
+
             var valueList = ibiList.Select(x => x.Value);
             var result = CalcSd(valueList);
             return result;
@@ -27,6 +37,11 @@ namespace Cybatica
 
         public static float CalcRmssd(IEnumerable<Ibi> ibiList)
         {
+            if (ibiList.Count() == 0)
+            {
+                return 0;
+            }
+
             var valueList = ibiList.Select(x => x.Value).ToArray();
             var count = valueList.Length - 1;
             var diffList = new float[count];
@@ -45,6 +60,11 @@ namespace Cybatica
 
         public static float CalcPpSd1(IEnumerable<Ibi> ibiList)
         {
+            if (ibiList.Count() == 0)
+            {
+                return 0;
+            }
+
             var valueList = ibiList.Select(x => x.Value).ToArray();
             var count = valueList.Length - 1;
             var diffList = new float[count];
@@ -61,6 +81,11 @@ namespace Cybatica
 
         public static float CalcPpSd2(IEnumerable<Ibi> ibiList)
         {
+            if (ibiList.Count() == 0)
+            {
+                return 0;
+            }
+
             var valueList = ibiList.Select(x => x.Value).ToArray();
             var count = valueList.Length - 1;
             var addList = new float[count];
@@ -68,7 +93,7 @@ namespace Cybatica
 
             for (var index = 0; index < count; index++)
             {
-                addList[index] = (valueList[index + 1] + valueList[index]) / (float)root2;
+                addList[index] = (valueList[index + 1] + valueList[index]) / (float) root2;
             }
 
             var result = CalcSd(addList);

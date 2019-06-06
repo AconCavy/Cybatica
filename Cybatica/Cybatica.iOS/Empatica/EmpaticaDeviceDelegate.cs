@@ -1,4 +1,5 @@
-﻿using Cybatica.Empatica;
+﻿using System;
+using Cybatica.Empatica;
 using E4linkBinding;
 
 namespace Cybatica.iOS.Empatica
@@ -7,7 +8,7 @@ namespace Cybatica.iOS.Empatica
     {
 
         public EmpaticaSession EmpaticaSession { get; private set; }
-        
+
         public BatteryLevel BatteryLevel { get; private set; }
 
         public Acceleration Acceleration { get; private set; }
@@ -28,6 +29,8 @@ namespace Cybatica.iOS.Empatica
 
         public EmpaticaDeviceStatus DeviceStatus { get; private set; }
 
+        public double ConnectedTime {get; private set;}
+
         public EmpaticaDeviceDelegate()
         {
             InitializeSession();
@@ -35,56 +38,56 @@ namespace Cybatica.iOS.Empatica
 
         public override void DidReceiveAccelerationX(sbyte x, sbyte y, sbyte z, double timestamp, EmpaticaDeviceManager device)
         {
-            Acceleration acceleration = new Acceleration(x, y, z, timestamp);
+            Acceleration acceleration = new Acceleration(x, y, z, timestamp - ConnectedTime);
             Acceleration = acceleration;
             EmpaticaSession.AddAcceleration(acceleration);
         }
 
         public override void DidReceiveBatteryLevel(float level, double timestamp, EmpaticaDeviceManager device)
         {
-            BatteryLevel batteryLevel = new BatteryLevel(level, timestamp);
+            BatteryLevel batteryLevel = new BatteryLevel(level, timestamp - ConnectedTime);
             BatteryLevel = batteryLevel;
             EmpaticaSession.AddBatteryLevel(batteryLevel);
         }
 
         public override void DidReceiveBVP(float bvp, double timestamp, EmpaticaDeviceManager device)
         {
-            Bvp bvpValue = new Bvp(bvp, timestamp);
+            Bvp bvpValue = new Bvp(bvp, timestamp - ConnectedTime);
             Bvp = bvpValue;
             EmpaticaSession.AddBvp(bvpValue);
         }
 
         public override void DidReceiveGSR(float gsr, double timestamp, EmpaticaDeviceManager device)
         {
-            Gsr gsrValue = new Gsr(gsr, timestamp);
+            Gsr gsrValue = new Gsr(gsr, timestamp - ConnectedTime);
             Gsr = gsrValue;
             EmpaticaSession.AddGsr(gsrValue);
         }
 
         public override void DidReceiveHR(float hr, int qualityIndex, double timestamp, EmpaticaDeviceManager device)
         {
-            Hr hrValue = new Hr(hr, qualityIndex, timestamp);
+            Hr hrValue = new Hr(hr, qualityIndex, timestamp - ConnectedTime);
             Hr = hrValue;
             EmpaticaSession.AddHr(hrValue);
         }
 
         public override void DidReceiveIBI(float ibi, double timestamp, EmpaticaDeviceManager device)
         {
-            Ibi ibiValue = new Ibi(ibi, timestamp);
+            Ibi ibiValue = new Ibi(ibi, timestamp - ConnectedTime);
             Ibi = ibiValue;
             EmpaticaSession.AddIbi(ibiValue);
         }
 
         public override void DidReceiveTagAtTimestamp(double timestamp, EmpaticaDeviceManager device)
         {
-            Tag tag = new Tag(timestamp);
+            Tag tag = new Tag(timestamp - ConnectedTime);
             Tag = tag;
             EmpaticaSession.AddTag(tag);
         }
 
         public override void DidReceiveTemperature(float temp, double timestamp, EmpaticaDeviceManager device)
         {
-            Temperature temperature = new Temperature(temp, timestamp);
+            Temperature temperature = new Temperature(temp, timestamp - ConnectedTime);
             Temperature = temperature;
             EmpaticaSession.AddTemperature(temperature);
         }
@@ -131,6 +134,11 @@ namespace Cybatica.iOS.Empatica
         public void InitializeSession()
         {
             EmpaticaSession = new EmpaticaSession();
+        }
+
+        public void SetConnectedTime()
+        {
+            ConnectedTime = DateTimeOffset.Now.ToUnixTimeSeconds();
         }
     }
 }

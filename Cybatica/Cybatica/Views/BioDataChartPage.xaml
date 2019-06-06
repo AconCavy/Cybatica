@@ -28,6 +28,7 @@
     <ContentPage.Content>
         <ScrollView x:Name="ScrollView" Orientation="Vertical" Margin="8,8,8,8">
             <StackLayout>
+                
                 <chart:SfChart Style="{StaticResource Chart}">
                     <chart:SfChart.Title>
                         <chart:ChartTitle Text="BVP" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
@@ -47,8 +48,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:AreaSeries x:Name="Bvp" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
-                        </chart:AreaSeries>
+                        <chart:FastLineSeries x:Name="Bvp" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value" EnableAnimation="True"/>
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
                         <chart:ChartZoomPanBehavior ZoomMode="XY"/>
@@ -74,8 +74,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:AreaSeries x:Name="Ibi" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
-                        </chart:AreaSeries>
+                        <chart:AreaSeries x:Name="Ibi" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value" EnableAnimation="True"/>
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
                         <chart:ChartZoomPanBehavior ZoomMode="XY"/>
@@ -101,8 +100,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:AreaSeries x:Name="Hr" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
-                        </chart:AreaSeries>
+                        <chart:AreaSeries x:Name="Hr" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value" EnableAnimation="True"/>
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
                         <chart:ChartZoomPanBehavior ZoomMode="XY"/>
@@ -128,8 +126,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:AreaSeries x:Name="Eda" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
-                        </chart:AreaSeries>
+                        <chart:AreaSeries x:Name="Eda" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value" EnableAnimation="True"/>
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
                         <chart:ChartZoomPanBehavior ZoomMode="XY"/>
@@ -155,8 +152,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:AreaSeries x:Name="Temperature" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value">
-                        </chart:AreaSeries>
+                        <chart:AreaSeries x:Name="Temperature" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value" EnableAnimation="True"/>
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
                         <chart:ChartZoomPanBehavior ZoomMode="XY"/>

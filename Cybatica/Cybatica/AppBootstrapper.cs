@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Cybatica.ViewModels;
+using Cybatica.Views;
 using ReactiveUI;
 using Splat;
-using Cybatica.Services;
-using Cybatica.Views;
-using Cybatica.ViewModels;
 using System.Reflection;
 
 namespace Cybatica

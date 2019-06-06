@@ -2,11 +2,11 @@
 using ReactiveUI;
 using ReactiveUI.XamForms;
 using Splat;
-using System.Reactive.Disposables;
 using Xamarin.Forms.Xaml;
 
 namespace Cybatica.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CybersicknessPage : ReactiveContentPage<CybersicknessViewModel>
 	{
         public CybersicknessPage()

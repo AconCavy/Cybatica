@@ -30,6 +30,8 @@ namespace Cybatica.Services
 
         public EmpaticaDeviceStatus DeviceStatus { get; private set; }
 
+        public double ConnectedTime { get; private set; }
+
         public MockEmpaticaDeviceDelegate()
         {
             Console.WriteLine("McokEmpaticaDeviceDelegate() in mock");
@@ -61,6 +63,11 @@ namespace Cybatica.Services
         public void InitializeSession()
         {
             EmpaticaSession = new EmpaticaSession();
+        }
+
+        public void SetConnectedTime()
+        {
+            ConnectedTime = 0;
         }
     }
 }

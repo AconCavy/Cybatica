@@ -26,7 +26,7 @@ namespace Cybatica.iOS.Empatica
 
         public EmpaticaBLEStatus BLEStatus { get; private set; }
 
-        private List<EmpaticaDeviceManager> _devices;
+        private readonly List<EmpaticaDeviceManager> _devices;
 
         public EmpaticaDelegate()
         {
@@ -39,13 +39,12 @@ namespace Cybatica.iOS.Empatica
             
             if (IsAllDevicesDisconnected)
             {
-                /*
+                
                 _devices.Clear();
                 _devices.AddRange(new ObservableCollection<EmpaticaDeviceManager>(
-                    devices.OfType<EmpaticaDeviceManager>().ToList())
-                    );
-                    */
-                _devices = devices.OfType<EmpaticaDeviceManager>().ToList();
+                    devices.OfType<EmpaticaDeviceManager>().ToList()));
+                    
+                //_devices = devices.OfType<EmpaticaDeviceManager>().ToList();
 
                 DispatchQueue.MainQueue.DispatchAsync(() =>
                 {
@@ -75,7 +74,7 @@ namespace Cybatica.iOS.Empatica
 
         public EmpaticaDeviceManager GetDevice(EmpaticaDevice device)
         {
-            return _devices.First(x => x.SerialNumber.Equals(device.SerialNumber));
+            return _devices.Find(x => x.SerialNumber.Equals(device.SerialNumber));
         }
 
     }

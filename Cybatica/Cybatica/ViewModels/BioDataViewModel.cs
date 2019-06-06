@@ -30,7 +30,6 @@ namespace Cybatica.ViewModels
 
         private readonly CybaticaHandler _handler;
         private readonly IObservable<long> _observer;
-        private bool _isConnecting;
 
         public BioDataViewModel()
         {
@@ -39,10 +38,7 @@ namespace Cybatica.ViewModels
             _handler = new CybaticaHandler();
 
             _observer = Observable.Interval(TimeSpan.FromSeconds(1))
-                .Where(_ => _isConnecting)
                 .ObserveOn(RxApp.MainThreadScheduler);
-
-            _isConnecting = false;
 
             NavigateToChartPage = ReactiveCommand.CreateFromTask(async () => {
                 var page = Locator.Current.GetService<IViewFor<BioDataChartViewModel>>() as BioDataChartPage;
@@ -60,7 +56,7 @@ namespace Cybatica.ViewModels
                     destruction: null,
                     buttons: devices);
 
-                if (_isConnecting = !(result.Equals("Cancel") || result == null))
+                if (!(result.Equals("Cancel") || result == null))
                 {
                     var target = _handler.Devices.First(x => x.SerialNumber.Equals(result));
                     _handler.ConnectDevice(target);
@@ -97,7 +93,6 @@ namespace Cybatica.ViewModels
 
                 ResetValues();
                 _handler.InitializeSession();
-                _isConnecting = false;
             });
 
             this.WhenActivated(disposable =>

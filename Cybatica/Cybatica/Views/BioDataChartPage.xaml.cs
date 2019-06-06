@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 
 namespace Cybatica.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BioDataChartPage : ReactiveContentPage<BioDataChartViewModel>
 	{
         public BioDataChartPage()
@@ -44,7 +45,7 @@ namespace Cybatica.Views
                     .DisposeWith(disposable);
 
             });
-
+            
         }
 
 	}

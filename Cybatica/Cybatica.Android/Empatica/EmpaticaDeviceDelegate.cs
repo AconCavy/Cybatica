@@ -32,9 +32,16 @@ namespace Cybatica.Droid.Empatica
 
         public EmpaticaDeviceStatus DeviceStatus => throw new NotImplementedException();
 
+        public double ConnectedTime { get; private set; }
+
         public void InitializeSession()
         {
             throw new NotImplementedException();
+        }
+
+        public void SetConnectedTime()
+        {
+            ConnectedTime = DateTimeOffset.Now.ToUnixTimeSeconds();
         }
     }
 }

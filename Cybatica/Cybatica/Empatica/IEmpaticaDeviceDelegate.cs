@@ -24,6 +24,10 @@
 
         EmpaticaDeviceStatus DeviceStatus { get; }
 
+        double ConnectedTime { get; }
+
         void InitializeSession();
+
+        void SetConnectedTime();
     }
 }

@@ -32,6 +32,7 @@ namespace Cybatica.iOS.Empatica
                     (status, message) =>
                 {
                     System.Console.WriteLine($"Authenticate on iOS: {status}");
+
                     if (status)
                     {
                         Discover();
@@ -62,6 +63,7 @@ namespace Cybatica.iOS.Empatica
         {
             _device = _empaticaDelegate.GetDevice(device);
             _device.ConnectWithDeviceDelegate(_deviceDelegate);
+            _deviceDelegate.SetConnectedTime();
         }
 
         public void Discover()

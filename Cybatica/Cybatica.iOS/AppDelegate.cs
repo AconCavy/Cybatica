@@ -1,9 +1,6 @@
 ﻿using E4linkBinding;
 using Foundation;
 using UIKit;
-using Cybatica.Services;
-using Cybatica.Empatica;
-using Splat;
 
 namespace Cybatica.iOS
 {
@@ -26,10 +23,9 @@ namespace Cybatica.iOS
             global::Xamarin.Forms.Forms.Init();
             new AppBootstrapper();
             Syncfusion.SfChart.XForms.iOS.Renderers.SfChartRenderer.Init();
+            UITabBar.Appearance.SelectedImageTintColor = UIColor.FromRGB(232, 174, 183);
 
             LoadApplication(new App());
-
-            UITabBar.Appearance.SelectedImageTintColor = UIColor.FromRGB(232, 174, 183);
             return base.FinishedLaunching(app, options);
 
         }
