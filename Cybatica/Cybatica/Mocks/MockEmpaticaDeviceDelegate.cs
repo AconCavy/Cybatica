@@ -1,10 +1,8 @@
 ﻿using Cybatica.Empatica;
-using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
 using System;
 using System.Reactive.Linq;
 
-namespace Cybatica.Services
+namespace Cybatica.Mocks
 {
     public class MockEmpaticaDeviceDelegate : IEmpaticaDeviceDelegate
     {

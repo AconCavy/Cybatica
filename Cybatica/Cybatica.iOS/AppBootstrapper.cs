@@ -1,5 +1,4 @@
 ﻿using Cybatica.Empatica;
-using Cybatica.Services;
 using Cybatica.iOS.Empatica;
 using Splat;
 
@@ -17,14 +16,14 @@ namespace Cybatica.iOS
         {
             Locator.CurrentMutable.RegisterLazySingleton(() => new EmpaticaDelegate(), typeof(IEmpaticaDelegate));
             Locator.CurrentMutable.RegisterLazySingleton(() => new EmpaticaDeviceDelegate(), typeof(IEmpaticaDeviceDelegate));
-            Locator.CurrentMutable.RegisterConstant(new EmpaticaAPI(), typeof(IEmpaticaApi));
+            Locator.CurrentMutable.RegisterConstant(new EmpaticaApi(), typeof(IEmpaticaApi));
         }
 
         private void MockRegisterDependencies()
         {
-            Locator.CurrentMutable.RegisterLazySingleton(() => new MockEmpaticaDelegate(), typeof(IEmpaticaDelegate));
-            Locator.CurrentMutable.RegisterLazySingleton(() => new MockEmpaticaDeviceDelegate(), typeof(IEmpaticaDeviceDelegate));
-            Locator.CurrentMutable.RegisterConstant(new MockEmpaticaApi(), typeof(IEmpaticaApi));
+            Locator.CurrentMutable.RegisterLazySingleton(() => new Mocks.MockEmpaticaDelegate(), typeof(IEmpaticaDelegate));
+            Locator.CurrentMutable.RegisterLazySingleton(() => new Mocks.MockEmpaticaDeviceDelegate(), typeof(IEmpaticaDeviceDelegate));
+            Locator.CurrentMutable.RegisterConstant(new Mocks.MockEmpaticaApi(), typeof(IEmpaticaApi));
         }
     }
 }

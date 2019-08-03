@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Cybatica.Empatica;
+﻿using Cybatica.Empatica;
+using System;
 
-namespace Cybatica.Services
+namespace Cybatica.Mocks
 {
     public class MockEmpaticaApi : IEmpaticaApi
     {

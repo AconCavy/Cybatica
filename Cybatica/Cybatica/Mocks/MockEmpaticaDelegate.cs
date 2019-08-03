@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Cybatica.Empatica;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
-using Cybatica.Empatica;
 
-namespace Cybatica.Services
+namespace Cybatica.Mocks
 {
     public class MockEmpaticaDelegate : IEmpaticaDelegate
     {
