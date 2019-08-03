@@ -26,12 +26,13 @@ namespace Cybatica.Views
                     x => x.ToString("F2"))
                     .DisposeWith(disposable);
 
+                /*
                 this.OneWayBind(ViewModel,
                     vm => vm.Hr,
                     v => v.Hr.Text,
                     x => x.ToString("F2"))
                     .DisposeWith(disposable);
-
+                    */
                 this.OneWayBind(ViewModel,
                     vm => vm.Ibi,
                     v => v.Ibi.Text,

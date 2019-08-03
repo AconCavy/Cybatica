@@ -35,49 +35,53 @@
             </Grid.ColumnDefinitions>
 
             <StackLayout Style="{StaticResource Panel}" Grid.Row="0" Grid.Column="0">
-                <Label Style="{StaticResource HeadText}" Text="BVP"/>
-                <Label x:Name="Bvp" Style="{StaticResource NormalText}" Text="1"/>
+                <Label Style="{StaticResource HeadText}" Text="BVP" FontSize="Large"/>
+                <Label x:Name="Bvp" Style="{StaticResource NormalText}" Text="1" FontSize="Medium"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="0" Grid.Column="1">
-                <Label Style="{StaticResource HeadText}" Text="IBI"/>
-                <Label x:Name="Ibi" Style="{StaticResource NormalText}" Text="1"/>
+                <Label Style="{StaticResource HeadText}" Text="IBI" FontSize="Large"/>
+                <Label x:Name="Ibi" Style="{StaticResource NormalText}" Text="1" FontSize="Medium"/>
             </StackLayout>
+            <!--
             <StackLayout Style="{StaticResource Panel}" Grid.Row="1" Grid.Column="0">
-                <Label Style="{StaticResource HeadText}" Text="HR"/>
-                <Label x:Name="Hr" Style="{StaticResource NormalText}" Text="1"/>
+                <Label Style="{StaticResource HeadText}" Text="HR" FontSize="Large"/>
+                <Label x:Name="Hr" Style="{StaticResource NormalText}" Text="1" FontSize="Medium"/>
+            </StackLayout>
+            -->
+            <StackLayout Style="{StaticResource Panel}" Grid.Row="1" Grid.Column="0">
+                <Label Style="{StaticResource HeadText}" Text="EDA" FontSize="Large"/>
+                <Label x:Name="Gsr" Style="{StaticResource NormalText}" Text="1" FontSize="Medium"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="1" Grid.Column="1">
-                <Label Style="{StaticResource HeadText}" Text="EDA"/>
-                <Label x:Name="Gsr" Style="{StaticResource NormalText}" Text="1"/>
+                <Label Style="{StaticResource HeadText}" Text="TEMPERATURE" FontSize="Large"/>
+                <Label x:Name="Temperature" Style="{StaticResource NormalText}" Text="1" FontSize="Medium"/>
             </StackLayout>
-            <StackLayout Style="{StaticResource Panel}" Grid.Row="2" Grid.Column="0">
-                <Label Style="{StaticResource HeadText}" Text="TEMPERATURE"/>
-                <Label x:Name="Temperature" Style="{StaticResource NormalText}" Text="1"/>
-            </StackLayout>
+            <!--
             <StackLayout Style="{StaticResource Panel}" Grid.Row="2" Grid.Column="1">
-                <Label Style="{StaticResource HeadText}" Text="ACCELERATION"/>
-                <Label x:Name="Acceleration" Style="{StaticResource NormalText}" Text="1"/>
+                <Label Style="{StaticResource HeadText}" Text="ACCELERATION" FontSize="Large"/>
+                <Label x:Name="Acceleration" Style="{StaticResource NormalText}" Text="0,0,0" FontSize="Medium"/>
             </StackLayout>
+            -->
 
             <StackLayout Grid.ColumnSpan="2" Grid.Row="4">
                 <Button x:Name="NavigateChartCommand"
                     Style="{StaticResource Button}"
                     Text="View Real-Time Chart"
-                    FontSize="Large"
+                    FontSize="Medium"
                     FontAttributes="Bold"/>
             </StackLayout>
             <StackLayout Grid.Row="5" Grid.Column="0">
                 <Button x:Name="ManageDeviceCommand"
                     Style="{StaticResource Button}"
                     Text="Find Empatica E4"
-                    FontSize="Large"
+                    FontSize="Medium"
                     FontAttributes="Bold"/>
             </StackLayout>
             <StackLayout Grid.Row="5" Grid.Column="1">
                 <Button x:Name="DisconnectDeviceCommand"
                     Style="{StaticResource Button}"
                     Text="Disconnect Empatica E4"
-                    FontSize="Large"
+                    FontSize="Medium"
                     FontAttributes="Bold"/>
             </StackLayout>
 

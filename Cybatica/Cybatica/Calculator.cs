@@ -37,7 +37,7 @@ namespace Cybatica
 
         public static float CalcRmssd(IEnumerable<Ibi> ibiList)
         {
-            if (ibiList.Count() == 0)
+            if (ibiList.Count() < 2)
             {
                 return 0;
             }
@@ -109,6 +109,12 @@ namespace Cybatica
         private static float CalcSd(IEnumerable<float> list)
         {
             var count = list.Count();
+
+            if (count == 0)
+            {
+                return 0;
+            }
+
             var mean = list.Average();
             var variance = list.Select(x => (x - mean) * (x - mean)).Sum() / (count - 1);
 

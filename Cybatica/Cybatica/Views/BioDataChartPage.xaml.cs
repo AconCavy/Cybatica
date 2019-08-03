@@ -29,10 +29,12 @@ namespace Cybatica.Views
                     v => v.Ibi.ItemsSource)
                     .DisposeWith(disposable);
 
+                /*
                 this.OneWayBind(ViewModel,
                     vm => vm.Hr,
                     v => v.Hr.ItemsSource)
                     .DisposeWith(disposable);
+                    */
 
                 this.OneWayBind(ViewModel,
                     vm => vm.Gsr,

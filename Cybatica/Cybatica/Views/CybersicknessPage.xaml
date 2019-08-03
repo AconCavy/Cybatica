@@ -34,40 +34,42 @@
             </Grid.ColumnDefinitions>
 
             <StackLayout Style="{StaticResource Panel}" Grid.ColumnSpan="2" Grid.Column="0">
-                <Label Style="{StaticResource HeadText}" Text="CYBERSICKNESS"/>
+                <Label Style="{StaticResource HeadText}" Text="CYBERSICKNESS" FontSize="Large"/>
                 <Label x:Name="Cybersickness" Style="{StaticResource NormalText}" Text="0"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="1" Grid.Column="0">
-                <Label Style="{StaticResource HeadText}" Text="NN MEAN"/>
-                <Label x:Name="Nnmean" Style="{StaticResource NormalText}" Text="0"/>
+                <Label Style="{StaticResource HeadText}" Text="NN MEAN" FontSize="Large"/>
+                <Label x:Name="Nnmean" Style="{StaticResource NormalText}" Text="0" FontSize="Medium"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="1" Grid.Column="1">
-                <Label Style="{StaticResource HeadText}" Text="SDNN"/>
-                <Label x:Name="Sdnn" Style="{StaticResource NormalText}" Text="0"/>
+                <Label Style="{StaticResource HeadText}" Text="SDNN" FontSize="Large"/>
+                <Label x:Name="Sdnn" Style="{StaticResource NormalText}" Text="0" FontSize="Medium"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="2" Grid.Column="0">
-                <Label Style="{StaticResource HeadText}" Text="RMSSD"/>
-                <Label x:Name="Rmssd" Style="{StaticResource NormalText}" Text="0"/>
+                <Label Style="{StaticResource HeadText}" Text="RMSSD" FontSize="Large"/>
+                <Label x:Name="Rmssd" Style="{StaticResource NormalText}" Text="0" FontSize="Medium"/>
             </StackLayout>
+            <!--
             <StackLayout Style="{StaticResource Panel}" Grid.Row="2" Grid.Column="1">
-                <Label Style="{StaticResource HeadText}" Text="SDSD"/>
-                <Label x:Name="Sdsd" Style="{StaticResource NormalText}" Text="0"/>
+                <Label Style="{StaticResource HeadText}" Text="SDSD" FontSize="Large"/>
+                <Label x:Name="Sdsd" Style="{StaticResource NormalText}" Text="0" FontSize="Medium"/>
             </StackLayout>
+            -->
             <StackLayout Style="{StaticResource Panel}" Grid.Row="3" Grid.Column="0">
-                <Label Style="{StaticResource HeadText}" Text="SD1"/>
-                <Label x:Name="Sd1" Style="{StaticResource NormalText}" Text="0"/>
+                <Label Style="{StaticResource HeadText}" Text="SD1" FontSize="Large"/>
+                <Label x:Name="Sd1" Style="{StaticResource NormalText}" Text="0" FontSize="Medium"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="3" Grid.Column="1">
-                <Label Style="{StaticResource HeadText}" Text="SD2"/>
-                <Label x:Name="Sd2" Style="{StaticResource NormalText}" Text="0"/>
+                <Label Style="{StaticResource HeadText}" Text="SD2" FontSize="Large"/>
+                <Label x:Name="Sd2" Style="{StaticResource NormalText}" Text="0" FontSize="Medium"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="4" Grid.Column="0">
-                <Label Style="{StaticResource HeadText}" Text="PEAK EDA"/>
-                <Label x:Name="PeakEda" Style="{StaticResource NormalText}" Text="0"/>
+                <Label Style="{StaticResource HeadText}" Text="PEAK EDA" FontSize="Large"/>
+                <Label x:Name="PeakEda" Style="{StaticResource NormalText}" Text="0" FontSize="Medium"/>
             </StackLayout>
             <StackLayout Style="{StaticResource Panel}" Grid.Row="4" Grid.Column="1">
-                <Label Style="{StaticResource HeadText}" Text="SCR WIDTH"/>
-                <Label x:Name="ScrWidth" Style="{StaticResource NormalText}" Text="0"/>
+                <Label Style="{StaticResource HeadText}" Text="SCR WIDTH" FontSize="Large"/>
+                <Label x:Name="ScrWidth" Style="{StaticResource NormalText}" Text="0" FontSize="Medium"/>
             </StackLayout>
 
         </Grid>
