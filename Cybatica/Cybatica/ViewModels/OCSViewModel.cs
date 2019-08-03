@@ -7,7 +7,7 @@ using System.Reactive.Linq;
 
 namespace Cybatica.ViewModels
 {
-    public class CybersicknessViewModel : ReactiveObject, ISupportsActivation
+    public class OCSViewModel : ReactiveObject, ISupportsActivation
     {
         [Reactive] public float Cybersickness { get; private set; }
         [Reactive] public float Nnmean { get; private set; }
@@ -22,7 +22,7 @@ namespace Cybatica.ViewModels
         private readonly CybaticaHandler _handler;
         private readonly IObservable<long> _observer;
 
-        public CybersicknessViewModel()
+        public OCSViewModel()
         {
             Activator = new ViewModelActivator();
 

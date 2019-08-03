@@ -33,13 +33,16 @@
     <EmbeddedResource Update="Resources\AppTheme.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CybersicknessPage.xaml">
+    <EmbeddedResource Update="Views\OCSPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BioDataChartPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BioDataPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -54,6 +57,9 @@
     </Compile>
     <Compile Update="Views\BioDataChartPage.xaml.cs">
       <DependentUpon>BioDataChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\OCSPage.xaml.cs">
+      <DependentUpon>OCSPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

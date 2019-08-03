@@ -81,7 +81,6 @@
                     </chart:SfChart.ChartBehaviors>
                 </chart:SfChart>
                 
-                <!--
                 <chart:SfChart Style="{StaticResource Chart}">
                     <chart:SfChart.Title>
                         <chart:ChartTitle Text="HR" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
@@ -107,8 +106,6 @@
                         <chart:ChartZoomPanBehavior ZoomMode="XY"/>
                     </chart:SfChart.ChartBehaviors>
                 </chart:SfChart>
-                
-                -->
                 
                 <chart:SfChart Style="{StaticResource Chart}">
                     <chart:SfChart.Title>

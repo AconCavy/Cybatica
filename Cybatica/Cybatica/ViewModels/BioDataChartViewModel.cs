@@ -14,13 +14,13 @@ namespace Cybatica.ViewModels
     {
         public ReadOnlyObservableCollection<Bvp> Bvp => _bvp;
         public ReadOnlyObservableCollection<Ibi> Ibi => _ibi;
-        //public ReadOnlyObservableCollection<Hr> Hr => _hr;
+        public ReadOnlyObservableCollection<Hr> Hr => _hr;
         public ReadOnlyObservableCollection<Gsr> Gsr => _gsr;
         public ReadOnlyObservableCollection<Temperature> Temperature => _temperature;
 
         private readonly ReadOnlyObservableCollection<Bvp> _bvp;
         private readonly ReadOnlyObservableCollection<Ibi> _ibi;
-        //private readonly ReadOnlyObservableCollection<Hr> _hr;
+        private readonly ReadOnlyObservableCollection<Hr> _hr;
         private readonly ReadOnlyObservableCollection<Gsr> _gsr;
         private readonly ReadOnlyObservableCollection<Temperature> _temperature;
 
@@ -29,7 +29,7 @@ namespace Cybatica.ViewModels
 
         private readonly IDisposable _observableBvp;
         private readonly IDisposable _observableIbi;
-        //private readonly IDisposable _observableHr;
+        private readonly IDisposable _observableHr;
         private readonly IDisposable _observableGsr;
         private readonly IDisposable _observableTemperature;
 
@@ -57,7 +57,6 @@ namespace Cybatica.ViewModels
                 .Bind(out _ibi)
                 .Subscribe();
 
-            /*
             var hr = _empaticaSession.ConnectHr();
             _observableHr = hr
                 .SubscribeOn(RxApp.TaskpoolScheduler)
@@ -65,7 +64,6 @@ namespace Cybatica.ViewModels
                 .Bind(out _hr)
                 .Subscribe();
 
-    */
             var gsr = _empaticaSession.ConnectGsr();
             _observableGsr = gsr
                 .SubscribeOn(RxApp.TaskpoolScheduler)
@@ -99,7 +97,7 @@ namespace Cybatica.ViewModels
         {
             _observableBvp.Dispose();
             _observableGsr.Dispose();
-            //_observableHr.Dispose();
+            _observableHr.Dispose();
             _observableIbi.Dispose();
             _observableTemperature.Dispose();
 

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rxui:ReactiveContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+    xmlns:vm="clr-namespace:Cybatica.ViewModels"
+    xmlns:theme="clr-namespace:Cybatica.Resources"
+    x:Class="Cybatica.Views.HomePage"
+    x:TypeArguments="vm:HomeViewModel"
+    Title="HOME">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <theme:AppTheme/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        
+        <Grid Margin="8,8,8,8"
+              RowSpacing="8"
+              ColumnSpacing="8">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Style="{StaticResource HeadText}"
+                   Text="Elapsed Time:"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   Grid.Row="0"
+                   Grid.Column="0"/>
+            <Label x:Name="Time"
+                   Style="{StaticResource NormalText}"
+                   Text="00:00"
+                   FontSize="Large"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   Grid.Row="0"
+                   Grid.Column="1"/>
+
+            <Button x:Name="Stop"
+                    Style="{StaticResource Button}"
+                    Text="Stop"
+                    IsEnabled="False"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"/>
+
+            <Button x:Name="CaptureBase"
+                    Style="{StaticResource Button}"
+                    Text="Capture Base"
+                    IsEnabled="False"
+                    Grid.Row="2"
+                    Grid.Column="0"/>
+
+            <Button x:Name="CaptureData"
+                    Style="{StaticResource Button}"
+                    Text="Capture Data"
+                    IsEnabled="False"
+                    Grid.Row="2"
+                    Grid.Column="1"/>
+
+            <Button x:Name="Connect"
+                    Style="{StaticResource Button}"
+                    Text="Connect"
+                    IsEnabled="True"
+                    Grid.Row="3"
+                    Grid.Column="0"/>
+
+            <Button x:Name="Disconnect"
+                    Style="{StaticResource Button}"
+                    Text="Disconnect"
+                    IsEnabled="False"
+                    Grid.Row="3"
+                    Grid.Column="1"/>
+
+            <Button x:Name="Licenses"
+                    Style="{StaticResource Button}"
+                    Text="Licenses"
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"/>
+
+        </Grid>
+        
+    </ContentPage.Content>
+
+</rxui:ReactiveContentPage>
+    

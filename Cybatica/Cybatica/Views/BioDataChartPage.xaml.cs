@@ -9,7 +9,7 @@ namespace Cybatica.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BioDataChartPage : ReactiveContentPage<BioDataChartViewModel>
-	{
+    {
         public BioDataChartPage()
         {
             ViewModel = Locator.Current.GetService<IReactiveObject>(typeof(BioDataChartViewModel).FullName)
@@ -29,12 +29,10 @@ namespace Cybatica.Views
                     v => v.Ibi.ItemsSource)
                     .DisposeWith(disposable);
 
-                /*
                 this.OneWayBind(ViewModel,
                     vm => vm.Hr,
                     v => v.Hr.ItemsSource)
                     .DisposeWith(disposable);
-                    */
 
                 this.OneWayBind(ViewModel,
                     vm => vm.Gsr,
@@ -47,9 +45,9 @@ namespace Cybatica.Views
                     .DisposeWith(disposable);
 
             });
-            
+
         }
 
-	}
+    }
 
 }

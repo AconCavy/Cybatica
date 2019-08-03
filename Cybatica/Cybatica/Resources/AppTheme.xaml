@@ -19,7 +19,7 @@
     <Color x:Key="Base3">#D6EAD8</Color>
     <Color x:Key="Base4">#E0EAE1</Color>
     <Color x:Key="Accent">#E8AEB7</Color>
-    
+
     <Style x:Key="Panel" TargetType="StackLayout">
         <Setter Property="BackgroundColor" Value="{StaticResource Base4}"/>
         <Setter Property="Padding" Value="8,8,8,8"/>
@@ -35,10 +35,9 @@
     <Style x:Key="NormalText" TargetType="Label">
         <Setter Property="TextColor" Value="{StaticResource Black2}"/>
         <Setter Property="FontAttributes" Value="None"/>
-        <Setter Property="FontSize" Value="Default"/>
+        <Setter Property="FontSize" Value="Medium"/>
         <Setter Property="FontFamily" Value="Arial"/>
     </Style>
-    
 
     <Style x:Key="Icon" TargetType="Image">
         <Setter Property="Scale" Value="16"/>
@@ -48,5 +47,10 @@
         <Setter Property="BackgroundColor" Value="{StaticResource Base1}"/>
         <Setter Property="TextColor" Value="{StaticResource Black1}" />
         <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="FontSize" Value="Medium"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="Margin" Value="8,8,8,8"/>
     </Style>
 </ResourceDictionary>
+    

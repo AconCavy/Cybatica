@@ -21,7 +21,7 @@ namespace Cybatica
             Locator.CurrentMutable.Register(() =>
                 new BioDataPage(), typeof(IViewFor<BioDataViewModel>));
             Locator.CurrentMutable.Register(() =>
-                new CybersicknessPage(), typeof(IViewFor<CybersicknessViewModel>));
+                new OCSPage(), typeof(IViewFor<OCSViewModel>));
             Locator.CurrentMutable.Register(() =>
                 new BioDataChartPage(), typeof(IViewFor<BioDataChartViewModel>));
         }
@@ -30,7 +30,7 @@ namespace Cybatica
         {
             Locator.CurrentMutable.RegisterConstant(new MainViewModel(), typeof(IReactiveObject), typeof(MainViewModel).FullName);
             Locator.CurrentMutable.Register(() => new BioDataViewModel(), typeof(IReactiveObject), typeof(BioDataViewModel).FullName);
-            Locator.CurrentMutable.Register(() => new CybersicknessViewModel(), typeof(IReactiveObject), typeof(CybersicknessViewModel).FullName);
+            Locator.CurrentMutable.Register(() => new OCSViewModel(), typeof(IReactiveObject), typeof(OCSViewModel).FullName);
             Locator.CurrentMutable.Register(() => new BioDataChartViewModel(), typeof(IReactiveObject), typeof(BioDataChartViewModel).FullName);
         }
 

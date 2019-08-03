@@ -18,9 +18,25 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </TabbedPage.Resources>
-    
+
     <TabbedPage.Children>
-        
+
+        <NavigationPage Title="Home"
+                        BarBackgroundColor="{StaticResource Base3}"
+                        BarTextColor="{StaticResource Black1}">
+            <x:Arguments>
+                <v:HomePage/>
+            </x:Arguments>
+        </NavigationPage>
+
+        <NavigationPage Title="OCS"
+                        BarBackgroundColor="{StaticResource Base3}"
+                        BarTextColor="{StaticResource Black1}">
+            <x:Arguments>
+                <v:OCSPage/>
+            </x:Arguments>
+        </NavigationPage>
+
         <NavigationPage Title="Bio-Data"
                         BarBackgroundColor="{StaticResource Base3}"
                         BarTextColor="{StaticResource Black1}">
@@ -29,17 +45,7 @@
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="Cybersickness"
-                        BarBackgroundColor="{StaticResource Base3}"
-                        BarTextColor="{StaticResource Black1}">
-            <x:Arguments>
-                <v:CybersicknessPage/>
-            </x:Arguments>
-        </NavigationPage>
-        
     </TabbedPage.Children>
-    
+
 </rxui:ReactiveTabbedPage>
     
-
-

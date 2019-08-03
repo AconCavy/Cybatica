@@ -9,7 +9,7 @@ namespace Cybatica.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BioDataPage : ReactiveContentPage<BioDataViewModel>
-	{
+    {
         public BioDataPage()
         {
             ViewModel = Locator.Current.GetService<IReactiveObject>(typeof(BioDataViewModel).FullName)
@@ -26,13 +26,12 @@ namespace Cybatica.Views
                     x => x.ToString("F2"))
                     .DisposeWith(disposable);
 
-                /*
                 this.OneWayBind(ViewModel,
                     vm => vm.Hr,
                     v => v.Hr.Text,
                     x => x.ToString("F2"))
                     .DisposeWith(disposable);
-                    */
+
                 this.OneWayBind(ViewModel,
                     vm => vm.Ibi,
                     v => v.Ibi.Text,
@@ -49,21 +48,6 @@ namespace Cybatica.Views
                     vm => vm.Temperature,
                     v => v.Temperature.Text,
                     x => x.ToString("F2"))
-                    .DisposeWith(disposable);
-
-                this.BindCommand(ViewModel,
-                    vm => vm.NavigateToChartPage,
-                    v => v.NavigateChartCommand)
-                    .DisposeWith(disposable);
-
-                this.BindCommand(ViewModel,
-                    vm => vm.ManageDevice,
-                    v => v.ManageDeviceCommand)
-                    .DisposeWith(disposable);
-
-                this.BindCommand(ViewModel,
-                    vm => vm.DisconnectDevice,
-                    v => v.DisconnectDeviceCommand)
                     .DisposeWith(disposable);
 
             });

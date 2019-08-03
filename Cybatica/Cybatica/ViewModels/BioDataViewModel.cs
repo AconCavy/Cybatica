@@ -17,7 +17,7 @@ namespace Cybatica.ViewModels
     {
         [Reactive] public float Bvp { get; private set; }
         [Reactive] public float Ibi { get; private set; }
-        //[Reactive] public float Hr { get; private set; }
+        [Reactive] public float Hr { get; private set; }
         [Reactive] public float Gsr { get; private set; }
         [Reactive] public float Temperature { get; private set; }
 
@@ -110,7 +110,7 @@ namespace Cybatica.ViewModels
             Ibi = _handler.GetIbi().Value;
             Gsr = _handler.GetGsr().Value;
             Temperature = _handler.GetTemperature().Value;
-            //Hr = _handler.GetHr().Value;
+            Hr = _handler.GetHr().Value;
 
         }
 
@@ -120,7 +120,7 @@ namespace Cybatica.ViewModels
             Ibi = default;
             Gsr = default;
             Temperature = default;
-            //Hr = default;
+            Hr = default;
 
         }
 

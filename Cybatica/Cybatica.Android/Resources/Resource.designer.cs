@@ -26,12 +26,14 @@ namespace Cybatica.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.input_layout_drop_down_icon = global::Cybatica.Droid.Resource.Drawable.input_layout_drop_down_icon;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglecollapseicon = global::Cybatica.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglevisibleicon = global::Cybatica.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.SfChart_Fade_In = global::Cybatica.Droid.Resource.Animation.SfChart_Fade_In;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.SfChart_Fade_Out = global::Cybatica.Droid.Resource.Animation.SfChart_Fade_Out;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.SfChart_Scale_In = global::Cybatica.Droid.Resource.Animation.SfChart_Scale_In;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.SfChart_Scale_Out = global::Cybatica.Droid.Resource.Animation.SfChart_Scale_Out;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Drawable.input_layout_drop_down_icon = global::Cybatica.Droid.Resource.Drawable.input_layout_drop_down_icon;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Drawable.inputlayout_togglecollapseicon = global::Cybatica.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Drawable.inputlayout_togglevisibleicon = global::Cybatica.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.annotationLayout = global::Cybatica.Droid.Resource.Id.annotationLayout;
@@ -64,10 +66,13 @@ namespace Cybatica.Droid
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.q = global::Cybatica.Droid.Resource.String.q;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.quarter = global::Cybatica.Droid.Resource.String.quarter;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_close_label = global::Cybatica.Droid.Resource.String.sfchart_close_label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_decrease_label = global::Cybatica.Droid.Resource.String.sfchart_decrease_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_high_label = global::Cybatica.Droid.Resource.String.sfchart_high_label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_increase_label = global::Cybatica.Droid.Resource.String.sfchart_increase_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_low_label = global::Cybatica.Droid.Resource.String.sfchart_low_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_open_label = global::Cybatica.Droid.Resource.String.sfchart_open_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_others_label = global::Cybatica.Droid.Resource.String.sfchart_others_label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_total_label = global::Cybatica.Droid.Resource.String.sfchart_total_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.w = global::Cybatica.Droid.Resource.String.w;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.week = global::Cybatica.Droid.Resource.String.week;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::Cybatica.Droid.Resource.Attribute.alpha;
@@ -5843,26 +5848,26 @@ namespace Cybatica.Droid
 			// aapt resource value: 0x7f020054
 			public const int avd_hide_password = 2130837588;
 			
-			// aapt resource value: 0x7f020137
-			public const int avd_hide_password_1 = 2130837815;
-			
 			// aapt resource value: 0x7f020138
-			public const int avd_hide_password_2 = 2130837816;
+			public const int avd_hide_password_1 = 2130837816;
 			
 			// aapt resource value: 0x7f020139
-			public const int avd_hide_password_3 = 2130837817;
+			public const int avd_hide_password_2 = 2130837817;
+			
+			// aapt resource value: 0x7f02013a
+			public const int avd_hide_password_3 = 2130837818;
 			
 			// aapt resource value: 0x7f020055
 			public const int avd_show_password = 2130837589;
 			
-			// aapt resource value: 0x7f02013a
-			public const int avd_show_password_1 = 2130837818;
-			
 			// aapt resource value: 0x7f02013b
-			public const int avd_show_password_2 = 2130837819;
+			public const int avd_show_password_1 = 2130837819;
 			
 			// aapt resource value: 0x7f02013c
-			public const int avd_show_password_3 = 2130837820;
+			public const int avd_show_password_2 = 2130837820;
+			
+			// aapt resource value: 0x7f02013d
+			public const int avd_show_password_3 = 2130837821;
 			
 			// aapt resource value: 0x7f020056
 			public const int design_bottom_navigation_item_background = 2130837590;
@@ -6423,121 +6428,124 @@ namespace Cybatica.Droid
 			public const int ic_vol_type_tv_light = 2130837775;
 			
 			// aapt resource value: 0x7f020110
-			public const int inputlayout_togglecollapseicon = 2130837776;
+			public const int input_layout_drop_down_icon = 2130837776;
 			
 			// aapt resource value: 0x7f020111
-			public const int inputlayout_togglevisibleicon = 2130837777;
+			public const int inputlayout_togglecollapseicon = 2130837777;
 			
 			// aapt resource value: 0x7f020112
-			public const int mr_button_connected_dark = 2130837778;
+			public const int inputlayout_togglevisibleicon = 2130837778;
 			
 			// aapt resource value: 0x7f020113
-			public const int mr_button_connected_light = 2130837779;
+			public const int mr_button_connected_dark = 2130837779;
 			
 			// aapt resource value: 0x7f020114
-			public const int mr_button_connecting_dark = 2130837780;
+			public const int mr_button_connected_light = 2130837780;
 			
 			// aapt resource value: 0x7f020115
-			public const int mr_button_connecting_light = 2130837781;
+			public const int mr_button_connecting_dark = 2130837781;
 			
 			// aapt resource value: 0x7f020116
-			public const int mr_button_dark = 2130837782;
+			public const int mr_button_connecting_light = 2130837782;
 			
 			// aapt resource value: 0x7f020117
-			public const int mr_button_light = 2130837783;
+			public const int mr_button_dark = 2130837783;
 			
 			// aapt resource value: 0x7f020118
-			public const int mr_dialog_close_dark = 2130837784;
+			public const int mr_button_light = 2130837784;
 			
 			// aapt resource value: 0x7f020119
-			public const int mr_dialog_close_light = 2130837785;
+			public const int mr_dialog_close_dark = 2130837785;
 			
 			// aapt resource value: 0x7f02011a
-			public const int mr_dialog_material_background_dark = 2130837786;
+			public const int mr_dialog_close_light = 2130837786;
 			
 			// aapt resource value: 0x7f02011b
-			public const int mr_dialog_material_background_light = 2130837787;
+			public const int mr_dialog_material_background_dark = 2130837787;
 			
 			// aapt resource value: 0x7f02011c
-			public const int mr_group_collapse = 2130837788;
+			public const int mr_dialog_material_background_light = 2130837788;
 			
 			// aapt resource value: 0x7f02011d
-			public const int mr_group_expand = 2130837789;
+			public const int mr_group_collapse = 2130837789;
 			
 			// aapt resource value: 0x7f02011e
-			public const int mr_media_pause_dark = 2130837790;
+			public const int mr_group_expand = 2130837790;
 			
 			// aapt resource value: 0x7f02011f
-			public const int mr_media_pause_light = 2130837791;
+			public const int mr_media_pause_dark = 2130837791;
 			
 			// aapt resource value: 0x7f020120
-			public const int mr_media_play_dark = 2130837792;
+			public const int mr_media_pause_light = 2130837792;
 			
 			// aapt resource value: 0x7f020121
-			public const int mr_media_play_light = 2130837793;
+			public const int mr_media_play_dark = 2130837793;
 			
 			// aapt resource value: 0x7f020122
-			public const int mr_media_stop_dark = 2130837794;
+			public const int mr_media_play_light = 2130837794;
 			
 			// aapt resource value: 0x7f020123
-			public const int mr_media_stop_light = 2130837795;
+			public const int mr_media_stop_dark = 2130837795;
 			
 			// aapt resource value: 0x7f020124
-			public const int mr_vol_type_audiotrack_dark = 2130837796;
+			public const int mr_media_stop_light = 2130837796;
 			
 			// aapt resource value: 0x7f020125
-			public const int mr_vol_type_audiotrack_light = 2130837797;
+			public const int mr_vol_type_audiotrack_dark = 2130837797;
 			
 			// aapt resource value: 0x7f020126
-			public const int mtrl_snackbar_background = 2130837798;
+			public const int mr_vol_type_audiotrack_light = 2130837798;
 			
 			// aapt resource value: 0x7f020127
-			public const int mtrl_tabs_default_indicator = 2130837799;
+			public const int mtrl_snackbar_background = 2130837799;
 			
 			// aapt resource value: 0x7f020128
-			public const int navigation_empty_icon = 2130837800;
+			public const int mtrl_tabs_default_indicator = 2130837800;
 			
 			// aapt resource value: 0x7f020129
-			public const int notification_action_background = 2130837801;
+			public const int navigation_empty_icon = 2130837801;
 			
 			// aapt resource value: 0x7f02012a
-			public const int notification_bg = 2130837802;
+			public const int notification_action_background = 2130837802;
 			
 			// aapt resource value: 0x7f02012b
-			public const int notification_bg_low = 2130837803;
+			public const int notification_bg = 2130837803;
 			
 			// aapt resource value: 0x7f02012c
-			public const int notification_bg_low_normal = 2130837804;
+			public const int notification_bg_low = 2130837804;
 			
 			// aapt resource value: 0x7f02012d
-			public const int notification_bg_low_pressed = 2130837805;
+			public const int notification_bg_low_normal = 2130837805;
 			
 			// aapt resource value: 0x7f02012e
-			public const int notification_bg_normal = 2130837806;
+			public const int notification_bg_low_pressed = 2130837806;
 			
 			// aapt resource value: 0x7f02012f
-			public const int notification_bg_normal_pressed = 2130837807;
+			public const int notification_bg_normal = 2130837807;
 			
 			// aapt resource value: 0x7f020130
-			public const int notification_icon_background = 2130837808;
-			
-			// aapt resource value: 0x7f020135
-			public const int notification_template_icon_bg = 2130837813;
-			
-			// aapt resource value: 0x7f020136
-			public const int notification_template_icon_low_bg = 2130837814;
+			public const int notification_bg_normal_pressed = 2130837808;
 			
 			// aapt resource value: 0x7f020131
-			public const int notification_tile_bg = 2130837809;
+			public const int notification_icon_background = 2130837809;
+			
+			// aapt resource value: 0x7f020136
+			public const int notification_template_icon_bg = 2130837814;
+			
+			// aapt resource value: 0x7f020137
+			public const int notification_template_icon_low_bg = 2130837815;
 			
 			// aapt resource value: 0x7f020132
-			public const int notify_panel_notification_icon_bg = 2130837810;
+			public const int notification_tile_bg = 2130837810;
 			
 			// aapt resource value: 0x7f020133
-			public const int tooltip_frame_dark = 2130837811;
+			public const int notify_panel_notification_icon_bg = 2130837811;
 			
 			// aapt resource value: 0x7f020134
-			public const int tooltip_frame_light = 2130837812;
+			public const int tooltip_frame_dark = 2130837812;
+			
+			// aapt resource value: 0x7f020135
+			public const int tooltip_frame_light = 2130837813;
 			
 			static Drawable()
 			{
@@ -7916,8 +7924,8 @@ namespace Cybatica.Droid
 			// aapt resource value: 0x7f0b0032
 			public const int abc_toolbar_collapse_description = 2131427378;
 			
-			// aapt resource value: 0x7f0b0057
-			public const int app_name = 2131427415;
+			// aapt resource value: 0x7f0b005a
+			public const int app_name = 2131427418;
 			
 			// aapt resource value: 0x7f0b0040
 			public const int appbar_scrolling_view_behavior = 2131427392;
@@ -8042,8 +8050,14 @@ namespace Cybatica.Droid
 			// aapt resource value: 0x7f0b0055
 			public const int sfchart_close_label = 2131427413;
 			
+			// aapt resource value: 0x7f0b0058
+			public const int sfchart_decrease_label = 2131427416;
+			
 			// aapt resource value: 0x7f0b0052
 			public const int sfchart_high_label = 2131427410;
+			
+			// aapt resource value: 0x7f0b0057
+			public const int sfchart_increase_label = 2131427415;
 			
 			// aapt resource value: 0x7f0b0053
 			public const int sfchart_low_label = 2131427411;
@@ -8053,6 +8067,9 @@ namespace Cybatica.Droid
 			
 			// aapt resource value: 0x7f0b0056
 			public const int sfchart_others_label = 2131427414;
+			
+			// aapt resource value: 0x7f0b0059
+			public const int sfchart_total_label = 2131427417;
 			
 			// aapt resource value: 0x7f0b004d
 			public const int status_bar_notification_info_overflow = 2131427405;

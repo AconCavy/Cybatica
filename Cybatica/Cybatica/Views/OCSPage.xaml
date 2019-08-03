@@ -1,28 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <rxui:ReactiveContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
     xmlns:vm="clr-namespace:Cybatica.ViewModels"
-    xmlns:theme="clr-namespace:Cybatica.Resources"
-    x:Class="Cybatica.Views.BioDataPage"
-    x:TypeArguments="vm:BioDataViewModel"
-    Title="BIO DATA">
+    xmlns:resource="clr-namespace:Cybatica.Resources"
+    x:Class="Cybatica.Views.OCSPage"
+    x:TypeArguments="vm:OCSViewModel"
+    Title="ONSET OF CYBERSICKNESS">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <theme:AppTheme/>
+                <resource:AppTheme/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        
-        <Grid Margin="8,8,8,8"
-              RowSpacing="8"
-              ColumnSpacing="8">
 
+        <Grid Margin="8,8,8,8" RowSpacing="8" ColumnSpacing="8">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -30,70 +28,60 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="0"
-                         Grid.Column="0">
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2">
                 <Label Style="{StaticResource HeadText}"
-                       Text="BVP"/>
-                <Label x:Name="Bvp"
-                       Style="{StaticResource NormalText}"
-                       Text="0"/>
-            </StackLayout>
-            
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="0"
-                         Grid.Column="1">
-                <Label Style="{StaticResource HeadText}"
-                       Text="IBI"/>
-                <Label x:Name="Ibi"
-                       Style="{StaticResource NormalText}"
-                       Text="0"/>
-            </StackLayout>
-
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="1"
-                         Grid.Column="0">
-                <Label Style="{StaticResource HeadText}"
-                       Text="HR"/>
-                <Label x:Name="Hr"
+                       Text="ONSET OF CYBERSICKNESS"/>
+                <Label x:Name="Cybersickness"
                        Style="{StaticResource NormalText}"
                        Text="0"/>
             </StackLayout>
             
             <StackLayout Style="{StaticResource Panel}"
                          Grid.Row="1"
+                         Grid.Column="0">
+                <Label Style="{StaticResource HeadText}"
+                       Text="NN MEAN"/>
+                <Label x:Name="Nnmean"
+                       Style="{StaticResource NormalText}"
+                       Text="0"/>
+            </StackLayout>
+
+            <StackLayout Style="{StaticResource Panel}"
+                         Grid.Row="1"
                          Grid.Column="1">
                 <Label Style="{StaticResource HeadText}"
-                       Text="EDA"/>
-                <Label x:Name="Gsr"
+                       Text="SDNN"/>
+                <Label x:Name="Sdnn"
                        Style="{StaticResource NormalText}"
-                       Text="1"/>
-            </StackLayout>
-            
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="2"
-                         Grid.Column="0">
-                <Label Style="{StaticResource HeadText}" 
-                       Text="TEMPERATURE"/>
-                <Label x:Name="Temperature" 
-                       Style="{StaticResource NormalText}"
-                       Text="1"/>
+                       Text="0"/>
             </StackLayout>
 
             <StackLayout Style="{StaticResource Panel}"
                          Grid.Row="2"
+                         Grid.Column="0">
+                <Label Style="{StaticResource HeadText}"
+                       Text="PEAK EDA"/>
+                <Label x:Name="PeakEda"
+                       Style="{StaticResource NormalText}"
+                       Text="0"/>
+            </StackLayout>
+            
+            <StackLayout Style="{StaticResource Panel}"
+                         Grid.Row="2"
                          Grid.Column="1">
                 <Label Style="{StaticResource HeadText}"
-                       Text="ACCELERATION"/>
-                <Label x:Name="Acceleration"
+                       Text="MEAN EDA"/>
+                <Label x:Name="MeanEda"
                        Style="{StaticResource NormalText}"
-                       Text="0,0,0"/>
+                       Text="0"/>
             </StackLayout>
 
             <Button Style="{StaticResource Button}"
@@ -103,8 +91,7 @@
                     Grid.ColumnSpan="2"/>
 
         </Grid>
-
+        
     </ContentPage.Content>
 
 </rxui:ReactiveContentPage>
-    
