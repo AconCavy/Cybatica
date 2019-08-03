@@ -29,7 +29,7 @@ namespace Cybatica.iOS.Empatica
 
         public EmpaticaDeviceStatus DeviceStatus { get; private set; }
 
-        public double ConnectedTime {get; private set;}
+        public double ConnectedTime { get; private set; }
 
         public EmpaticaDeviceDelegate()
         {
@@ -123,7 +123,7 @@ namespace Cybatica.iOS.Empatica
                     SensorStatus = EmpaticaSensorStatus.Dead;
                     break;
                 case E4linkBinding.SensorStatus.NotOnWrist:
-                    SensorStatus = EmpaticaSensorStatus.Dead;
+                    SensorStatus = EmpaticaSensorStatus.NotOnWrist;
                     break;
                 case E4linkBinding.SensorStatus.OnWrist:
                     SensorStatus = EmpaticaSensorStatus.OnWrist;

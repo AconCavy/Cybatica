@@ -11,10 +11,10 @@ namespace Cybatica.iOS.Empatica
 {
     public class EmpaticaDelegate : E4linkBinding.EmpaticaDelegate, IEmpaticaDelegate
     {
-        public bool IsAllDevicesDisconnected => 
+        public bool IsAllDevicesDisconnected =>
             _devices.Aggregate(true, (value, device) => value && (device.DeviceStatus == DeviceStatus.Disconnected));
 
-        public ReadOnlyCollection<EmpaticaDevice> Devices => 
+        public ReadOnlyCollection<EmpaticaDevice> Devices =>
             new ReadOnlyCollection<EmpaticaDevice>(
                 _devices.Select(x => new EmpaticaDevice(
                     serialNumber: x.SerialNumber,
@@ -36,14 +36,13 @@ namespace Cybatica.iOS.Empatica
 
         public override void DidDiscoverDevices(NSObject[] devices)
         {
-            
+
             if (IsAllDevicesDisconnected)
             {
-                
+
                 _devices.Clear();
-                _devices.AddRange(new ObservableCollection<EmpaticaDeviceManager>(
-                    devices.OfType<EmpaticaDeviceManager>().ToList()));
-                    
+                _devices.AddRange(devices.OfType<EmpaticaDeviceManager>().ToList());
+
                 //_devices = devices.OfType<EmpaticaDeviceManager>().ToList();
 
                 DispatchQueue.MainQueue.DispatchAsync(() =>

@@ -5,20 +5,20 @@ using Splat;
 
 namespace Cybatica.iOS.Empatica
 {
-    public class EmpaticaAPI : IEmpaticaApi
+    public class EmpaticaApi : IEmpaticaApi
     {
         public EmpaticaDevice Device => new EmpaticaDevice(
-            serialNumber: _device?.SerialNumber,
-            name: _device?.Name,
-            advertisingName: _device?.AdvertisingName,
-            hardwareId: _device?.HardwareId,
-            firmwareVersion: _device?.FirmwareVersion);
+            serialNumber: _deviceManager?.SerialNumber,
+            name: _deviceManager?.Name,
+            advertisingName: _deviceManager?.AdvertisingName,
+            hardwareId: _deviceManager?.HardwareId,
+            firmwareVersion: _deviceManager?.FirmwareVersion);
 
         private readonly EmpaticaDelegate _empaticaDelegate;
         private readonly EmpaticaDeviceDelegate _deviceDelegate;
-        private EmpaticaDeviceManager _device;
+        private EmpaticaDeviceManager _deviceManager;
 
-        public EmpaticaAPI()
+        public EmpaticaApi()
         {
             _empaticaDelegate = Locator.Current.GetService<IEmpaticaDelegate>() as EmpaticaDelegate;
             _deviceDelegate = Locator.Current.GetService<IEmpaticaDeviceDelegate>() as EmpaticaDeviceDelegate;
@@ -43,26 +43,26 @@ namespace Cybatica.iOS.Empatica
 
         public void Disconnect()
         {
-            if(_device == null)
+            if (_deviceManager == null)
             {
                 return;
             }
 
-            if(_device.DeviceStatus == DeviceStatus.Connected)
+            if (_deviceManager.DeviceStatus == DeviceStatus.Connected)
             {
-                _device.Disconnect();
+                _deviceManager.Disconnect();
             }
-            else if(_device.DeviceStatus == DeviceStatus.Connecting)
+            else if (_deviceManager.DeviceStatus == DeviceStatus.Connecting)
             {
-                _device.CancelConnection();
+                _deviceManager.CancelConnection();
             }
-            _device = null;
+            _deviceManager = null;
         }
 
         public void Connect(EmpaticaDevice device)
         {
-            _device = _empaticaDelegate.GetDevice(device);
-            _device.ConnectWithDeviceDelegate(_deviceDelegate);
+            _deviceManager = _empaticaDelegate.GetDevice(device);
+            _deviceManager.ConnectWithDeviceDelegate(_deviceDelegate);
             _deviceDelegate.SetConnectedTime();
         }
 
@@ -73,12 +73,12 @@ namespace Cybatica.iOS.Empatica
 
         public void PrepareForBackground()
         {
-            E4linkBinding.EmpaticaAPI.PrepareForBackground();
+            //E4linkBinding.EmpaticaAPI.PrepareForBackground();
         }
 
         public void PrepareForResume()
         {
-            E4linkBinding.EmpaticaAPI.PrepareForResume();
+            //E4linkBinding.EmpaticaAPI.PrepareForResume();
         }
     }
 }
