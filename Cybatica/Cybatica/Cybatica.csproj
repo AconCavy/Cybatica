@@ -11,22 +11,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DynamicData" Version="6.9.1.2588" />
-    <PackageReference Include="Fody" Version="5.0.6">
+    <PackageReference Include="DynamicData" Version="6.12.10" />
+    <PackageReference Include="Fody" Version="5.1.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="ReactiveUI" Version="9.16.6" />
-    <PackageReference Include="ReactiveUI.Fody" Version="9.16.6" />
-    <PackageReference Include="ReactiveUI.XamForms" Version="9.16.6" />
-    <PackageReference Include="Splat" Version="7.2.1" />
-    <PackageReference Include="Syncfusion.Licensing" Version="17.1.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.1.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.1.0.49" />
-    <PackageReference Include="System.Reactive" Version="4.1.5" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.2" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.482894" />
+    <PackageReference Include="ReactiveUI" Version="9.19.5" />
+    <PackageReference Include="ReactiveUI.Fody" Version="9.19.5" />
+    <PackageReference Include="ReactiveUI.XamForms" Version="9.19.5" />
+    <PackageReference Include="Splat" Version="8.1.1" />
+    <PackageReference Include="Syncfusion.Licensing" Version="17.2.0.39" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.39" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.2.0.39" />
+    <PackageReference Include="System.Reactive" Version="4.1.6" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.618606" />
   </ItemGroup>
 
   <ItemGroup>

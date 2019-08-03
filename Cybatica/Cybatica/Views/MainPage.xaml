@@ -8,7 +8,8 @@
     xmlns:resource="clr-namespace:Cybatica.Resources"
     x:Class="Cybatica.Views.MainPage" 
     x:TypeArguments="vm:MainViewModel"
-    Title="Main Page">
+    Title="Main Page"
+    SelectedTabColor="#E8AEB7">
 
     <TabbedPage.Resources>
         <ResourceDictionary>
@@ -17,7 +18,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </TabbedPage.Resources>
-
+    
     <TabbedPage.Children>
         
         <NavigationPage Title="Bio-Data"

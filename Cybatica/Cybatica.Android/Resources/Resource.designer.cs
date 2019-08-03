@@ -7916,6 +7916,9 @@ namespace Cybatica.Droid
 			// aapt resource value: 0x7f0b0032
 			public const int abc_toolbar_collapse_description = 2131427378;
 			
+			// aapt resource value: 0x7f0b0057
+			public const int app_name = 2131427415;
+			
 			// aapt resource value: 0x7f0b0040
 			public const int appbar_scrolling_view_behavior = 2131427392;
 			
@@ -8091,8 +8094,11 @@ namespace Cybatica.Droid
 			// aapt resource value: 0x7f0d016d
 			public const int Animation_Design_BottomSheetDialog = 2131558765;
 			
-			// aapt resource value: 0x7f0d0201
-			public const int AppCompatDialogStyle = 2131558913;
+			// aapt resource value: 0x7f0d0202
+			public const int AppCompatDialogStyle = 2131558914;
+			
+			// aapt resource value: 0x7f0d01ff
+			public const int AppTheme = 2131558911;
 			
 			// aapt resource value: 0x7f0d009d
 			public const int Base_AlertDialog_AppCompat = 2131558557;
@@ -8667,14 +8673,14 @@ namespace Cybatica.Droid
 			// aapt resource value: 0x7f0d000e
 			public const int CardView_Light = 2131558414;
 			
-			// aapt resource value: 0x7f0d0202
-			public const int DrawerArrowStyle = 2131558914;
-			
-			// aapt resource value: 0x7f0d01ff
-			public const int MainTheme = 2131558911;
+			// aapt resource value: 0x7f0d0203
+			public const int DrawerArrowStyle = 2131558915;
 			
 			// aapt resource value: 0x7f0d0200
-			public const int MainTheme_Base = 2131558912;
+			public const int MainTheme = 2131558912;
+			
+			// aapt resource value: 0x7f0d0201
+			public const int MainTheme_Base = 2131558913;
 			
 			// aapt resource value: 0x7f0d007e
 			public const int Platform_AppCompat = 2131558526;

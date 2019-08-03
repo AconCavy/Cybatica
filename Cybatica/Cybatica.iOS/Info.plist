@@ -30,8 +30,6 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>Cybatica</string>
-	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>external-accessory</string>

@@ -23,7 +23,7 @@ namespace Cybatica.iOS
             global::Xamarin.Forms.Forms.Init();
             new AppBootstrapper();
             Syncfusion.SfChart.XForms.iOS.Renderers.SfChartRenderer.Init();
-            UITabBar.Appearance.SelectedImageTintColor = UIColor.FromRGB(232, 174, 183);
+            //UITabBar.Appearance.TintColor = UIColor.FromRGB(232, 174, 183);
 
             LoadApplication(new App());
             return base.FinishedLaunching(app, options);
