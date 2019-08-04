@@ -43,7 +43,8 @@
                    VerticalTextAlignment="Center"
                    Grid.Row="0"
                    Grid.Column="0"/>
-            <Label x:Name="Time"
+            
+            <Label x:Name="ElapsedTime"
                    Style="{StaticResource NormalText}"
                    Text="00:00"
                    FontSize="Large"
@@ -55,7 +56,6 @@
             <Button x:Name="Stop"
                     Style="{StaticResource Button}"
                     Text="Stop"
-                    IsEnabled="False"
                     Grid.Row="1"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"/>
@@ -63,28 +63,24 @@
             <Button x:Name="CaptureBase"
                     Style="{StaticResource Button}"
                     Text="Capture Base"
-                    IsEnabled="False"
                     Grid.Row="2"
                     Grid.Column="0"/>
 
             <Button x:Name="CaptureData"
                     Style="{StaticResource Button}"
                     Text="Capture Data"
-                    IsEnabled="False"
                     Grid.Row="2"
                     Grid.Column="1"/>
 
             <Button x:Name="Connect"
                     Style="{StaticResource Button}"
                     Text="Connect"
-                    IsEnabled="True"
                     Grid.Row="3"
                     Grid.Column="0"/>
 
             <Button x:Name="Disconnect"
                     Style="{StaticResource Button}"
                     Text="Disconnect"
-                    IsEnabled="False"
                     Grid.Row="3"
                     Grid.Column="1"/>
 
