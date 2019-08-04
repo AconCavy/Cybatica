@@ -1,4 +1,5 @@
 ﻿using Cybatica.Empatica;
+using Cybatica.Utilities;
 using Splat;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -156,9 +157,7 @@ namespace Cybatica.Services
 
         public float GetScr()
         {
-            //var target = EmpaticaSession.Gsr.Items.ToArray();
-
-            return Calculator.CalcScr();
+            return 0;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Cybatica.Empatica;
+using Cybatica.Services;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using Xamarin.Essentials;
 
-namespace Cybatica.Services
+namespace Cybatica.Utilities
 {
     public class ShareDataExporter : IDataExporter
     {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Cybatica
+namespace Cybatica.Utilities
 {
     public static class Calculator
     {
@@ -14,13 +14,7 @@ namespace Cybatica
 
         public static float CalcNnmean(IEnumerable<Ibi> ibiList)
         {
-            if(ibiList.Count() == 0)
-            {
-                return 0;
-            }
-            
-            var result = ibiList.Select(x => x.Value).Average();
-            return result;
+            return CalcMean(ibiList.Select(x => x.Value));
         }
 
         public static float CalcSdnn(IEnumerable<Ibi> ibiList)
@@ -52,7 +46,7 @@ namespace Cybatica
             }
 
             var powMean = diffList.Select(x => x * x).Average();
-            var result = (float) Math.Sqrt(powMean);
+            var result = (float)Math.Sqrt(powMean);
 
             return result;
 
@@ -72,7 +66,7 @@ namespace Cybatica
 
             for (var index = 0; index < count; index++)
             {
-                diffList[index] = (valueList[index + 1] - valueList[index]) / (float) root2;
+                diffList[index] = (valueList[index + 1] - valueList[index]) / (float)root2;
             }
 
             var result = CalcSd(diffList);
@@ -93,17 +87,31 @@ namespace Cybatica
 
             for (var index = 0; index < count; index++)
             {
-                addList[index] = (valueList[index + 1] + valueList[index]) / (float) root2;
+                addList[index] = (valueList[index + 1] + valueList[index]) / (float)root2;
             }
 
             var result = CalcSd(addList);
             return result;
         }
 
-        public static float CalcScr()
+        public static float CalcMeanEda(IEnumerable<Gsr> gsrList)
         {
-            var result = 0;
-            return result;
+            return CalcMean(gsrList.Select(x => x.Value));
+        }
+
+        public static float CalcPeakEda(IEnumerable<Gsr> gsrList)
+        {
+            return gsrList.Max(x => x.Value);
+        }
+
+        private static float CalcMean(IEnumerable<float> list)
+        {
+            if (list.Count() == 0)
+            {
+                return 0;
+            }
+
+            return list.Average();
         }
 
         private static float CalcSd(IEnumerable<float> list)
@@ -118,9 +126,7 @@ namespace Cybatica
             var mean = list.Average();
             var variance = list.Select(x => (x - mean) * (x - mean)).Sum() / (count - 1);
 
-            var result = Math.Sqrt(variance);
-
-            return (float) result;
+            return (float)Math.Sqrt(variance);
         }
 
     }
