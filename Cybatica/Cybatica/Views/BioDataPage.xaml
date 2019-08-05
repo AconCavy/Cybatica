@@ -96,7 +96,8 @@
                        Text="0,0,0"/>
             </StackLayout>
 
-            <Button Style="{StaticResource Button}"
+            <Button x:Name="Chart"
+                    Style="{StaticResource Button}"
                     Text="Realtime Chart"
                     Grid.Row="4"
                     Grid.Column="0"

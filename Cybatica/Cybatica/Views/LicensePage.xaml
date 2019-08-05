@@ -6,7 +6,8 @@
     xmlns:vm="clr-namespace:Cybatica.ViewModels"
     xmlns:theme="clr-namespace:Cybatica.Resources"
     x:Class="Cybatica.Views.LicensePage"
-    x:TypeArguments="vm:LicenseViewModel">
+    x:TypeArguments="vm:LicenseViewModel"
+    Title="LICENSES">
     
     <ContentPage.Content>
         

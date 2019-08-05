@@ -1,37 +1,11 @@
-﻿using Cybatica.Services;
-using ReactiveUI;
-using System.Reactive.Disposables;
+﻿using ReactiveUI;
 
 namespace Cybatica.ViewModels
 {
-    public class MainViewModel : ReactiveObject, ISupportsActivation
+    public class MainViewModel : ReactiveObject
     {
-        public ViewModelActivator Activator { get; private set; }
-
         public MainViewModel()
         {
-            Activator = new ViewModelActivator();
-
-            this.WhenActivated(disposable =>
-            {
-                HandleActivation();
-
-                Disposable.Create(() => HandleDeactivation())
-                .DisposeWith(disposable);
-
-            });
         }
-
-        private void HandleActivation()
-        {
-            var _handler = new CybaticaHandler();
-            _handler.AuthenticateWithApiKey(AppPrivateInformations.EmpaticaAPIKey);
-        }
-
-        private void HandleDeactivation()
-        {
-        }
-
-        
     }
 }

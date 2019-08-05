@@ -8,27 +8,45 @@ namespace Cybatica.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OCSPage : ReactiveContentPage<OCSViewModel>
-	{
+    {
         public OCSPage()
         {
-            ViewModel = Locator.Current.GetService<IReactiveObject>(typeof(OCSViewModel).FullName)
-                as OCSViewModel;
+            ViewModel = new OCSViewModel(Navigation);
 
             InitializeComponent();
 
             this.WhenActivated(disposable =>
             {
-                this.OneWayBind(ViewModel,
-                    vm => vm.Nnmean,
-                    v => v.Nnmean.Text,
-                    x => x.ToString("F2"));
+                disposable(this.OneWayBind(ViewModel,
+                    vm => vm.Ocs,
+                    v => v.Ocs.Text,
+                    x => x.ToString("F2")));
 
-                this.OneWayBind(ViewModel,
-                    vm => vm.Sdnn,
+                disposable(this.OneWayBind(ViewModel,
+                    vm => vm.NnMean,
+                    v => v.Nnmean.Text,
+                    x => x.ToString("F2")));
+
+                disposable(this.OneWayBind(ViewModel,
+                    vm => vm.SdNn,
                     v => v.Sdnn.Text,
-                    x => x.ToString("F2"));
+                    x => x.ToString("F2")));
+
+                disposable(this.OneWayBind(ViewModel,
+                    vm => vm.MeanEda,
+                    v => v.MeanEda.Text,
+                    x => x.ToString("F2")));
+
+                disposable(this.OneWayBind(ViewModel,
+                    vm => vm.PeakEda,
+                    v => v.PeakEda.Text,
+                    x => x.ToString("F2")));
+
+                disposable(this.BindCommand(ViewModel,
+                    vm => vm.ChartCommand,
+                    v => v.Chart));
 
             });
         }
-	}
+    }
 }

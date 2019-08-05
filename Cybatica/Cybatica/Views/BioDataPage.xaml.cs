@@ -2,7 +2,6 @@
 using ReactiveUI;
 using ReactiveUI.XamForms;
 using Splat;
-using System.Reactive.Disposables;
 using Xamarin.Forms.Xaml;
 
 namespace Cybatica.Views
@@ -12,63 +11,47 @@ namespace Cybatica.Views
     {
         public BioDataPage()
         {
-            ViewModel = Locator.Current.GetService<IReactiveObject>(typeof(BioDataViewModel).FullName)
-                as BioDataViewModel;
-            ViewModel.Navigation = Navigation;
-
+            ViewModel = new BioDataViewModel(Navigation);
             InitializeComponent();
 
             this.WhenActivated(disposable =>
             {
-                this.OneWayBind(ViewModel,
+                disposable(this.OneWayBind(ViewModel,
                     vm => vm.Bvp,
                     v => v.Bvp.Text,
-                    x => x.ToString("F2"))
-                    .DisposeWith(disposable);
+                    x => x.Value.ToString("F2")));
 
-                this.OneWayBind(ViewModel,
+                disposable(this.OneWayBind(ViewModel,
                     vm => vm.Hr,
                     v => v.Hr.Text,
-                    x => x.ToString("F2"))
-                    .DisposeWith(disposable);
+                    x => x.Value.ToString("F2")));
 
-                this.OneWayBind(ViewModel,
+                disposable(this.OneWayBind(ViewModel,
                     vm => vm.Ibi,
                     v => v.Ibi.Text,
-                    x => x.ToString("F2"))
-                    .DisposeWith(disposable);
+                    x => x.Value.ToString("F2")));
 
-                this.OneWayBind(ViewModel,
+                disposable(this.OneWayBind(ViewModel,
                     vm => vm.Gsr,
                     v => v.Gsr.Text,
-                    x => x.ToString("F2"))
-                    .DisposeWith(disposable);
+                    x => x.Value.ToString("F2")));
 
-                this.OneWayBind(ViewModel,
+                disposable(this.OneWayBind(ViewModel,
                     vm => vm.Temperature,
                     v => v.Temperature.Text,
-                    x => x.ToString("F2"))
-                    .DisposeWith(disposable);
+                    x => x.Value.ToString("F2")));
 
+                disposable(this.OneWayBind(ViewModel,
+                    vm => vm.Acceleration,
+                    v => v.Acceleration.Text,
+                    x => $"{x.XValue.ToString("F2")}, {x.YValue.ToString("F2")}, {x.ZValue.ToString("F2")}"));
+
+                disposable(this.BindCommand(ViewModel,
+                    vm => vm.ChartCommand,
+                    v => v.Chart));
             });
 
         }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            ViewModel.Activator.Activate();
-
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            ViewModel.Activator.Deactivate();
-
-        }
-
-
 
     }
 }

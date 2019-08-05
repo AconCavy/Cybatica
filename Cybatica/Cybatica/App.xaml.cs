@@ -1,10 +1,5 @@
-﻿using Cybatica.ViewModels;
-using Cybatica.Views;
-using ReactiveUI;
-using Splat;
+﻿using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Xamarin.Essentials;
 
 namespace Cybatica
 {
@@ -14,10 +9,10 @@ namespace Cybatica
         {
             ExperimentalFeatures.Enable(ExperimentalFeatures.ShareFileRequest);
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(AppPrivateInformations.SyncfusionLicenseKey);
-            new AppBootstrapper();
+            var appBootstrapper = new AppBootstrapper();
             InitializeComponent();
 
-            MainPage = Locator.Current.GetService<IViewFor<MainViewModel>>() as MainPage;
+            MainPage = appBootstrapper.CreateMainPage();
 
         }
 

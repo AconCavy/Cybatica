@@ -1,4 +1,5 @@
 ﻿using Cybatica.Empatica;
+using Cybatica.Services;
 using Cybatica.Utilities;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -11,24 +12,23 @@ using Xamarin.Forms;
 
 namespace Cybatica.ViewModels
 {
-    public class HomeViewModel : ReactiveObject
+    public class HomeViewModel : ReactiveObject, IRootNavigation
     {
         [Reactive] public float ElapsedTime { get; private set; }
         [Reactive] public bool IsConnecting { get; private set; }
         [Reactive] public bool IsBaseStored { get; private set; }
         [Reactive] public bool IsCapturing { get; private set; }
 
-        public ReactiveCommand<Unit, Unit> Stop { get; private set; }
-        public ReactiveCommand<Unit, Unit> CaptureBase { get; private set; }
-        public ReactiveCommand<Unit, Unit> CaptureData { get; private set; }
-        public ReactiveCommand<Unit, Unit> Connect { get; private set; }
-        public ReactiveCommand<Unit, Unit> Disconnect { get; private set; }
-        public ReactiveCommand<Unit, Unit> Licenses { get; private set; }
+        public ReactiveCommand<Unit, Unit> StopCommand { get; private set; }
+        public ReactiveCommand<Unit, Unit> CaptureBaseCommand { get; private set; }
+        public ReactiveCommand<Unit, Unit> CaptureDataCommand { get; private set; }
+        public ReactiveCommand<Unit, Unit> ConnectCommand { get; private set; }
+        public ReactiveCommand<Unit, Unit> DisconnectCommand { get; private set; }
+        public ReactiveCommand<Unit, Unit> LicensesCommand { get; private set; }
 
-        public INavigation Navigation { get; set; }
+        public INavigation Navigation { get; private set; }
 
         private SessionType _sessionType;
-
 
         private enum SessionType
         {
@@ -36,27 +36,29 @@ namespace Cybatica.ViewModels
             Data
         }
 
-        public HomeViewModel()
+        public HomeViewModel(INavigation navigation)
         {
+            Navigation = navigation;
+
             var canStopExecute = this.WhenAnyValue(x => x.IsConnecting, x => x.IsCapturing,
                 (x, y) => x && y);
-            Stop = ReactiveCommand.CreateFromTask(StopCommandAsync, canStopExecute);
+            StopCommand = ReactiveCommand.CreateFromTask(StopCommandAsync, canStopExecute);
 
             var canCaptureBaseExecute = this.WhenAnyValue(x => x.IsConnecting, x => x.IsCapturing,
                 (x, y) => x && !y);
-            CaptureBase = ReactiveCommand.Create(CaptureBaseCommand, canCaptureBaseExecute);
+            CaptureBaseCommand = ReactiveCommand.Create(CaptureBase, canCaptureBaseExecute);
 
             var canCaptureDataExecute = this.WhenAnyValue(x => x.IsConnecting, x => x.IsBaseStored, x => x.IsCapturing,
                 (x, y, z) => x && y && !z);
-            CaptureData = ReactiveCommand.Create(CaptureDataCommand, canCaptureDataExecute);
+            CaptureDataCommand = ReactiveCommand.Create(CaptureData, canCaptureDataExecute);
 
             var canConnectExecute = this.WhenAnyValue(x => x.IsConnecting, x => !x);
-            Connect = ReactiveCommand.CreateFromTask(ConnectCommandAsync, canConnectExecute);
+            ConnectCommand = ReactiveCommand.CreateFromTask(ConnectCommandAsync, canConnectExecute);
 
             var canDisconnectExecute = this.WhenAnyValue(x => x.IsConnecting);
-            Disconnect = ReactiveCommand.CreateFromTask(DisconnectCommandAsync, canDisconnectExecute);
+            DisconnectCommand = ReactiveCommand.CreateFromTask(DisconnectCommandAsync, canDisconnectExecute);
 
-            Licenses = ReactiveCommand.CreateFromTask(async () =>
+            LicensesCommand = ReactiveCommand.CreateFromTask(async () =>
             {
                 var page = Locator.Current.GetService<IViewFor<LicenseViewModel>>() as Page;
                 await Navigation.PushAsync(page);
@@ -90,7 +92,7 @@ namespace Cybatica.ViewModels
             IsCapturing = false;
         }
 
-        private void CaptureBaseCommand()
+        private void CaptureBase()
         {
             _sessionType = SessionType.Base;
             IsCapturing = true;
@@ -99,7 +101,7 @@ namespace Cybatica.ViewModels
             // TODO : Implements capture base action
         }
 
-        private void CaptureDataCommand()
+        private void CaptureData()
         {
             _sessionType = SessionType.Data;
             IsCapturing = true;
@@ -141,7 +143,7 @@ namespace Cybatica.ViewModels
 
             if (IsCapturing)
             {
-                await Stop.Execute();
+                await StopCommand.Execute();
             }
 
             // TODO : Implements disconnecting from Empatica E4

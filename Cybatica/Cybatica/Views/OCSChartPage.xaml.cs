@@ -7,11 +7,11 @@ using Xamarin.Forms.Xaml;
 namespace Cybatica.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : ReactiveTabbedPage<MainViewModel>
+    public partial class OCSChartPage : ReactiveContentPage<OCSChartViewModel>
     {
-        public MainPage()
+        public OCSChartPage()
         {
-            ViewModel = new MainViewModel();
+            ViewModel = new OCSChartViewModel();
             InitializeComponent();
         }
     }

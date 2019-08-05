@@ -2,9 +2,9 @@
 
 namespace Cybatica.ViewModels
 {
-    public class LicenseViewModel : ReactiveObject
+    public class OCSChartViewModel : ReactiveObject
     {
-        public LicenseViewModel()
+        public OCSChartViewModel()
         {
 
         }

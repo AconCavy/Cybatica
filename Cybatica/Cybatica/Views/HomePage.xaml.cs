@@ -11,9 +11,7 @@ namespace Cybatica.Views
     {
         public HomePage()
         {
-            ViewModel = Locator.Current.GetService<IReactiveObject>(typeof(HomeViewModel).FullName)
-                as HomeViewModel;
-            ViewModel.Navigation = Navigation;
+            ViewModel = new HomeViewModel(Navigation);
 
             InitializeComponent();
 
@@ -25,27 +23,27 @@ namespace Cybatica.Views
                     x => x.ToString()));
 
                 disposable(this.BindCommand(ViewModel,
-                    vm => vm.Stop,
+                    vm => vm.StopCommand,
                     v => v.Stop));
 
                 disposable(this.BindCommand(ViewModel,
-                    vm => vm.CaptureBase,
+                    vm => vm.CaptureBaseCommand,
                     v => v.CaptureBase));
 
                 disposable(this.BindCommand(ViewModel,
-                    vm => vm.CaptureData,
+                    vm => vm.CaptureDataCommand,
                     v => v.CaptureData));
 
                 disposable(this.BindCommand(ViewModel,
-                    vm => vm.Connect,
+                    vm => vm.ConnectCommand,
                     v => v.Connect));
 
                 disposable(this.BindCommand(ViewModel,
-                    vm => vm.Disconnect,
+                    vm => vm.DisconnectCommand,
                     v => v.Disconnect));
 
                 disposable(this.BindCommand(ViewModel,
-                    vm => vm.Licenses,
+                    vm => vm.LicensesCommand,
                     v => v.Licenses));
 
             });

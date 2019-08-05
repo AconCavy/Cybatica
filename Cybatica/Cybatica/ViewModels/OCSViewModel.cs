@@ -1,67 +1,33 @@
 ﻿using Cybatica.Services;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
-using System;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
+using Splat;
+using System.Reactive;
+using Xamarin.Forms;
 
 namespace Cybatica.ViewModels
 {
-    public class OCSViewModel : ReactiveObject, ISupportsActivation
+    public class OCSViewModel : ReactiveObject, IRootNavigation
     {
-        [Reactive] public float Cybersickness { get; private set; }
-        [Reactive] public float Nnmean { get; private set; }
-        [Reactive] public float Sdnn { get; private set; }
-        [Reactive] public float Rmssd { get; private set; }
-        [Reactive] public float PpSd1 { get; private set; }
-        [Reactive] public float PpSd2 { get; private set; }
-        [Reactive] public float Scr { get; private set; }
+        [Reactive] public float Ocs { get; private set; }
+        [Reactive] public float NnMean { get; private set; }
+        [Reactive] public float SdNn { get; private set; }
+        [Reactive] public float MeanEda { get; private set; }
+        [Reactive] public float PeakEda { get; private set; }
 
-        public ViewModelActivator Activator { get; private set; }
+        public ReactiveCommand<Unit, Unit> ChartCommand { get; private set; }
 
-        private readonly CybaticaHandler _handler;
-        private readonly IObservable<long> _observer;
+        public INavigation Navigation { get; private set; }
 
-        public OCSViewModel()
+        public OCSViewModel(INavigation navigation)
         {
-            Activator = new ViewModelActivator();
+            Navigation = navigation;
 
-            _handler = new CybaticaHandler();
-
-            _observer = Observable.Interval(TimeSpan.FromSeconds(1))
-                .ObserveOn(RxApp.MainThreadScheduler);
-
-            this.WhenActivated(disposable =>
+            ChartCommand = ReactiveCommand.CreateFromTask(async () =>
             {
-                _observer.Subscribe(_ => FetchData())
-                .DisposeWith(disposable);
-
+                var page = Locator.Current.GetService<IViewFor<OCSChartViewModel>>() as Page;
+                await Navigation.PushAsync(page);
             });
-
-        }
-
-        private void FetchData()
-        {
-            Cybersickness = _handler.GetCybersickness();
-            Nnmean = _handler.GetNnmean();
-            Sdnn = _handler.GetSdnn();
-            Rmssd = _handler.GetRmssd();
-            PpSd1 = _handler.GetPpSd1();
-            PpSd2 = _handler.GetPpSd2();
-            Scr = _handler.GetScr();
-
-        }
-
-        private void ResetValues()
-        {
-            Cybersickness = default;
-            Nnmean = default;
-            Sdnn = default;
-            Rmssd = default;
-            PpSd1 = default;
-            PpSd2 = default;
-            Scr = default;
-
         }
 
     }

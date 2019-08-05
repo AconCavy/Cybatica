@@ -39,7 +39,7 @@
                          Grid.ColumnSpan="2">
                 <Label Style="{StaticResource HeadText}"
                        Text="ONSET OF CYBERSICKNESS"/>
-                <Label x:Name="Cybersickness"
+                <Label x:Name="Ocs"
                        Style="{StaticResource NormalText}"
                        Text="0"/>
             </StackLayout>
@@ -68,23 +68,24 @@
                          Grid.Row="2"
                          Grid.Column="0">
                 <Label Style="{StaticResource HeadText}"
-                       Text="PEAK EDA"/>
-                <Label x:Name="PeakEda"
-                       Style="{StaticResource NormalText}"
-                       Text="0"/>
-            </StackLayout>
-            
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="2"
-                         Grid.Column="1">
-                <Label Style="{StaticResource HeadText}"
                        Text="MEAN EDA"/>
                 <Label x:Name="MeanEda"
                        Style="{StaticResource NormalText}"
                        Text="0"/>
             </StackLayout>
 
-            <Button Style="{StaticResource Button}"
+            <StackLayout Style="{StaticResource Panel}"
+                         Grid.Row="2"
+                         Grid.Column="1">
+                <Label Style="{StaticResource HeadText}"
+                       Text="PEAK EDA"/>
+                <Label x:Name="PeakEda"
+                       Style="{StaticResource NormalText}"
+                       Text="0"/>
+            </StackLayout>
+
+            <Button x:Name="Chart"
+                    Style="{StaticResource Button}"
                     Text="Realtime Chart"
                     Grid.Row="4"
                     Grid.Column="0"

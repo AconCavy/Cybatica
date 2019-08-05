@@ -6,9 +6,9 @@
     xmlns:vm="clr-namespace:Cybatica.ViewModels"
     xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
     xmlns:theme="clr-namespace:Cybatica.Resources"
-    x:Class="Cybatica.Views.BioDataChartPage"
-    x:TypeArguments="vm:BioDataChartViewModel"
-    Title="BIO DATA CHART">
+    x:Class="Cybatica.Views.OCSChartPage"
+    x:TypeArguments="vm:OCSChartViewModel"
+    Title="OCS CHART">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -33,7 +33,7 @@
 
                 <chart:SfChart Style="{StaticResource Chart}">
                     <chart:SfChart.Title>
-                        <chart:ChartTitle Text="BVP" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
+                        <chart:ChartTitle Text="OCS" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
                     </chart:SfChart.Title>
                     <chart:SfChart.PrimaryAxis>
                         <chart:NumericalAxis AutoScrollingDelta="10">
@@ -50,7 +50,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:FastLineSeries x:Name="Bvp" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value" EnableAnimation="True"/>
+                        <chart:FastLineSeries x:Name="Ocs" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value" EnableAnimation="True"/>
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
                         <chart:ChartZoomPanBehavior ZoomMode="XY"/>
@@ -59,7 +59,7 @@
 
                 <chart:SfChart Style="{StaticResource Chart}">
                     <chart:SfChart.Title>
-                        <chart:ChartTitle Text="EDA" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
+                        <chart:ChartTitle Text="NN MEAN" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
                     </chart:SfChart.Title>
                     <chart:SfChart.PrimaryAxis>
                         <chart:NumericalAxis AutoScrollingDelta="10">
@@ -76,7 +76,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:AreaSeries x:Name="Eda" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value" EnableAnimation="True"/>
+                        <chart:AreaSeries x:Name="NnMean" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value" EnableAnimation="True"/>
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
                         <chart:ChartZoomPanBehavior ZoomMode="XY"/>
@@ -85,7 +85,7 @@
 
                 <chart:SfChart Style="{StaticResource Chart}">
                     <chart:SfChart.Title>
-                        <chart:ChartTitle Text="TEMPERATURE" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
+                        <chart:ChartTitle Text="SDNN" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
                     </chart:SfChart.Title>
                     <chart:SfChart.PrimaryAxis>
                         <chart:NumericalAxis AutoScrollingDelta="10">
@@ -102,7 +102,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:AreaSeries x:Name="Temperature" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value" EnableAnimation="True"/>
+                        <chart:AreaSeries x:Name="SdNn" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value" EnableAnimation="True"/>
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
                         <chart:ChartZoomPanBehavior ZoomMode="XY"/>
@@ -110,7 +110,7 @@
                 </chart:SfChart>
 
             </StackLayout>
-            
+
         </ScrollView>
 
     </ContentPage.Content>

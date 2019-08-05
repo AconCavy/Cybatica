@@ -11,9 +11,7 @@ namespace Cybatica.Views
     {
         public LicensePage()
         {
-            ViewModel = Locator.Current.GetService<IReactiveObject>(typeof(LicenseViewModel).FullName)
-                as LicenseViewModel;
-
+            ViewModel = new LicenseViewModel();
             InitializeComponent();
         }
     }
