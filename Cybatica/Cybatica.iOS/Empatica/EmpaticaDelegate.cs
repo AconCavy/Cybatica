@@ -1,80 +1,60 @@
 ﻿using CoreFoundation;
-using Cybatica.Empatica;
 using E4linkBinding;
 using Foundation;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
 
 namespace Cybatica.iOS.Empatica
 {
-    public class EmpaticaDelegate : E4linkBinding.EmpaticaDelegate, IEmpaticaDelegate
+    public class EmpaticaDelegate : E4linkBinding.EmpaticaDelegate
     {
-        public bool IsAllDevicesDisconnected =>
-            _devices.Aggregate(true, (value, device) => value && (device.DeviceStatus == DeviceStatus.Disconnected));
-
-        public ReadOnlyCollection<EmpaticaDevice> Devices =>
-            new ReadOnlyCollection<EmpaticaDevice>(
-                _devices.Select(x => new EmpaticaDevice(
-                    serialNumber: x.SerialNumber,
-                    name: x.Name,
-                    advertisingName: x.AdvertisingName,
-                    hardwareId: x.HardwareId,
-                    firmwareVersion: x.FirmwareVersion))
-                .ToList());
-
-        public EmpaticaBLEStatus BLEStatus { get; private set; }
-
+        private readonly Action<Cybatica.Empatica.BLEStatus> _bLEStatusAction;
         private readonly List<EmpaticaDeviceManager> _devices;
 
-        public EmpaticaDelegate()
+        public EmpaticaDelegate(List<EmpaticaDeviceManager> devices, Action<Cybatica.Empatica.BLEStatus> bLEStatusAction)
         {
-            _devices = new List<EmpaticaDeviceManager>();
-
+            _devices = devices;
+            _bLEStatusAction = bLEStatusAction;
         }
 
         public override void DidDiscoverDevices(NSObject[] devices)
         {
-
-            if (IsAllDevicesDisconnected)
+            if (IsAllDevicesDisconnected())
             {
-
                 _devices.Clear();
                 _devices.AddRange(devices.OfType<EmpaticaDeviceManager>().ToList());
 
-                //_devices = devices.OfType<EmpaticaDeviceManager>().ToList();
-
                 DispatchQueue.MainQueue.DispatchAsync(() =>
                 {
-                    if (IsAllDevicesDisconnected)
+                    if (IsAllDevicesDisconnected())
                     {
-                        E4linkBinding.EmpaticaAPI.DiscoverDevicesWithDelegate(this);
+                        EmpaticaAPI.DiscoverDevicesWithDelegate(this);
                     }
                 });
             }
         }
 
-        public override void DidUpdateBLEStatus(BLEStatus status)
+        public override void DidUpdateBLEStatus(E4linkBinding.BLEStatus status)
         {
             switch (status)
             {
                 case E4linkBinding.BLEStatus.NotAvailable:
-                    BLEStatus = EmpaticaBLEStatus.NotAvailable;
+                    _bLEStatusAction(Cybatica.Empatica.BLEStatus.NotAvailable);
                     break;
                 case E4linkBinding.BLEStatus.Ready:
-                    BLEStatus = EmpaticaBLEStatus.Ready;
+                    _bLEStatusAction(Cybatica.Empatica.BLEStatus.Ready);
                     break;
                 case E4linkBinding.BLEStatus.Scanning:
-                    BLEStatus = EmpaticaBLEStatus.Scanning;
+                    _bLEStatusAction(Cybatica.Empatica.BLEStatus.Scanning);
                     break;
             }
         }
 
-        public EmpaticaDeviceManager GetDevice(EmpaticaDevice device)
+        private bool IsAllDevicesDisconnected()
         {
-            return _devices.Find(x => x.SerialNumber.Equals(device.SerialNumber));
+            return _devices.Aggregate(true, (value, device) => value && (device.DeviceStatus == E4linkBinding.DeviceStatus.Disconnected));
         }
-
     }
 }

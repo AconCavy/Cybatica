@@ -1,144 +1,121 @@
 ﻿using System;
 using Cybatica.Empatica;
+using DynamicData;
 using E4linkBinding;
 
 namespace Cybatica.iOS.Empatica
 {
-    public class EmpaticaDeviceDelegate : E4linkBinding.EmpaticaDeviceDelegate, IEmpaticaDeviceDelegate
+    public class EmpaticaDeviceDelegate : E4linkBinding.EmpaticaDeviceDelegate
     {
+        private readonly EmpaticaSession _empaticaSession;
+        private readonly Action<Cybatica.Empatica.DeviceStatus> _deviceStatusAction;
+        private readonly Action<Cybatica.Empatica.SensorStatus> _sensorStatusAction;
+        private double _startedTime;
 
-        public EmpaticaSession EmpaticaSession { get; private set; }
-
-        public BatteryLevel BatteryLevel { get; private set; }
-
-        public Acceleration Acceleration { get; private set; }
-
-        public Gsr Gsr { get; private set; }
-
-        public Bvp Bvp { get; private set; }
-
-        public Ibi Ibi { get; private set; }
-
-        public Temperature Temperature { get; private set; }
-
-        public Hr Hr { get; private set; }
-
-        public Tag Tag { get; private set; }
-
-        public EmpaticaSensorStatus SensorStatus { get; private set; }
-
-        public EmpaticaDeviceStatus DeviceStatus { get; private set; }
-
-        public double ConnectedTime { get; private set; }
-
-        public EmpaticaDeviceDelegate()
+        public EmpaticaDeviceDelegate(EmpaticaSession session,
+            Action<Cybatica.Empatica.DeviceStatus> deviceStatusAction,
+            Action<Cybatica.Empatica.SensorStatus> sensorStatusAction)
         {
-            InitializeSession();
+            _empaticaSession = session;
+            _deviceStatusAction = deviceStatusAction;
+            _sensorStatusAction = sensorStatusAction;
         }
 
         public override void DidReceiveAccelerationX(sbyte x, sbyte y, sbyte z, double timestamp, EmpaticaDeviceManager device)
         {
-            Acceleration acceleration = new Acceleration(x, y, z, timestamp - ConnectedTime);
-            Acceleration = acceleration;
-            EmpaticaSession.AddAcceleration(acceleration);
+            Acceleration acceleration = new Acceleration(x, y, z, timestamp - _startedTime);
+            _empaticaSession.Acceleration.Add(acceleration);
         }
 
         public override void DidReceiveBatteryLevel(float level, double timestamp, EmpaticaDeviceManager device)
         {
-            BatteryLevel batteryLevel = new BatteryLevel(level, timestamp - ConnectedTime);
-            BatteryLevel = batteryLevel;
-            EmpaticaSession.AddBatteryLevel(batteryLevel);
+            BatteryLevel batteryLevel = new BatteryLevel(level, timestamp - _startedTime);
+            _empaticaSession.BatteryLevel.Add(batteryLevel);
         }
 
         public override void DidReceiveBVP(float bvp, double timestamp, EmpaticaDeviceManager device)
         {
-            Bvp bvpValue = new Bvp(bvp, timestamp - ConnectedTime);
-            Bvp = bvpValue;
-            EmpaticaSession.AddBvp(bvpValue);
+            Bvp bvpValue = new Bvp(bvp, timestamp - _startedTime);
+            _empaticaSession.Bvp.Add(bvpValue);
         }
 
         public override void DidReceiveGSR(float gsr, double timestamp, EmpaticaDeviceManager device)
         {
-            Gsr gsrValue = new Gsr(gsr, timestamp - ConnectedTime);
-            Gsr = gsrValue;
-            EmpaticaSession.AddGsr(gsrValue);
+            Gsr gsrValue = new Gsr(gsr, timestamp - _startedTime);
+            _empaticaSession.Gsr.Add(gsrValue);
         }
 
         public override void DidReceiveHR(float hr, int qualityIndex, double timestamp, EmpaticaDeviceManager device)
         {
-            Hr hrValue = new Hr(hr, qualityIndex, timestamp - ConnectedTime);
-            Hr = hrValue;
-            EmpaticaSession.AddHr(hrValue);
+            Hr hrValue = new Hr(hr, qualityIndex, timestamp - _startedTime);
+            _empaticaSession.Hr.Add(hrValue);
         }
 
         public override void DidReceiveIBI(float ibi, double timestamp, EmpaticaDeviceManager device)
         {
-            Ibi ibiValue = new Ibi(ibi, timestamp - ConnectedTime);
-            Ibi = ibiValue;
-            EmpaticaSession.AddIbi(ibiValue);
+            Ibi ibiValue = new Ibi(ibi, timestamp - _startedTime);
+            _empaticaSession.Ibi.Add(ibiValue);
         }
 
         public override void DidReceiveTagAtTimestamp(double timestamp, EmpaticaDeviceManager device)
         {
-            Tag tag = new Tag(timestamp - ConnectedTime);
-            Tag = tag;
-            EmpaticaSession.AddTag(tag);
+            Tag tag = new Tag(timestamp - _startedTime);
+            _empaticaSession.Tag.Add(tag);
         }
 
         public override void DidReceiveTemperature(float temp, double timestamp, EmpaticaDeviceManager device)
         {
-            Temperature temperature = new Temperature(temp, timestamp - ConnectedTime);
-            Temperature = temperature;
-            EmpaticaSession.AddTemperature(temperature);
+            Temperature temperature = new Temperature(temp, timestamp - _startedTime);
+            _empaticaSession.Temperature.Add(temperature);
         }
 
-        public override void DidUpdateDeviceStatus(DeviceStatus status, EmpaticaDeviceManager device)
+        public override void DidUpdateDeviceStatus(E4linkBinding.DeviceStatus status, EmpaticaDeviceManager device)
         {
             switch (status)
             {
                 case E4linkBinding.DeviceStatus.Connected:
-                    DeviceStatus = EmpaticaDeviceStatus.Connected;
+                    _deviceStatusAction(Cybatica.Empatica.DeviceStatus.Connected);
                     break;
                 case E4linkBinding.DeviceStatus.Connecting:
-                    DeviceStatus = EmpaticaDeviceStatus.Connecting;
+                    _deviceStatusAction(Cybatica.Empatica.DeviceStatus.Connecting);
                     break;
                 case E4linkBinding.DeviceStatus.Disconnected:
-                    DeviceStatus = EmpaticaDeviceStatus.Disconnected;
+                    _deviceStatusAction(Cybatica.Empatica.DeviceStatus.Disconnected);
                     break;
                 case E4linkBinding.DeviceStatus.Disconnecting:
-                    DeviceStatus = EmpaticaDeviceStatus.Disconnecting;
+                    _deviceStatusAction(Cybatica.Empatica.DeviceStatus.Disconnecting);
                     break;
                 case E4linkBinding.DeviceStatus.FailedToConnect:
-                    DeviceStatus = EmpaticaDeviceStatus.FailedToConnect;
+                    _deviceStatusAction(Cybatica.Empatica.DeviceStatus.FailedToConnect);
                     break;
             }
 
         }
 
-        public override void DidUpdateOnWristStatus(SensorStatus onWristStatus, EmpaticaDeviceManager device)
+        public override void DidUpdateOnWristStatus(E4linkBinding.SensorStatus onWristStatus, EmpaticaDeviceManager device)
         {
             switch (onWristStatus)
             {
                 case E4linkBinding.SensorStatus.Dead:
-                    SensorStatus = EmpaticaSensorStatus.Dead;
+                    _sensorStatusAction(Cybatica.Empatica.SensorStatus.Dead);
                     break;
                 case E4linkBinding.SensorStatus.NotOnWrist:
-                    SensorStatus = EmpaticaSensorStatus.NotOnWrist;
+                    _sensorStatusAction(Cybatica.Empatica.SensorStatus.NotOnWrist);
                     break;
                 case E4linkBinding.SensorStatus.OnWrist:
-                    SensorStatus = EmpaticaSensorStatus.OnWrist;
+                    _sensorStatusAction(Cybatica.Empatica.SensorStatus.OnWrist);
                     break;
             }
         }
 
-        public void InitializeSession()
+        public void StartSession()
         {
-            EmpaticaSession = new EmpaticaSession();
+            _startedTime = DateTimeOffset.Now.ToUnixTimeSeconds();
         }
 
-        public void SetConnectedTime()
+        public void StopSession()
         {
-            ConnectedTime = DateTimeOffset.Now.ToUnixTimeSeconds();
+
         }
     }
 }

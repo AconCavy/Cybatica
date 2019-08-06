@@ -1,4 +1,6 @@
-﻿using Cybatica.ViewModels;
+﻿using Cybatica.Models;
+using Cybatica.Services;
+using Cybatica.ViewModels;
 using Cybatica.Views;
 using ReactiveUI;
 using Splat;
@@ -21,6 +23,8 @@ namespace Cybatica
         private void RegisterDependencies()
         {
             // Services
+            Locator.CurrentMutable.RegisterLazySingleton(
+                () => new CybaticaHandler(), typeof(ICybaticaHandler));
 
             // Views
             Locator.CurrentMutable.RegisterConstant(

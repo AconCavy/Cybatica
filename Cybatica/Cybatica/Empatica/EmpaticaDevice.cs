@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Cybatica.Empatica
+﻿namespace Cybatica.Empatica
 {
     public class EmpaticaDevice
     {
         public string SerialNumber { get; }
-
         public string Name { get; }
-
         public string AdvertisingName { get; }
-
         public string HardwareId { get; }
-
         public string FirmwareVersion { get; }
 
         public EmpaticaDevice()
@@ -29,9 +21,5 @@ namespace Cybatica.Empatica
             HardwareId = hardwareId;
             FirmwareVersion = firmwareVersion;
         }
-
-
-
-
     }
 }

@@ -1,5 +1,7 @@
-﻿using E4linkBinding;
+﻿using Cybatica.Empatica;
+using E4linkBinding;
 using Foundation;
+using Splat;
 using UIKit;
 
 namespace Cybatica.iOS
@@ -22,8 +24,10 @@ namespace Cybatica.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             new AppBootstrapper();
+            var empaticaHandler = Locator.Current.GetService<IEmpaticaHandler>();
+            empaticaHandler.Authenticate(AppPrivateInformations.EmpaticaAPIKey);
+
             Syncfusion.SfChart.XForms.iOS.Renderers.SfChartRenderer.Init();
-            //UITabBar.Appearance.TintColor = UIColor.FromRGB(232, 174, 183);
 
             LoadApplication(new App());
             return base.FinishedLaunching(app, options);

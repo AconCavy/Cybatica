@@ -9,23 +9,12 @@ namespace Cybatica.Droid
         public AppBootstrapper()
         {
             RegisterDependencies();
-            //MockRegisterDependencies();
         }
 
         private void RegisterDependencies()
         {
-            Locator.CurrentMutable.RegisterLazySingleton(() => new EmpaticaDeviceDelegate(), typeof(IEmpaticaDelegate));
-            Locator.CurrentMutable.RegisterLazySingleton(() => new EmpaticaDeviceDelegate(), typeof(IEmpaticaDeviceDelegate));
-            Locator.CurrentMutable.RegisterConstant(new EmpaticaApi(), typeof(IEmpaticaApi));
-
-        }
-
-        private void MockRegisterDependencies()
-        {
-            Locator.CurrentMutable.RegisterLazySingleton(() => new Mocks.MockEmpaticaDelegate(), typeof(IEmpaticaDelegate));
-            Locator.CurrentMutable.RegisterLazySingleton(() => new Mocks.MockEmpaticaDeviceDelegate(), typeof(IEmpaticaDeviceDelegate));
-            Locator.CurrentMutable.RegisterConstant(new Mocks.MockEmpaticaApi(), typeof(IEmpaticaApi));
-
+            Locator.CurrentMutable.RegisterLazySingleton(
+                () => new EmpaticaHandler(), typeof(IEmpaticaHandler));
         }
     }
 }

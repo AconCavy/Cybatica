@@ -1,6 +1,6 @@
 ﻿namespace Cybatica.Empatica
 {
-    public enum EmpaticaDeviceStatus
+    public enum DeviceStatus
     {
         Disconnected,
         Connecting,
@@ -9,14 +9,14 @@
         Disconnecting
     }
 
-    public enum EmpaticaSensorStatus
+    public enum SensorStatus
     {
         NotOnWrist,
         OnWrist,
         Dead
     }
 
-    public enum EmpaticaBLEStatus
+    public enum BLEStatus
     {
         NotAvailable,
         Ready,

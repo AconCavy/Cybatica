@@ -4,21 +4,29 @@ namespace Cybatica.Empatica
 {
     public interface IEmpaticaHandler
     {
-        ReadOnlyCollection<EmpaticaDevice> Devices { get; }
+        DeviceStatus DeviceStatus { get; }
 
-        bool IsDeviceListEmpty { get; }
+        SensorStatus SensorStatus { get; }
+
+        BLEStatus BLEStatus { get; }
+
+        ReadOnlyCollection<EmpaticaDevice> Devices { get; }
 
         EmpaticaSession EmpaticaSession { get; }
 
         void InitializeSession();
 
-        void AuthenticateWithApiKey(string key);
+        void Authenticate(string key);
 
-        void ConnectDevice(EmpaticaDevice device);
+        void Connect(EmpaticaDevice device);
 
-        void DisconnectDevice();
+        void Disconnect();
 
-        void RestartDiscovery();
+        void Discover();
+
+        void StartSession();
+
+        void StopSession();
 
     }
 }
