@@ -1,4 +1,5 @@
 ﻿using Cybatica.Empatica;
+using Cybatica.Models;
 using Cybatica.Services;
 using DynamicData;
 using ReactiveUI;
@@ -43,35 +44,35 @@ namespace Cybatica.ViewModels
 
             _empaticaSession = _handler.EmpaticaSession;
 
-            var bvp = _empaticaSession.ConnectBvp();
+            var bvp = _empaticaSession.Bvp.Connect();
             _observableBvp = bvp
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _bvp)
                 .Subscribe();
 
-            var ibi = _empaticaSession.ConnectIbi();
+            var ibi = _empaticaSession.Ibi.Connect();
             _observableIbi = ibi
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _ibi)
                 .Subscribe();
 
-            var hr = _empaticaSession.ConnectHr();
+            var hr = _empaticaSession.Hr.Connect();
             _observableHr = hr
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _hr)
                 .Subscribe();
 
-            var gsr = _empaticaSession.ConnectGsr();
+            var gsr = _empaticaSession.Gsr.Connect();
             _observableGsr = gsr
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _gsr)
                 .Subscribe();
 
-            var temperature = _empaticaSession.ConnectTemperature();
+            var temperature = _empaticaSession.Temperature.Connect();
             _observableTemperature = temperature
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)

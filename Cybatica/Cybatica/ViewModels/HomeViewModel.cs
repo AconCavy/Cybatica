@@ -1,4 +1,5 @@
 ﻿using Cybatica.Empatica;
+using Cybatica.Models;
 using Cybatica.Services;
 using Cybatica.Utilities;
 using ReactiveUI;
@@ -12,7 +13,7 @@ using Xamarin.Forms;
 
 namespace Cybatica.ViewModels
 {
-    public class HomeViewModel : ReactiveObject, IRootNavigation
+    public class HomeViewModel : ReactiveObject
     {
         [Reactive] public float ElapsedTime { get; private set; }
         [Reactive] public bool IsConnecting { get; private set; }
@@ -96,7 +97,6 @@ namespace Cybatica.ViewModels
         {
             _sessionType = SessionType.Base;
             IsCapturing = true;
-            System.Console.WriteLine($"{_sessionType} : {IsCapturing}");
 
             // TODO : Implements capture base action
         }
