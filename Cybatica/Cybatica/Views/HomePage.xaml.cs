@@ -1,7 +1,7 @@
 ﻿using Cybatica.ViewModels;
 using ReactiveUI;
 using ReactiveUI.XamForms;
-using Splat;
+using System;
 using Xamarin.Forms.Xaml;
 
 namespace Cybatica.Views
@@ -20,19 +20,19 @@ namespace Cybatica.Views
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.ElapsedTime,
                     v => v.ElapsedTime.Text,
-                    x => x.ToString()));
+                    x => x.ToString(@"d'.'hh':'mm':'ss'.'ff")));
 
                 disposable(this.BindCommand(ViewModel,
-                    vm => vm.StopCommand,
+                    vm => vm.StartBaseSessionCommand,
+                    v => v.StartBaseSession));
+
+                disposable(this.BindCommand(ViewModel,
+                    vm => vm.StartDataSessionCommand,
+                    v => v.StartDataSession));
+
+                disposable(this.BindCommand(ViewModel,
+                    vm => vm.StopSessionCommand,
                     v => v.Stop));
-
-                disposable(this.BindCommand(ViewModel,
-                    vm => vm.CaptureBaseCommand,
-                    v => v.CaptureBase));
-
-                disposable(this.BindCommand(ViewModel,
-                    vm => vm.CaptureDataCommand,
-                    v => v.CaptureData));
 
                 disposable(this.BindCommand(ViewModel,
                     vm => vm.ConnectCommand,

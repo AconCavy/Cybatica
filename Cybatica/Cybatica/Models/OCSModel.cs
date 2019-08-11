@@ -1,22 +1,28 @@
-﻿using Cybatica.Empatica;
-using ReactiveUI;
+﻿using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
 namespace Cybatica.Models
 {
     public class OCSModel : ReactiveObject
     {
-        [Reactive] public float Ocs { get; private set; }
-        [Reactive] public float NnMean { get; private set; }
-        [Reactive] public float SdNn { get; private set; }
-        [Reactive] public float MeanEda { get; private set; }
-        [Reactive] public float PeakEda { get; private set; }
+        [Reactive] public float Ocs { get; set; }
+        [Reactive] public float NnMean { get; set; }
+        [Reactive] public float SdNn { get; set; }
+        [Reactive] public float MeanEda { get; set; }
+        [Reactive] public float PeakEda { get; set; }
 
-        private readonly EmpaticaSession _empaticaSession;
-
-        public OCSModel(EmpaticaSession session)
+        public OCSModel()
         {
-            _empaticaSession = session;
         }
+
+        public void Reset()
+        {
+            Ocs = default;
+            NnMean = default;
+            SdNn = default;
+            MeanEda = default;
+            PeakEda = default;
+        }
+
     }
 }

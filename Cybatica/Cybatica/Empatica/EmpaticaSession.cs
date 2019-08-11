@@ -16,29 +16,42 @@ namespace Cybatica.Empatica
         public EmpaticaSession()
         {
             BatteryLevel = new SourceList<BatteryLevel>();
+            Acceleration = new SourceList<Acceleration>();
+            Gsr = new SourceList<Gsr>();
+            Bvp = new SourceList<Bvp>();
+            Ibi = new SourceList<Ibi>();
+            Temperature = new SourceList<Temperature>();
+            Hr = new SourceList<Hr>();
+            Tag = new SourceList<Tag>();
+
+            InitializeSession();
+        }
+
+        public void InitializeSession()
+        {
+            BatteryLevel.Clear();
             BatteryLevel.Add(new BatteryLevel(0, 0));
 
-            Acceleration = new SourceList<Acceleration>();
+            Acceleration.Clear();
             Acceleration.Add(new Acceleration(0, 0, 0, 0));
 
-            Gsr = new SourceList<Gsr>();
+            Gsr.Clear();
             Gsr.Add(new Gsr(0, 0));
 
-            Bvp = new SourceList<Bvp>();
+            Bvp.Clear();
             Bvp.Add(new Bvp(0, 0));
 
-            Ibi = new SourceList<Ibi>();
+            Ibi.Clear();
             Ibi.Add(new Ibi(0, 0));
 
-            Temperature = new SourceList<Temperature>();
+            Temperature.Clear();
             Temperature.Add(new Temperature(0, 0));
 
-            Hr = new SourceList<Hr>();
+            Hr.Clear();
             Hr.Add(new Hr(0, 0, 0));
 
-            Tag = new SourceList<Tag>();
+            Tag.Clear();
             Tag.Add(new Tag(0));
-
         }
     }
 }

@@ -1,109 +1,60 @@
 ﻿using Cybatica.Empatica;
-using Cybatica.Models;
 using Cybatica.Services;
 using DynamicData;
 using ReactiveUI;
+using Splat;
 using System;
 using System.Collections.ObjectModel;
-
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 
 namespace Cybatica.ViewModels
 {
-    public class BioDataChartViewModel : ReactiveObject, ISupportsActivation
+    public class BioDataChartViewModel : ReactiveObject, IDisposable
     {
         public ReadOnlyObservableCollection<Bvp> Bvp => _bvp;
-        public ReadOnlyObservableCollection<Ibi> Ibi => _ibi;
-        public ReadOnlyObservableCollection<Hr> Hr => _hr;
         public ReadOnlyObservableCollection<Gsr> Gsr => _gsr;
         public ReadOnlyObservableCollection<Temperature> Temperature => _temperature;
 
         private readonly ReadOnlyObservableCollection<Bvp> _bvp;
-        private readonly ReadOnlyObservableCollection<Ibi> _ibi;
-        private readonly ReadOnlyObservableCollection<Hr> _hr;
         private readonly ReadOnlyObservableCollection<Gsr> _gsr;
         private readonly ReadOnlyObservableCollection<Temperature> _temperature;
 
-        private readonly CybaticaHandler _handler;
-        private readonly EmpaticaSession _empaticaSession;
+        private readonly ICybaticaHandler _handler;
+        private readonly EmpaticaSession _session;
 
-        private readonly IDisposable _observableBvp;
-        private readonly IDisposable _observableIbi;
-        private readonly IDisposable _observableHr;
-        private readonly IDisposable _observableGsr;
-        private readonly IDisposable _observableTemperature;
-
-        public ViewModelActivator Activator { get; }
+        private readonly IDisposable _cleanUp;
 
         public BioDataChartViewModel()
         {
-            Activator = new ViewModelActivator();
+            _handler = Locator.Current.GetService<ICybaticaHandler>();
+            _session = _handler.EmpaticaSession;
 
-            _handler = new CybaticaHandler();
-
-            _empaticaSession = _handler.EmpaticaSession;
-
-            var bvp = _empaticaSession.Bvp.Connect();
-            _observableBvp = bvp
+            var bvp = _session.Bvp.Connect()
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _bvp)
                 .Subscribe();
 
-            var ibi = _empaticaSession.Ibi.Connect();
-            _observableIbi = ibi
-                .SubscribeOn(RxApp.TaskpoolScheduler)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Bind(out _ibi)
-                .Subscribe();
-
-            var hr = _empaticaSession.Hr.Connect();
-            _observableHr = hr
-                .SubscribeOn(RxApp.TaskpoolScheduler)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Bind(out _hr)
-                .Subscribe();
-
-            var gsr = _empaticaSession.Gsr.Connect();
-            _observableGsr = gsr
+            var gsr = _session.Gsr.Connect()
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _gsr)
                 .Subscribe();
 
-            var temperature = _empaticaSession.Temperature.Connect();
-            _observableTemperature = temperature
+            var temperature = _session.Temperature.Connect()
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _temperature)
                 .Subscribe();
 
-            this.WhenActivated(disposable =>
-            {
-                HandleActivation();
-                Disposable.Create(() => HandleDeactivation())
-                .DisposeWith(disposable);
-
-            });
-
+            _cleanUp = new CompositeDisposable(bvp, gsr, temperature);
         }
 
-        private void HandleActivation()
+        public void Dispose()
         {
-
+            _cleanUp.Dispose();
         }
-
-        private void HandleDeactivation()
-        {
-            _observableBvp.Dispose();
-            _observableGsr.Dispose();
-            _observableHr.Dispose();
-            _observableIbi.Dispose();
-            _observableTemperature.Dispose();
-
-        }
-
     }
 
 }

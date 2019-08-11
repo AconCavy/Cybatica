@@ -59,32 +59,6 @@
 
                 <chart:SfChart Style="{StaticResource Chart}">
                     <chart:SfChart.Title>
-                        <chart:ChartTitle Text="NN MEAN" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
-                    </chart:SfChart.Title>
-                    <chart:SfChart.PrimaryAxis>
-                        <chart:NumericalAxis AutoScrollingDelta="10">
-                            <chart:NumericalAxis.Title>
-                                <chart:ChartAxisTitle Text="Timestamp" TextColor="{StaticResource Black2}"/>
-                            </chart:NumericalAxis.Title>
-                        </chart:NumericalAxis>
-                    </chart:SfChart.PrimaryAxis>
-                    <chart:SfChart.SecondaryAxis>
-                        <chart:NumericalAxis>
-                            <chart:NumericalAxis.Title>
-                                <chart:ChartAxisTitle Text="Value" TextColor="{StaticResource Black2}"/>
-                            </chart:NumericalAxis.Title>
-                        </chart:NumericalAxis>
-                    </chart:SfChart.SecondaryAxis>
-                    <chart:SfChart.Series>
-                        <chart:AreaSeries x:Name="NnMean" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value" EnableAnimation="True"/>
-                    </chart:SfChart.Series>
-                    <chart:SfChart.ChartBehaviors>
-                        <chart:ChartZoomPanBehavior ZoomMode="XY"/>
-                    </chart:SfChart.ChartBehaviors>
-                </chart:SfChart>
-
-                <chart:SfChart Style="{StaticResource Chart}">
-                    <chart:SfChart.Title>
                         <chart:ChartTitle Text="SDNN" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
                     </chart:SfChart.Title>
                     <chart:SfChart.PrimaryAxis>
@@ -103,6 +77,32 @@
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
                         <chart:AreaSeries x:Name="SdNn" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value" EnableAnimation="True"/>
+                    </chart:SfChart.Series>
+                    <chart:SfChart.ChartBehaviors>
+                        <chart:ChartZoomPanBehavior ZoomMode="XY"/>
+                    </chart:SfChart.ChartBehaviors>
+                </chart:SfChart>
+
+                <chart:SfChart Style="{StaticResource Chart}">
+                    <chart:SfChart.Title>
+                        <chart:ChartTitle Text="MEAN EDA" TextColor="{StaticResource Black2}" BackgroundColor="{StaticResource Base4}"/>
+                    </chart:SfChart.Title>
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:NumericalAxis AutoScrollingDelta="10">
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Timestamp" TextColor="{StaticResource Black2}"/>
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.PrimaryAxis>
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis>
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Value" TextColor="{StaticResource Black2}"/>
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.SecondaryAxis>
+                    <chart:SfChart.Series>
+                        <chart:AreaSeries x:Name="MeanEda" Color="{StaticResource Accent}" XBindingPath="Timestamp" YBindingPath="Value" EnableAnimation="True"/>
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
                         <chart:ChartZoomPanBehavior ZoomMode="XY"/>

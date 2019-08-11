@@ -7,17 +7,17 @@ namespace Cybatica.Utilities
 {
     public static class Calculator
     {
-        public static float CalcCybersickness()
+        public static float CalcOcs()
         {
             return 0;
         }
 
-        public static float CalcNnmean(IEnumerable<Ibi> ibiList)
+        public static float CalcNnMean(IEnumerable<Ibi> ibiList)
         {
             return CalcMean(ibiList.Select(x => x.Value));
         }
 
-        public static float CalcSdnn(IEnumerable<Ibi> ibiList)
+        public static float CalcSdNn(IEnumerable<Ibi> ibiList)
         {
             if (ibiList.Count() == 0)
             {
@@ -29,7 +29,7 @@ namespace Cybatica.Utilities
             return result;
         }
 
-        public static float CalcRmssd(IEnumerable<Ibi> ibiList)
+        public static float CalcRmsSd(IEnumerable<Ibi> ibiList)
         {
             if (ibiList.Count() < 2)
             {
@@ -96,11 +96,19 @@ namespace Cybatica.Utilities
 
         public static float CalcMeanEda(IEnumerable<Gsr> gsrList)
         {
+            if (gsrList.Count() == 0)
+            {
+                return 0;
+            }
             return CalcMean(gsrList.Select(x => x.Value));
         }
 
         public static float CalcPeakEda(IEnumerable<Gsr> gsrList)
         {
+            if (gsrList.Count() == 0)
+            {
+                return 0;
+            }
             return gsrList.Max(x => x.Value);
         }
 

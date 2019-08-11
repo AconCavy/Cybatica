@@ -1,7 +1,6 @@
 ﻿using Cybatica.ViewModels;
 using ReactiveUI;
 using ReactiveUI.XamForms;
-using Splat;
 using Xamarin.Forms.Xaml;
 
 namespace Cybatica.Views

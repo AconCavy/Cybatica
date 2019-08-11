@@ -20,43 +20,40 @@ namespace Cybatica.ViewModels
 
         public ReactiveCommand<Unit, Unit> ChartCommand { get; private set; }
 
-        public INavigation Navigation { get; private set; }
+        private readonly INavigation _navigation;
 
         private readonly ICybaticaHandler _cybaticaHandler;
         private readonly BioDataModel _bioData;
 
         public BioDataViewModel(INavigation navigation)
         {
-            Navigation = navigation;
+            _navigation = navigation;
             _cybaticaHandler = Locator.Current.GetService<ICybaticaHandler>();
-            _bioData = new BioDataModel(_cybaticaHandler.EmpaticaSession);
+            _bioData = _cybaticaHandler.BioDataModel;
 
-            this.WhenAnyValue(x => x._bioData.Bvp)
+            _ = this.WhenAnyValue(x => x._bioData.Bvp)
                 .ToPropertyEx(this, x => x.Bvp);
 
-            this.WhenAnyValue(x => x._bioData.Ibi)
+            _ = this.WhenAnyValue(x => x._bioData.Ibi)
                 .ToPropertyEx(this, x => x.Ibi);
 
-            this.WhenAnyValue(x => x._bioData.Hr)
+            _ = this.WhenAnyValue(x => x._bioData.Hr)
                 .ToPropertyEx(this, x => x.Hr);
 
-            this.WhenAnyValue(x => x._bioData.Gsr)
+            _ = this.WhenAnyValue(x => x._bioData.Gsr)
                 .ToPropertyEx(this, x => x.Gsr);
 
-            this.WhenAnyValue(x => x._bioData.Temperature)
+            _ = this.WhenAnyValue(x => x._bioData.Temperature)
                 .ToPropertyEx(this, x => x.Temperature);
 
-            this.WhenAnyValue(x => x._bioData.Acceleration)
+            _ = this.WhenAnyValue(x => x._bioData.Acceleration)
                 .ToPropertyEx(this, x => x.Acceleration);
 
             ChartCommand = ReactiveCommand.CreateFromTask(async () =>
             {
                 var page = Locator.Current.GetService<IViewFor<BioDataChartViewModel>>() as Page;
-                await Navigation.PushAsync(page);
+                await _navigation.PushAsync(page);
             });
-
         }
-
     }
-
 }

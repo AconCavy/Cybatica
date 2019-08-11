@@ -18,7 +18,7 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        
+
         <Grid Margin="8,8,8,8"
               RowSpacing="8"
               ColumnSpacing="8">
@@ -43,7 +43,7 @@
                    VerticalTextAlignment="Center"
                    Grid.Row="0"
                    Grid.Column="0"/>
-            
+
             <Label x:Name="ElapsedTime"
                    Style="{StaticResource NormalText}"
                    Text="00:00"
@@ -53,24 +53,24 @@
                    Grid.Row="0"
                    Grid.Column="1"/>
 
+            <Button x:Name="StartBaseSession"
+                    Style="{StaticResource Button}"
+                    Text="Start Base Session"
+                    Grid.Row="1"
+                    Grid.Column="0"/>
+
+            <Button x:Name="StartDataSession"
+                    Style="{StaticResource Button}"
+                    Text="Start Data Session"
+                    Grid.Row="1"
+                    Grid.Column="1"/>
+
             <Button x:Name="Stop"
                     Style="{StaticResource Button}"
                     Text="Stop"
-                    Grid.Row="1"
+                    Grid.Row="2"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"/>
-
-            <Button x:Name="CaptureBase"
-                    Style="{StaticResource Button}"
-                    Text="Capture Base"
-                    Grid.Row="2"
-                    Grid.Column="0"/>
-
-            <Button x:Name="CaptureData"
-                    Style="{StaticResource Button}"
-                    Text="Capture Data"
-                    Grid.Row="2"
-                    Grid.Column="1"/>
 
             <Button x:Name="Connect"
                     Style="{StaticResource Button}"
@@ -92,7 +92,7 @@
                     Grid.ColumnSpan="2"/>
 
         </Grid>
-        
+
     </ContentPage.Content>
 
 </rxui:ReactiveContentPage>
