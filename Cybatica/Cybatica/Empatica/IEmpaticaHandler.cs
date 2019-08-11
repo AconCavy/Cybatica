@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 
 namespace Cybatica.Empatica
 {
@@ -12,9 +13,21 @@ namespace Cybatica.Empatica
 
         ReadOnlyCollection<EmpaticaDevice> Devices { get; }
 
-        EmpaticaSession EmpaticaSession { get; }
+        Action<BatteryLevel> BatteryLevelAction { get; set; }
 
-        void InitializeSession();
+        Action<Bvp> BvpAction { get; set; }
+
+        Action<Ibi> IbiAction { get; set; }
+
+        Action<Hr> HrAction { get; set; }
+
+        Action<Gsr> GsrAction { get; set; }
+
+        Action<Temperature> TemperatureAction { get; set; }
+
+        Action<Acceleration> AccelerationAction { get; set; }
+
+        Action<Tag> TagAction { get; set; }
 
         void Authenticate(string key);
 
@@ -24,7 +37,7 @@ namespace Cybatica.Empatica
 
         void Discover();
 
-        void StartSession();
+        void StartSession(double startedTime);
 
         void StopSession();
 

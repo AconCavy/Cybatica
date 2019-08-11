@@ -3,7 +3,6 @@ using Com.Empatica.Empalink;
 using Com.Empatica.Empalink.Config;
 using Com.Empatica.Empalink.Delegate;
 using Cybatica.Empatica;
-using DynamicData;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +17,7 @@ namespace Cybatica.Droid.Empatica
         private readonly EmpaDeviceManager _deviceManager;
 
         private double _startedTime;
+        private bool _isCapturing;
 
         public EmpaticaHandler()
         {
@@ -42,7 +42,21 @@ namespace Cybatica.Droid.Empatica
                     firmwareVersion: x.FirmwareVersion))
                 .ToList());
 
-        public EmpaticaSession EmpaticaSession { get; private set; }
+        public Action<BatteryLevel> BatteryLevelAction { get; set; }
+
+        public Action<Bvp> BvpAction { get; set; }
+
+        public Action<Ibi> IbiAction { get; set; }
+
+        public Action<Hr> HrAction { get; set; }
+
+        public Action<Gsr> GsrAction { get; set; }
+
+        public Action<Temperature> TemperatureAction { get; set; }
+
+        public Action<Acceleration> AccelerationAction { get; set; }
+
+        public Action<Tag> TagAction { get; set; }
 
         public void Authenticate(string key)
         {
@@ -76,62 +90,80 @@ namespace Cybatica.Droid.Empatica
             _deviceManager.StartScanning();
         }
 
-        public void InitializeSession()
+        public void StartSession(double startedTime)
         {
-            EmpaticaSession = new EmpaticaSession();
-        }
-
-        public void StartSession()
-        {
-            _startedTime = DateTimeOffset.Now.ToUnixTimeSeconds();
+            _startedTime = startedTime;
+            _isCapturing = true;
         }
 
         public void StopSession()
         {
+            _isCapturing = false;
         }
         #endregion
 
         #region IEmpaDataDelegate
         public void DidReceiveAcceleration(int x, int y, int z, double timestamp)
         {
-            Acceleration acceleration = new Acceleration(x, y, z, timestamp - _startedTime);
-            EmpaticaSession.Acceleration.Add(acceleration);
+            if (!_isCapturing)
+            {
+                return;
+            }
+            AccelerationAction?.Invoke(new Acceleration(x, y, z, timestamp - _startedTime));
         }
 
         public void DidReceiveBatteryLevel(float level, double timestamp)
         {
-            BatteryLevel batteryLevel = new BatteryLevel(level, timestamp - _startedTime);
-            EmpaticaSession.BatteryLevel.Add(batteryLevel);
+            if (!_isCapturing)
+            {
+                return;
+            }
+            BatteryLevelAction?.Invoke(new BatteryLevel(level, timestamp - _startedTime));
         }
 
         public void DidReceiveBVP(float bvp, double timestamp)
         {
-            Bvp bvpValue = new Bvp(bvp, timestamp - _startedTime);
-            EmpaticaSession.Bvp.Add(bvpValue);
+            if (!_isCapturing)
+            {
+                return;
+            }
+            BvpAction?.Invoke(new Bvp(bvp, timestamp - _startedTime));
         }
 
         public void DidReceiveGSR(float gsr, double timestamp)
         {
-            Gsr gsrValue = new Gsr(gsr, timestamp - _startedTime);
-            EmpaticaSession.Gsr.Add(gsrValue);
+            if (!_isCapturing)
+            {
+                return;
+            }
+            GsrAction?.Invoke(new Gsr(gsr, timestamp - _startedTime));
         }
 
         public void DidReceiveIBI(float ibi, double timestamp)
         {
-            Ibi ibiValue = new Ibi(ibi, timestamp - _startedTime);
-            EmpaticaSession.Ibi.Add(ibiValue);
+            if (!_isCapturing)
+            {
+                return;
+            }
+            IbiAction?.Invoke(new Ibi(ibi, timestamp - _startedTime));
         }
 
         public void DidReceiveTag(double timestamp)
         {
-            Tag tag = new Tag(timestamp - _startedTime);
-            EmpaticaSession.Tag.Add(tag);
+            if (!_isCapturing)
+            {
+                return;
+            }
+            TagAction?.Invoke(new Tag(timestamp - _startedTime));
         }
 
         public void DidReceiveTemperature(float t, double timestamp)
         {
-            Temperature temperature = new Temperature(t, timestamp - _startedTime);
-            EmpaticaSession.Temperature.Add(temperature);
+            if (!_isCapturing)
+            {
+                return;
+            }
+            TemperatureAction?.Invoke(new Temperature(t, timestamp - _startedTime));
         }
         #endregion
 

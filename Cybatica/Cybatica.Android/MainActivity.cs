@@ -21,12 +21,12 @@ namespace Cybatica.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            new AppBootstrapper();
-            var empaticaHandler = Locator.Current.GetService<IEmpaticaHandler>();
-            empaticaHandler.Authenticate(AppPrivateInformations.EmpaticaAPIKey);
-
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            _ = new AppBootstrapper();
+            var empaticaHandler = Locator.Current.GetService<IEmpaticaHandler>();
+            empaticaHandler.Authenticate(AppPrivateInformations.EmpaticaAPIKey);
 
             if (ApplicationContext.CheckCallingOrSelfPermission(
                 Manifest.Permission.AccessCoarseLocation) != Permission.Granted)

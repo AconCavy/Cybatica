@@ -1,5 +1,6 @@
 ﻿using Cybatica.Droid.Empatica;
 using Cybatica.Empatica;
+using Cybatica.Mocks;
 using Splat;
 
 namespace Cybatica.Droid
@@ -14,7 +15,7 @@ namespace Cybatica.Droid
         private void RegisterDependencies()
         {
             Locator.CurrentMutable.RegisterLazySingleton(
-                () => new EmpaticaHandler(), typeof(IEmpaticaHandler));
+                () => new MockEmpaticaHandler(), typeof(IEmpaticaHandler));
         }
     }
 }

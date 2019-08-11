@@ -1,5 +1,5 @@
 ﻿using Cybatica.Empatica;
-using DynamicData;
+using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,34 +7,41 @@ using System.Reactive.Linq;
 
 namespace Cybatica.Mocks
 {
-    public class MockEmpaticaHandler : IEmpaticaHandler
+    public class MockEmpaticaHandler : IEmpaticaHandler, IDisposable
     {
-        private List<EmpaticaDevice> _devices;
+        private readonly List<EmpaticaDevice> _devices;
+        private readonly IObservable<long> _observer;
+        private IDisposable _cleanUp;
+        private double _startedTime;
+        private bool _isCapturing;
 
         public MockEmpaticaHandler()
         {
+            Console.WriteLine("MockEmpaticaHandler");
+
             _devices = new List<EmpaticaDevice>{
                 new EmpaticaDevice("1", "1", "1", "1", "1"),
                 new EmpaticaDevice("2", "2", "2", "2", "2")
             };
 
             var random = new Random();
-            Observable.Interval(TimeSpan.FromSeconds(1))
-                .Take(300)
-                .Subscribe(x =>
+            _observer = Observable.Interval(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Where(_ => _isCapturing)
+                .Do(_ =>
                 {
-                    var bvp = new Bvp(2 * (float)random.NextDouble(), x);
-                    EmpaticaSession.Bvp.Add(bvp);
+                    var time = DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime;
+                    var bvp = new Bvp(2 * (float)random.NextDouble(), time);
+                    BvpAction?.Invoke(bvp);
 
-                    var ibi = new Ibi(750 + 100 * (float)random.NextDouble(), x);
-                    EmpaticaSession.Ibi.Add(ibi);
+                    var ibi = new Ibi(750 + 100 * (float)random.NextDouble(), time);
+                    IbiAction?.Invoke(ibi);
 
-                    var gsr = new Gsr((float)random.NextDouble(), x);
-                    EmpaticaSession.Gsr.Add(gsr);
+                    var gsr = new Gsr((float)random.NextDouble(), time);
+                    GsrAction?.Invoke(gsr);
 
-                    var temperature = new Temperature(35.5f + (float)random.NextDouble(), x);
-                    EmpaticaSession.Temperature.Add(temperature);
-
+                    var temperature = new Temperature(35.5f + (float)random.NextDouble(), time);
+                    TemperatureAction?.Invoke(temperature);
                 });
         }
 
@@ -46,7 +53,21 @@ namespace Cybatica.Mocks
 
         public ReadOnlyCollection<EmpaticaDevice> Devices => new ReadOnlyCollection<EmpaticaDevice>(_devices);
 
-        public EmpaticaSession EmpaticaSession { get; private set; }
+        public Action<BatteryLevel> BatteryLevelAction { get; set; }
+
+        public Action<Bvp> BvpAction { get; set; }
+
+        public Action<Ibi> IbiAction { get; set; }
+
+        public Action<Hr> HrAction { get; set; }
+
+        public Action<Gsr> GsrAction { get; set; }
+
+        public Action<Temperature> TemperatureAction { get; set; }
+
+        public Action<Acceleration> AccelerationAction { get; set; }
+
+        public Action<Tag> TagAction { get; set; }
 
         public void Authenticate(string key)
         {
@@ -68,20 +89,25 @@ namespace Cybatica.Mocks
             Console.WriteLine("Discover in mock");
         }
 
-        public void InitializeSession()
+        public void Dispose()
         {
-            Console.WriteLine("InitializeSession in mock");
-            EmpaticaSession = new EmpaticaSession();
+            _cleanUp?.Dispose();
         }
 
-        public void StartSession()
+        public void StartSession(double startedTime)
         {
             Console.WriteLine("StartSession in mock");
+            _startedTime = startedTime;
+            _cleanUp = _observer.Subscribe();
+            _isCapturing = true;
         }
 
         public void StopSession()
         {
             Console.WriteLine("StopSession in mock");
+            _cleanUp?.Dispose();
+            _cleanUp = null;
+            _isCapturing = false;
         }
     }
 }
