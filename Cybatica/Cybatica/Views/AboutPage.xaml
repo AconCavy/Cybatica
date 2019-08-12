@@ -5,9 +5,9 @@
     xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
     xmlns:vm="clr-namespace:Cybatica.ViewModels"
     xmlns:theme="clr-namespace:Cybatica.Resources"
-    x:Class="Cybatica.Views.LicensePage"
-    x:TypeArguments="vm:LicenseViewModel"
-    Title="LICENSES">
+    x:Class="Cybatica.Views.AboutPage"
+    x:TypeArguments="vm:AboutViewModel"
+    Title="ABOUT">
     
     <ContentPage.Content>
         

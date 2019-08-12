@@ -20,7 +20,7 @@ namespace Cybatica
             return Locator.Current.GetService<IViewFor<MainViewModel>>() as MainPage;
         }
 
-        private void RegisterDependencies()
+        private static void RegisterDependencies()
         {
             // Services
             Locator.CurrentMutable.RegisterLazySingleton(
@@ -32,16 +32,15 @@ namespace Cybatica
             Locator.CurrentMutable.Register(
                 () => new HomePage(), typeof(IViewFor<HomeViewModel>));
             Locator.CurrentMutable.Register(
-                () => new LicensePage(), typeof(IViewFor<LicenseViewModel>));
+                () => new AboutPage(), typeof(IViewFor<AboutViewModel>));
             Locator.CurrentMutable.Register(
-                () => new OCSPage(), typeof(IViewFor<OCSViewModel>));
+                () => new OcsPage(), typeof(IViewFor<OcsViewModel>));
             Locator.CurrentMutable.Register(
-                () => new OCSChartPage(), typeof(IViewFor<OCSChartViewModel>));
+                () => new OcsChartPage(), typeof(IViewFor<OcsChartViewModel>));
             Locator.CurrentMutable.Register(
                 () => new BioDataPage(), typeof(IViewFor<BioDataViewModel>));
             Locator.CurrentMutable.Register(
                 () => new BioDataChartPage(), typeof(IViewFor<BioDataChartViewModel>));
         }
-
     }
 }

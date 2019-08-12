@@ -13,10 +13,6 @@ namespace Cybatica.Models
         [Reactive] public Temperature Temperature { get; set; }
         [Reactive] public Acceleration Acceleration { get; set; }
 
-        public BioDataModel()
-        {
-        }
-
         public void Reset()
         {
             Bvp = default;

@@ -1,7 +1,6 @@
 ﻿using Cybatica.ViewModels;
 using ReactiveUI;
 using ReactiveUI.XamForms;
-using System;
 using Xamarin.Forms.Xaml;
 
 namespace Cybatica.Views
@@ -31,10 +30,6 @@ namespace Cybatica.Views
                     v => v.StartDataSession));
 
                 disposable(this.BindCommand(ViewModel,
-                    vm => vm.StopSessionCommand,
-                    v => v.Stop));
-
-                disposable(this.BindCommand(ViewModel,
                     vm => vm.ConnectCommand,
                     v => v.Connect));
 
@@ -43,9 +38,12 @@ namespace Cybatica.Views
                     v => v.Disconnect));
 
                 disposable(this.BindCommand(ViewModel,
-                    vm => vm.LicensesCommand,
-                    v => v.Licenses));
+                    vm => vm.StopSessionCommand,
+                    v => v.Stop));
 
+                disposable(this.BindCommand(ViewModel,
+                    vm => vm.AboutCommand,
+                    v => v.About));
             });
         }
     }

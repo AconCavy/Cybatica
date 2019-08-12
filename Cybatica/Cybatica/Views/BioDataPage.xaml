@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <rxui:ReactiveContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -12,88 +13,88 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <theme:AppTheme/>
+                <theme:AppTheme />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        
+
         <Grid Margin="8,8,8,8"
               RowSpacing="8"
               ColumnSpacing="8">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <StackLayout Style="{StaticResource Panel}"
                          Grid.Row="0"
                          Grid.Column="0">
                 <Label Style="{StaticResource HeadText}"
-                       Text="BVP"/>
+                       Text="BVP" />
                 <Label x:Name="Bvp"
                        Style="{StaticResource NormalText}"
-                       Text="0"/>
+                       Text="0" />
             </StackLayout>
-            
+
             <StackLayout Style="{StaticResource Panel}"
                          Grid.Row="0"
                          Grid.Column="1">
                 <Label Style="{StaticResource HeadText}"
-                       Text="IBI"/>
+                       Text="IBI" />
                 <Label x:Name="Ibi"
                        Style="{StaticResource NormalText}"
-                       Text="0"/>
+                       Text="0" />
             </StackLayout>
 
             <StackLayout Style="{StaticResource Panel}"
                          Grid.Row="1"
                          Grid.Column="0">
                 <Label Style="{StaticResource HeadText}"
-                       Text="HR"/>
+                       Text="HR" />
                 <Label x:Name="Hr"
                        Style="{StaticResource NormalText}"
-                       Text="0"/>
+                       Text="0" />
             </StackLayout>
-            
+
             <StackLayout Style="{StaticResource Panel}"
                          Grid.Row="1"
                          Grid.Column="1">
                 <Label Style="{StaticResource HeadText}"
-                       Text="EDA"/>
+                       Text="EDA" />
                 <Label x:Name="Gsr"
                        Style="{StaticResource NormalText}"
-                       Text="1"/>
+                       Text="1" />
             </StackLayout>
-            
+
             <StackLayout Style="{StaticResource Panel}"
                          Grid.Row="2"
                          Grid.Column="0">
-                <Label Style="{StaticResource HeadText}" 
-                       Text="TEMPERATURE"/>
-                <Label x:Name="Temperature" 
+                <Label Style="{StaticResource HeadText}"
+                       Text="TEMPERATURE" />
+                <Label x:Name="Temperature"
                        Style="{StaticResource NormalText}"
-                       Text="1"/>
+                       Text="1" />
             </StackLayout>
 
             <StackLayout Style="{StaticResource Panel}"
                          Grid.Row="2"
                          Grid.Column="1">
                 <Label Style="{StaticResource HeadText}"
-                       Text="ACCELERATION"/>
+                       Text="ACCELERATION" />
                 <Label x:Name="Acceleration"
                        Style="{StaticResource NormalText}"
-                       Text="0,0,0"/>
+                       Text="0,0,0" />
             </StackLayout>
 
             <Button x:Name="Chart"
@@ -101,11 +102,10 @@
                     Text="Realtime Chart"
                     Grid.Row="4"
                     Grid.Column="0"
-                    Grid.ColumnSpan="2"/>
+                    Grid.ColumnSpan="2" />
 
         </Grid>
 
     </ContentPage.Content>
 
 </rxui:ReactiveContentPage>
-    

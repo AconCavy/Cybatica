@@ -26,11 +26,7 @@ namespace Cybatica.Views
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.Temperature,
                     v => v.Temperature.ItemsSource));
-
             });
-
         }
-
     }
-
 }

@@ -1,4 +1,5 @@
-﻿using Xamarin.Essentials;
+﻿using Syncfusion.Licensing;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Cybatica
@@ -8,12 +9,11 @@ namespace Cybatica
         public App()
         {
             ExperimentalFeatures.Enable(ExperimentalFeatures.ShareFileRequest);
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(AppPrivateInformations.SyncfusionLicenseKey);
+            SyncfusionLicenseProvider.RegisterLicense(AppPrivateInformations.SyncfusionLicenseKey);
             var appBootstrapper = new AppBootstrapper();
             InitializeComponent();
 
             MainPage = appBootstrapper.CreateMainPage();
-
         }
 
         protected override void OnStart()

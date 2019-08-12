@@ -6,11 +6,11 @@ using Xamarin.Forms.Xaml;
 namespace Cybatica.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OCSPage : ReactiveContentPage<OCSViewModel>
+    public partial class OcsPage : ReactiveContentPage<OcsViewModel>
     {
-        public OCSPage()
+        public OcsPage()
         {
-            ViewModel = new OCSViewModel(Navigation);
+            ViewModel = new OcsViewModel(Navigation);
 
             InitializeComponent();
 
@@ -18,7 +18,7 @@ namespace Cybatica.Views
             {
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.Ocs,
-                    v => v.Ocs.Text,
+                    v => v.OCs.Text,
                     x => x.ToString("F2")));
 
                 disposable(this.OneWayBind(ViewModel,
@@ -44,7 +44,6 @@ namespace Cybatica.Views
                 disposable(this.BindCommand(ViewModel,
                     vm => vm.ChartCommand,
                     v => v.Chart));
-
             });
         }
     }

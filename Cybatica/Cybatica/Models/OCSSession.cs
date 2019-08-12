@@ -19,15 +19,9 @@ namespace Cybatica.Models
         }
     }
 
-    public class OCSSession
+    public class OcsSession
     {
-        public SourceList<AnalysisData> Ocs { get; private set; }
-        public SourceList<AnalysisData> NnMean { get; private set; }
-        public SourceList<AnalysisData> SdNn { get; private set; }
-        public SourceList<AnalysisData> MeanEda { get; private set; }
-        public SourceList<AnalysisData> PeakEda { get; private set; }
-
-        public OCSSession()
+        public OcsSession()
         {
             Ocs = new SourceList<AnalysisData>();
             NnMean = new SourceList<AnalysisData>();
@@ -37,6 +31,12 @@ namespace Cybatica.Models
 
             InitializeSession();
         }
+
+        public SourceList<AnalysisData> Ocs { get; }
+        public SourceList<AnalysisData> NnMean { get; }
+        public SourceList<AnalysisData> SdNn { get; }
+        public SourceList<AnalysisData> MeanEda { get; }
+        public SourceList<AnalysisData> PeakEda { get; }
 
         public void InitializeSession()
         {

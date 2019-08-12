@@ -7,11 +7,11 @@ using Xamarin.Forms.Xaml;
 namespace Cybatica.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LicensePage : ReactiveContentPage<LicenseViewModel>
+    public partial class AboutPage : ReactiveContentPage<AboutViewModel>
     {
-        public LicensePage()
+        public AboutPage()
         {
-            ViewModel = new LicenseViewModel();
+            ViewModel = new AboutViewModel();
             InitializeComponent();
         }
     }

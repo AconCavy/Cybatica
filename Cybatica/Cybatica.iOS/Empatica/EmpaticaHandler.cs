@@ -1,135 +1,109 @@
-﻿using CoreFoundation;
-using Cybatica.Empatica;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using CoreFoundation;
+using Cybatica.Empatica;
+using E4linkBinding;
+using DeviceStatus = Cybatica.Empatica.DeviceStatus;
+using SensorStatus = Cybatica.Empatica.SensorStatus;
 
 namespace Cybatica.iOS.Empatica
 {
     public class EmpaticaHandler : IEmpaticaHandler
     {
-        private readonly Action<DeviceStatus> _deviceStatusAction;
-        private readonly Action<SensorStatus> _sensorStatusAction;
-        private readonly Action<BLEStatus> _bLEStatusAction;
+        private readonly List<EmpaticaDeviceManager> _devices;
 
         private readonly EmpaticaDelegate _empaticaDelegate;
         private readonly EmpaticaDeviceDelegate _empaticaDeviceDelegate;
-        private readonly List<E4linkBinding.EmpaticaDeviceManager> _devices;
-        private E4linkBinding.EmpaticaDeviceManager _deviceManager;
+        private EmpaticaDeviceManager _deviceManager;
 
         public EmpaticaHandler()
         {
-            _bLEStatusAction = status => BLEStatus = status;
-            _deviceStatusAction = status => DeviceStatus = status;
-            _sensorStatusAction = status => SensorStatus = status;
-            _devices = new List<E4linkBinding.EmpaticaDeviceManager>();
+            void BleStatusAction(BleStatus status) => BleStatus = status;
+            void DeviceStatusAction(DeviceStatus status) => DeviceStatus = status;
+            void SensorStatusAction(SensorStatus status) => SensorStatus = status;
+            _devices = new List<EmpaticaDeviceManager>();
 
-            _empaticaDelegate = new EmpaticaDelegate(_devices, _bLEStatusAction);
+            _empaticaDelegate = new EmpaticaDelegate(_devices, BleStatusAction);
             _empaticaDeviceDelegate = new EmpaticaDeviceDelegate(
-                _deviceStatusAction, _sensorStatusAction);
+                DeviceStatusAction, SensorStatusAction);
         }
 
         #region IEmpaticaHandler
+
         public DeviceStatus DeviceStatus { get; private set; }
 
         public SensorStatus SensorStatus { get; private set; }
 
-        public BLEStatus BLEStatus { get; private set; }
+        public BleStatus BleStatus { get; private set; }
 
         public ReadOnlyCollection<EmpaticaDevice> Devices =>
             new ReadOnlyCollection<EmpaticaDevice>(
                 _devices.Select(x => new EmpaticaDevice(
-                    serialNumber: x.SerialNumber,
-                    name: x.Name,
-                    advertisingName: x.AdvertisingName,
-                    hardwareId: x.HardwareId,
-                    firmwareVersion: x.FirmwareVersion))
-                .ToList());
+                        x.SerialNumber,
+                        x.Name,
+                        x.AdvertisingName,
+                        x.HardwareId,
+                        x.FirmwareVersion))
+                    .ToList());
 
         public Action<BatteryLevel> BatteryLevelAction
         {
             get => _empaticaDeviceDelegate.BatteryLevelAction;
-            set
-            {
-                _empaticaDeviceDelegate.BatteryLevelAction = value;
-            }
+            set => _empaticaDeviceDelegate.BatteryLevelAction = value;
         }
 
         public Action<Bvp> BvpAction
         {
             get => _empaticaDeviceDelegate.BvpAction;
-            set
-            {
-                _empaticaDeviceDelegate.BvpAction = value;
-            }
+            set => _empaticaDeviceDelegate.BvpAction = value;
         }
 
         public Action<Ibi> IbiAction
         {
             get => _empaticaDeviceDelegate.IbiAction;
-            set
-            {
-                _empaticaDeviceDelegate.IbiAction = value;
-            }
+            set => _empaticaDeviceDelegate.IbiAction = value;
         }
 
         public Action<Hr> HrAction
         {
             get => _empaticaDeviceDelegate.HrAction;
-            set
-            {
-                _empaticaDeviceDelegate.HrAction = value;
-            }
+            set => _empaticaDeviceDelegate.HrAction = value;
         }
 
         public Action<Gsr> GsrAction
         {
             get => _empaticaDeviceDelegate.GsrAction;
-            set
-            {
-                _empaticaDeviceDelegate.GsrAction = value;
-            }
+            set => _empaticaDeviceDelegate.GsrAction = value;
         }
 
         public Action<Temperature> TemperatureAction
         {
             get => _empaticaDeviceDelegate.TemperatureAction;
-            set
-            {
-                _empaticaDeviceDelegate.TemperatureAction = value;
-            }
+            set => _empaticaDeviceDelegate.TemperatureAction = value;
         }
 
         public Action<Acceleration> AccelerationAction
         {
             get => _empaticaDeviceDelegate.AccelerationAction;
-            set
-            {
-                _empaticaDeviceDelegate.AccelerationAction = value;
-            }
+            set => _empaticaDeviceDelegate.AccelerationAction = value;
         }
 
         public Action<Tag> TagAction
         {
             get => _empaticaDeviceDelegate.TagAction;
-            set
-            {
-                _empaticaDeviceDelegate.TagAction = value;
-            }
+            set => _empaticaDeviceDelegate.TagAction = value;
         }
 
         public void Authenticate(string key)
         {
             DispatchQueue.GetGlobalQueue(DispatchQueuePriority.Background).DispatchAsync(() =>
             {
-                E4linkBinding.EmpaticaAPI.AuthenticateWithAPIKey(key,
+                EmpaticaAPI.AuthenticateWithAPIKey(key,
                     (status, message) =>
                     {
-                        if (status)
-                        {
-                            Discover();
-                        }
+                        if (status) Discover();
                     });
             });
         }
@@ -144,26 +118,24 @@ namespace Cybatica.iOS.Empatica
             catch (ArgumentException)
             {
                 await Xamarin.Forms.Application.Current.MainPage.DisplayAlert(
-                    title: "Alert",
-                    message: "The selected device could not be connected.",
-                    cancel: "OK");
+                    "Alert",
+                    "The selected device could not be connected.",
+                    "OK");
             }
         }
 
         public void Disconnect()
         {
-            if (_deviceManager == null)
-            {
-                return;
-            }
+            if (_deviceManager == null) return;
 
-            if (_deviceManager.DeviceStatus == E4linkBinding.DeviceStatus.Connected)
+            switch (_deviceManager.DeviceStatus)
             {
-                _deviceManager.Disconnect();
-            }
-            else if (_deviceManager.DeviceStatus == E4linkBinding.DeviceStatus.Connecting)
-            {
-                _deviceManager.CancelConnection();
+                case E4linkBinding.DeviceStatus.Connected:
+                    _deviceManager.Disconnect();
+                    break;
+                case E4linkBinding.DeviceStatus.Connecting:
+                    _deviceManager.CancelConnection();
+                    break;
             }
 
             _deviceManager = null;
@@ -171,7 +143,7 @@ namespace Cybatica.iOS.Empatica
 
         public void Discover()
         {
-            E4linkBinding.EmpaticaAPI.DiscoverDevicesWithDelegate(_empaticaDelegate);
+            EmpaticaAPI.DiscoverDevicesWithDelegate(_empaticaDelegate);
         }
 
         public void StartSession(double startedTime)
@@ -183,6 +155,7 @@ namespace Cybatica.iOS.Empatica
         {
             _empaticaDeviceDelegate.StopSession();
         }
+
         #endregion
     }
 }

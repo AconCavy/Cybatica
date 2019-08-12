@@ -33,13 +33,13 @@
     <EmbeddedResource Update="Resources\AppTheme.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\LicensePage.xaml">
+    <EmbeddedResource Update="Views\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\OCSChartPage.xaml">
+    <EmbeddedResource Update="Views\OcsChartPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\OCSPage.xaml">
+    <EmbeddedResource Update="Views\OcsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BioDataChartPage.xaml">
@@ -60,8 +60,14 @@
     <Compile Update="Views\BioDataChartPage.xaml.cs">
       <DependentUpon>BioDataChartPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\OCSPage.xaml.cs">
-      <DependentUpon>OCSPage.xaml</DependentUpon>
+    <Compile Update="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\OcsChartPage.xaml.cs">
+      <DependentUpon>OcsChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\OcsPage.xaml.cs">
+      <DependentUpon>OcsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

@@ -7,14 +7,18 @@ using Android.Runtime;
 using Android.Support.V4.App;
 using Cybatica.Empatica;
 using Splat;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
+using Platform = Xamarin.Essentials.Platform;
 
 namespace Cybatica.Droid
 {
-    [Activity(Label = "Cybatica", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    [Activity(Label = "Cybatica", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true,
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    public class MainActivity : FormsAppCompatActivity
     {
-        private readonly int _requestEnableBt = 1;
-        private readonly int _requestPermissionAccessCoarseLocation = 1;
+        private const int RequestEnableBt = 1;
+        private const int RequestPermissionAccessCoarseLocation = 1;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -22,18 +26,16 @@ namespace Cybatica.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Forms.Init(this, savedInstanceState);
 
             _ = new AppBootstrapper();
             var empaticaHandler = Locator.Current.GetService<IEmpaticaHandler>();
-            empaticaHandler.Authenticate(AppPrivateInformations.EmpaticaAPIKey);
+            empaticaHandler.Authenticate(AppPrivateInformations.EmpaticaApiKey);
 
             if (ApplicationContext.CheckCallingOrSelfPermission(
-                Manifest.Permission.AccessCoarseLocation) != Permission.Granted)
-            {
-                ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.AccessCoarseLocation },
-                    _requestPermissionAccessCoarseLocation);
-            }
+                    Manifest.Permission.AccessCoarseLocation) != Permission.Granted)
+                ActivityCompat.RequestPermissions(this, new[] {Manifest.Permission.AccessCoarseLocation},
+                    RequestPermissionAccessCoarseLocation);
 
             LoadApplication(new App());
         }
@@ -41,17 +43,14 @@ namespace Cybatica.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions,
             [GeneratedEnum] Permission[] grantResults)
         {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
-            if (requestCode == _requestEnableBt && resultCode == Result.Canceled)
-            {
-                return;
-            }
+            if (requestCode == RequestEnableBt && resultCode == Result.Canceled) return;
             base.OnActivityResult(requestCode, resultCode, data);
         }
     }

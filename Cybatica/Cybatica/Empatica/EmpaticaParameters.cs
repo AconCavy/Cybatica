@@ -128,6 +128,7 @@
     public struct Tag
     {
         public double Timestamp { get; }
+
         public Tag(double value)
         {
             Timestamp = value;

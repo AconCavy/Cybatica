@@ -4,15 +4,6 @@ namespace Cybatica.Empatica
 {
     public class EmpaticaSession
     {
-        public SourceList<BatteryLevel> BatteryLevel { get; private set; }
-        public SourceList<Acceleration> Acceleration { get; private set; }
-        public SourceList<Gsr> Gsr { get; private set; }
-        public SourceList<Bvp> Bvp { get; private set; }
-        public SourceList<Ibi> Ibi { get; private set; }
-        public SourceList<Temperature> Temperature { get; private set; }
-        public SourceList<Hr> Hr { get; private set; }
-        public SourceList<Tag> Tag { get; private set; }
-
         public EmpaticaSession()
         {
             BatteryLevel = new SourceList<BatteryLevel>();
@@ -26,6 +17,15 @@ namespace Cybatica.Empatica
 
             InitializeSession();
         }
+
+        public SourceList<BatteryLevel> BatteryLevel { get; }
+        public SourceList<Acceleration> Acceleration { get; }
+        public SourceList<Gsr> Gsr { get; }
+        public SourceList<Bvp> Bvp { get; }
+        public SourceList<Ibi> Ibi { get; }
+        public SourceList<Temperature> Temperature { get; }
+        public SourceList<Hr> Hr { get; }
+        public SourceList<Tag> Tag { get; }
 
         public void InitializeSession()
         {

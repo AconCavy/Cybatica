@@ -2,7 +2,10 @@
 using E4linkBinding;
 using Foundation;
 using Splat;
+using Syncfusion.SfChart.XForms.iOS.Renderers;
 using UIKit;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 namespace Cybatica.iOS
 {
@@ -10,7 +13,7 @@ namespace Cybatica.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+    public class AppDelegate : FormsApplicationDelegate
     {
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
@@ -22,28 +25,25 @@ namespace Cybatica.iOS
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
-            new AppBootstrapper();
+            Forms.Init();
+            _ = new AppBootstrapper();
             var empaticaHandler = Locator.Current.GetService<IEmpaticaHandler>();
-            empaticaHandler.Authenticate(AppPrivateInformations.EmpaticaAPIKey);
+            empaticaHandler.Authenticate(AppPrivateInformations.EmpaticaApiKey);
 
-            Syncfusion.SfChart.XForms.iOS.Renderers.SfChartRenderer.Init();
+            SfChartRenderer.Init();
 
             LoadApplication(new App());
             return base.FinishedLaunching(app, options);
-
         }
-        
+
         public override void DidEnterBackground(UIApplication uiApplication)
         {
             EmpaticaAPI.PrepareForBackground();
-            
         }
 
         public override void OnActivated(UIApplication uiApplication)
         {
             EmpaticaAPI.PrepareForResume();
-            
         }
     }
 }

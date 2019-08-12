@@ -9,7 +9,7 @@ namespace Cybatica.Empatica
 
         SensorStatus SensorStatus { get; }
 
-        BLEStatus BLEStatus { get; }
+        BleStatus BleStatus { get; }
 
         ReadOnlyCollection<EmpaticaDevice> Devices { get; }
 
@@ -40,6 +40,5 @@ namespace Cybatica.Empatica
         void StartSession(double startedTime);
 
         void StopSession();
-
     }
 }

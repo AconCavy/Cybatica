@@ -6,18 +6,18 @@ using Xamarin.Forms.Xaml;
 namespace Cybatica.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OCSChartPage : ReactiveContentPage<OCSChartViewModel>
+    public partial class OcsChartPage : ReactiveContentPage<OcsChartViewModel>
     {
-        public OCSChartPage()
+        public OcsChartPage()
         {
-            ViewModel = new OCSChartViewModel();
+            ViewModel = new OcsChartViewModel();
             InitializeComponent();
 
             this.WhenActivated(disposable =>
             {
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.Ocs,
-                    v => v.Ocs.ItemsSource));
+                    v => v.OCs.ItemsSource));
 
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.SdNn,
@@ -26,7 +26,6 @@ namespace Cybatica.Views
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.MeanEda,
                     v => v.MeanEda.ItemsSource));
-
             });
         }
     }

@@ -1,9 +1,9 @@
-﻿using Cybatica.Empatica;
-using ReactiveUI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reactive.Linq;
+using Cybatica.Empatica;
+using ReactiveUI;
 
 namespace Cybatica.Mocks
 {
@@ -12,14 +12,15 @@ namespace Cybatica.Mocks
         private readonly List<EmpaticaDevice> _devices;
         private readonly IObservable<long> _observer;
         private IDisposable _cleanUp;
-        private double _startedTime;
         private bool _isCapturing;
+        private double _startedTime;
 
         public MockEmpaticaHandler()
         {
             Console.WriteLine("MockEmpaticaHandler");
 
-            _devices = new List<EmpaticaDevice>{
+            _devices = new List<EmpaticaDevice>
+            {
                 new EmpaticaDevice("1", "1", "1", "1", "1"),
                 new EmpaticaDevice("2", "2", "2", "2", "2")
             };
@@ -31,25 +32,30 @@ namespace Cybatica.Mocks
                 .Do(_ =>
                 {
                     var time = DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime;
-                    var bvp = new Bvp(2 * (float)random.NextDouble(), time);
+                    var bvp = new Bvp(2 * (float) random.NextDouble(), time);
                     BvpAction?.Invoke(bvp);
 
-                    var ibi = new Ibi(750 + 100 * (float)random.NextDouble(), time);
+                    var ibi = new Ibi(750 + 100 * (float) random.NextDouble(), time);
                     IbiAction?.Invoke(ibi);
 
-                    var gsr = new Gsr((float)random.NextDouble(), time);
+                    var gsr = new Gsr((float) random.NextDouble(), time);
                     GsrAction?.Invoke(gsr);
 
-                    var temperature = new Temperature(35.5f + (float)random.NextDouble(), time);
+                    var temperature = new Temperature(35.5f + (float) random.NextDouble(), time);
                     TemperatureAction?.Invoke(temperature);
                 });
+        }
+
+        public void Dispose()
+        {
+            _cleanUp?.Dispose();
         }
 
         public DeviceStatus DeviceStatus { get; private set; }
 
         public SensorStatus SensorStatus { get; private set; }
 
-        public BLEStatus BLEStatus { get; private set; }
+        public BleStatus BleStatus { get; private set; }
 
         public ReadOnlyCollection<EmpaticaDevice> Devices => new ReadOnlyCollection<EmpaticaDevice>(_devices);
 
@@ -87,11 +93,6 @@ namespace Cybatica.Mocks
         public void Discover()
         {
             Console.WriteLine("Discover in mock");
-        }
-
-        public void Dispose()
-        {
-            _cleanUp?.Dispose();
         }
 
         public void StartSession(double startedTime)

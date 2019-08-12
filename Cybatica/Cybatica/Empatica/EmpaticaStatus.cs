@@ -16,7 +16,7 @@
         Dead
     }
 
-    public enum BLEStatus
+    public enum BleStatus
     {
         NotAvailable,
         Ready,

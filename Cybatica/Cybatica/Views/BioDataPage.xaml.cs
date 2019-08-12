@@ -1,7 +1,6 @@
 ﻿using Cybatica.ViewModels;
 using ReactiveUI;
 using ReactiveUI.XamForms;
-using Splat;
 using Xamarin.Forms.Xaml;
 
 namespace Cybatica.Views
@@ -44,14 +43,12 @@ namespace Cybatica.Views
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.Acceleration,
                     v => v.Acceleration.Text,
-                    x => $"{x.XValue.ToString("F2")}, {x.YValue.ToString("F2")}, {x.ZValue.ToString("F2")}"));
+                    x => $"{x.XValue:F2}, {x.YValue:F2}, {x.ZValue:F2}"));
 
                 disposable(this.BindCommand(ViewModel,
                     vm => vm.ChartCommand,
                     v => v.Chart));
             });
-
         }
-
     }
 }

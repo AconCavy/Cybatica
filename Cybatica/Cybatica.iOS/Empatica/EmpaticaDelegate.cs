@@ -1,39 +1,35 @@
-﻿using CoreFoundation;
-using E4linkBinding;
-using Foundation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Linq;
+using CoreFoundation;
+using Cybatica.Empatica;
+using E4linkBinding;
+using Foundation;
+using DeviceStatus = E4linkBinding.DeviceStatus;
 
 namespace Cybatica.iOS.Empatica
 {
     public class EmpaticaDelegate : E4linkBinding.EmpaticaDelegate
     {
-        private readonly Action<Cybatica.Empatica.BLEStatus> _bLEStatusAction;
+        private readonly Action<BleStatus> _bleStatusAction;
         private readonly List<EmpaticaDeviceManager> _devices;
 
-        public EmpaticaDelegate(List<EmpaticaDeviceManager> devices, Action<Cybatica.Empatica.BLEStatus> bLEStatusAction)
+        public EmpaticaDelegate(List<EmpaticaDeviceManager> devices, Action<BleStatus> bleStatusAction)
         {
             _devices = devices;
-            _bLEStatusAction = bLEStatusAction;
+            _bleStatusAction = bleStatusAction;
         }
 
         public override void DidDiscoverDevices(NSObject[] devices)
         {
-            if (IsAllDevicesDisconnected())
-            {
-                _devices.Clear();
-                _devices.AddRange(devices.OfType<EmpaticaDeviceManager>().ToList());
+            if (!IsAllDevicesDisconnected()) return;
+            _devices.Clear();
+            _devices.AddRange(devices.OfType<EmpaticaDeviceManager>().ToList());
 
-                DispatchQueue.MainQueue.DispatchAsync(() =>
-                {
-                    if (IsAllDevicesDisconnected())
-                    {
-                        EmpaticaAPI.DiscoverDevicesWithDelegate(this);
-                    }
-                });
-            }
+            DispatchQueue.MainQueue.DispatchAsync(() =>
+            {
+                if (IsAllDevicesDisconnected()) EmpaticaAPI.DiscoverDevicesWithDelegate(this);
+            });
         }
 
         public override void DidUpdateBLEStatus(E4linkBinding.BLEStatus status)
@@ -41,20 +37,21 @@ namespace Cybatica.iOS.Empatica
             switch (status)
             {
                 case E4linkBinding.BLEStatus.NotAvailable:
-                    _bLEStatusAction(Cybatica.Empatica.BLEStatus.NotAvailable);
+                    _bleStatusAction(BleStatus.NotAvailable);
                     break;
                 case E4linkBinding.BLEStatus.Ready:
-                    _bLEStatusAction(Cybatica.Empatica.BLEStatus.Ready);
+                    _bleStatusAction(BleStatus.Ready);
                     break;
                 case E4linkBinding.BLEStatus.Scanning:
-                    _bLEStatusAction(Cybatica.Empatica.BLEStatus.Scanning);
+                    _bleStatusAction(BleStatus.Scanning);
                     break;
             }
         }
 
         private bool IsAllDevicesDisconnected()
         {
-            return _devices.Aggregate(true, (value, device) => value && (device.DeviceStatus == E4linkBinding.DeviceStatus.Disconnected));
+            return _devices.Aggregate(true,
+                (value, device) => value && device.DeviceStatus == DeviceStatus.Disconnected);
         }
     }
 }

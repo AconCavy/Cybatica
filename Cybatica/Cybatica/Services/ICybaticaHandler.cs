@@ -1,6 +1,6 @@
-﻿using Cybatica.Empatica;
+﻿using System.Collections.ObjectModel;
+using Cybatica.Empatica;
 using Cybatica.Models;
-using System.Collections.ObjectModel;
 
 namespace Cybatica.Services
 {
@@ -8,11 +8,11 @@ namespace Cybatica.Services
     {
         EmpaticaSession EmpaticaSession { get; }
 
-        OCSSession OCSSession { get; }
+        OcsSession OcsSession { get; }
 
         BioDataModel BioDataModel { get; }
 
-        OCSModel OcsModel { get; }
+        OcsModel OcsModel { get; }
 
         ReadOnlyCollection<EmpaticaDevice> Devices { get; }
 
@@ -25,6 +25,5 @@ namespace Cybatica.Services
         void StartSession();
 
         void StopSession();
-
     }
 }

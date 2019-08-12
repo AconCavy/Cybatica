@@ -1,50 +1,42 @@
-﻿using Cybatica.Empatica;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Reactive.Linq;
+using Cybatica.Empatica;
 using Cybatica.Services;
 using Cybatica.Utilities;
 using DynamicData;
 using ReactiveUI;
 using Splat;
-using System;
-using System.Collections.ObjectModel;
-using System.Reactive.Linq;
 
 namespace Cybatica.Models
 {
     public class CybaticaHandler : ReactiveObject, ICybaticaHandler, IDisposable
     {
-        public EmpaticaSession EmpaticaSession { get; private set; }
-
-        public OCSSession OCSSession { get; private set; }
-
-        public ReadOnlyCollection<EmpaticaDevice> Devices => _empaticaHandler.Devices;
-
-        public BioDataModel BioDataModel { get; set; }
-
-        public OCSModel OcsModel { get; set; }
-
         private readonly IEmpaticaHandler _empaticaHandler;
-        private readonly IObservable<long> _ocsObservable;
-        private IDisposable _ocsDisposable;
-
-        private readonly ReadOnlyObservableCollection<Ibi> _ibi;
         private readonly ReadOnlyObservableCollection<Gsr> _gsr;
+        private readonly ReadOnlyObservableCollection<Ibi> _ibi;
+        private readonly IObservable<long> _ocsObservable;
+
         private bool _isCapturing;
+        private IDisposable _oCsDisposable;
         private double _startedTime;
 
         public CybaticaHandler()
         {
             _empaticaHandler = Locator.Current.GetService<IEmpaticaHandler>();
             EmpaticaSession = new EmpaticaSession();
-            OCSSession = new OCSSession();
+            OcsSession = new OcsSession();
             BioDataModel = new BioDataModel();
-            OcsModel = new OCSModel();
+            OcsModel = new OcsModel();
 
-            _empaticaHandler.BvpAction = bvp => {
+            _empaticaHandler.BvpAction = bvp =>
+            {
                 EmpaticaSession.Bvp.Add(bvp);
                 BioDataModel.Bvp = bvp;
             };
 
-            _empaticaHandler.IbiAction = ibi => {
+            _empaticaHandler.IbiAction = ibi =>
+            {
                 EmpaticaSession.Ibi.Add(ibi);
                 BioDataModel.Ibi = ibi;
             };
@@ -55,7 +47,8 @@ namespace Cybatica.Models
                 BioDataModel.Hr = hr;
             };
 
-            _empaticaHandler.GsrAction = gsr => {
+            _empaticaHandler.GsrAction = gsr =>
+            {
                 EmpaticaSession.Gsr.Add(gsr);
                 BioDataModel.Gsr = gsr;
             };
@@ -70,7 +63,7 @@ namespace Cybatica.Models
             {
                 EmpaticaSession.Acceleration.Add(acc);
                 BioDataModel.Acceleration = acc;
-            }; 
+            };
 
             EmpaticaSession.Ibi.Connect()
                 .Filter(_ => _isCapturing)
@@ -92,32 +85,42 @@ namespace Cybatica.Models
                 .Do(_ =>
                 {
                     var time = DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime;
-                    var ocs = Calculator.CalcOcs();
-                    OCSSession.Ocs.Add(new AnalysisData(ocs, time));
-                    OcsModel.Ocs = ocs;
-                    
+                    var oCs = Calculator.CalcOcs();
+                    OcsSession.Ocs.Add(new AnalysisData(oCs, time));
+                    OcsModel.Ocs = oCs;
+
                     var nnMean = Calculator.CalcNnMean(_ibi);
-                    OCSSession.NnMean.Add(new AnalysisData(nnMean, time));
+                    OcsSession.NnMean.Add(new AnalysisData(nnMean, time));
                     OcsModel.NnMean = nnMean;
 
                     var sdNn = Calculator.CalcSdNn(_ibi);
-                    OCSSession.SdNn.Add(new AnalysisData(sdNn, time));
+                    OcsSession.SdNn.Add(new AnalysisData(sdNn, time));
                     OcsModel.SdNn = sdNn;
 
                     var meanEda = Calculator.CalcMeanEda(_gsr);
-                    OCSSession.MeanEda.Add(new AnalysisData(meanEda, time));
+                    OcsSession.MeanEda.Add(new AnalysisData(meanEda, time));
                     OcsModel.MeanEda = meanEda;
 
                     var peakEda = Calculator.CalcPeakEda(_gsr);
-                    OCSSession.PeakEda.Add(new AnalysisData(peakEda, time));
+                    OcsSession.PeakEda.Add(new AnalysisData(peakEda, time));
                     OcsModel.PeakEda = peakEda;
                 });
         }
 
+        public EmpaticaSession EmpaticaSession { get; }
+
+        public OcsSession OcsSession { get; }
+
+        public ReadOnlyCollection<EmpaticaDevice> Devices => _empaticaHandler.Devices;
+
+        public BioDataModel BioDataModel { get; set; }
+
+        public OcsModel OcsModel { get; set; }
+
         public void InitializeSession()
         {
             EmpaticaSession.InitializeSession();
-            OCSSession.InitializeSession();
+            OcsSession.InitializeSession();
         }
 
         public void Connect(EmpaticaDevice device)
@@ -137,7 +140,7 @@ namespace Cybatica.Models
             _startedTime = DateTimeOffset.Now.ToUnixTimeSeconds();
             _empaticaHandler.StartSession(_startedTime);
 
-            _ocsDisposable = _ocsObservable.Subscribe();
+            _oCsDisposable = _ocsObservable.Subscribe();
             _isCapturing = true;
         }
 
@@ -145,14 +148,14 @@ namespace Cybatica.Models
         {
             _empaticaHandler.StopSession();
 
-            _ocsDisposable?.Dispose();
-            _ocsDisposable = null;
+            _oCsDisposable?.Dispose();
+            _oCsDisposable = null;
             _isCapturing = false;
         }
 
         public void Dispose()
         {
-            _ocsDisposable?.Dispose();
+            _oCsDisposable?.Dispose();
         }
     }
 }

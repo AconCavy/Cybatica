@@ -11,7 +11,7 @@ namespace Cybatica.iOS
             RegisterDependencies();
         }
 
-        private void RegisterDependencies()
+        private static void RegisterDependencies()
         {
             Locator.CurrentMutable.RegisterLazySingleton(
                 () => new EmpaticaHandler(), typeof(IEmpaticaHandler));
