@@ -18,7 +18,7 @@ namespace Cybatica.Models
         private readonly IObservable<long> _ocsObservable;
 
         private bool _isCapturing;
-        private IDisposable _oCsDisposable;
+        private IDisposable _ocsDisposable;
         private double _startedTime;
 
         public CybaticaHandler()
@@ -67,7 +67,7 @@ namespace Cybatica.Models
 
             EmpaticaSession.Ibi.Connect()
                 .Filter(_ => _isCapturing)
-                //.Filter(x => x.Timestamp > DateTimeOffset.Now.ToUnixTimeSeconds() - 60)
+                .Filter(x => x.Timestamp > DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime - 60)
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _ibi)
@@ -75,7 +75,7 @@ namespace Cybatica.Models
 
             EmpaticaSession.Gsr.Connect()
                 .Filter(_ => _isCapturing)
-                //.Filter(x => x.Timestamp > DateTimeOffset.Now.ToUnixTimeSeconds() - 60)
+                .Filter(x => x.Timestamp > DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime - 60)
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _gsr)
@@ -85,9 +85,9 @@ namespace Cybatica.Models
                 .Do(_ =>
                 {
                     var time = DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime;
-                    var oCs = Calculator.CalcOcs();
-                    OcsSession.Ocs.Add(new AnalysisData(oCs, time));
-                    OcsModel.Ocs = oCs;
+                    var ocs = Calculator.CalcOcs();
+                    OcsSession.Ocs.Add(new AnalysisData(ocs, time));
+                    OcsModel.Ocs = ocs;
 
                     var nnMean = Calculator.CalcNnMean(_ibi);
                     OcsSession.NnMean.Add(new AnalysisData(nnMean, time));
@@ -140,7 +140,7 @@ namespace Cybatica.Models
             _startedTime = DateTimeOffset.Now.ToUnixTimeSeconds();
             _empaticaHandler.StartSession(_startedTime);
 
-            _oCsDisposable = _ocsObservable.Subscribe();
+            _ocsDisposable = _ocsObservable.Subscribe();
             _isCapturing = true;
         }
 
@@ -148,14 +148,16 @@ namespace Cybatica.Models
         {
             _empaticaHandler.StopSession();
 
-            _oCsDisposable?.Dispose();
-            _oCsDisposable = null;
+            BioDataModel.Reset();
+            OcsModel.Reset();
+            _ocsDisposable?.Dispose();
+            _ocsDisposable = null;
             _isCapturing = false;
         }
 
         public void Dispose()
         {
-            _oCsDisposable?.Dispose();
+            _ocsDisposable?.Dispose();
         }
     }
 }

@@ -97,8 +97,7 @@ namespace Cybatica.Utilities
         {
             var count = list.Count();
 
-            if (count == 0) return 0;
-
+            if (count < 2) return 0;
             var mean = list.Average();
             var variance = list.Select(x => (x - mean) * (x - mean)).Sum() / (count - 1);
 

@@ -56,26 +56,26 @@ namespace Cybatica.Utilities
                     File.WriteAllText(temperature, FormatData(empaticaSession.Temperature.Items));
 
                     var ocs = Path.Combine(directoryPath, $"OCS.{_extension}");
-                    File.WriteAllText(temperature, FormatData(empaticaSession.Temperature.Items));
+                    File.WriteAllText(ocs, FormatData(ocsSession.Ocs.Items));
 
                     var nnMean = Path.Combine(directoryPath, $"NNMean.{_extension}");
-                    File.WriteAllText(temperature, FormatData(empaticaSession.Temperature.Items));
+                    File.WriteAllText(nnMean, FormatData(ocsSession.NnMean.Items));
 
                     var sdNn = Path.Combine(directoryPath, $"SDNN.{_extension}");
-                    File.WriteAllText(temperature, FormatData(empaticaSession.Temperature.Items));
+                    File.WriteAllText(sdNn, FormatData(ocsSession.SdNn.Items));
 
                     var meanEda = Path.Combine(directoryPath, $"MeanEDA.{_extension}");
-                    File.WriteAllText(temperature, FormatData(empaticaSession.Temperature.Items));
+                    File.WriteAllText(meanEda, FormatData(ocsSession.MeanEda.Items));
 
                     var peakEda = Path.Combine(directoryPath, $"PeakEda.{_extension}");
-                    File.WriteAllText(temperature, FormatData(empaticaSession.Temperature.Items));
+                    File.WriteAllText(peakEda, FormatData(ocsSession.PeakEda.Items));
 
                     ZipFile.CreateFromDirectory(directoryPath, fileName);
                 }, RxApp.TaskpoolScheduler);
 
                 await Share.RequestAsync(new ShareFileRequest
                 {
-                    Title = "Data Export",
+                    Title = "Export Data",
                     File = new ShareFile(fileName)
                 });
             });
