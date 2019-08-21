@@ -18,16 +18,32 @@ namespace Cybatica.iOS.Empatica
         private readonly EmpaticaDeviceDelegate _empaticaDeviceDelegate;
         private EmpaticaDeviceManager _deviceManager;
 
+        private bool _isAuthenticated;
+
         public EmpaticaHandler()
         {
-            void BleStatusAction(BleStatus status) => BleStatus = status;
-            void DeviceStatusAction(DeviceStatus status) => DeviceStatus = status;
-            void SensorStatusAction(SensorStatus status) => SensorStatus = status;
+            void BleStatusAction(BleStatus status)
+            {
+                BleStatus = status;
+            }
+
+            void DeviceStatusAction(DeviceStatus status)
+            {
+                DeviceStatus = status;
+            }
+
+            void SensorStatusAction(SensorStatus status)
+            {
+                SensorStatus = status;
+            }
+
             _devices = new List<EmpaticaDeviceManager>();
 
             _empaticaDelegate = new EmpaticaDelegate(_devices, BleStatusAction);
             _empaticaDeviceDelegate = new EmpaticaDeviceDelegate(
                 DeviceStatusAction, SensorStatusAction);
+
+            _isAuthenticated = false;
         }
 
         #region IEmpaticaHandler
@@ -101,10 +117,7 @@ namespace Cybatica.iOS.Empatica
             DispatchQueue.GetGlobalQueue(DispatchQueuePriority.Background).DispatchAsync(() =>
             {
                 EmpaticaAPI.AuthenticateWithAPIKey(key,
-                    (status, message) =>
-                    {
-                        if (status) Discover();
-                    });
+                    (status, message) => { _isAuthenticated = status; });
             });
         }
 
@@ -143,6 +156,7 @@ namespace Cybatica.iOS.Empatica
 
         public void Discover()
         {
+            if (!_isAuthenticated) return;
             EmpaticaAPI.DiscoverDevicesWithDelegate(_empaticaDelegate);
         }
 

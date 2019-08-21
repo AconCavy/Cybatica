@@ -17,7 +17,7 @@ namespace Cybatica.Views
             {
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.Ocs,
-                    v => v.OCs.ItemsSource));
+                    v => v.Ocs.ItemsSource));
 
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.SdNn,

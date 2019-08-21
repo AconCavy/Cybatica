@@ -18,17 +18,17 @@ namespace Cybatica.Views
             {
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.Ocs,
-                    v => v.OCs.Text,
+                    v => v.Ocs.Text,
                     x => x.ToString("F2")));
 
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.NnMean,
-                    v => v.Nnmean.Text,
+                    v => v.NnMean.Text,
                     x => x.ToString("F2")));
 
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.SdNn,
-                    v => v.Sdnn.Text,
+                    v => v.SdNn.Text,
                     x => x.ToString("F2")));
 
                 disposable(this.OneWayBind(ViewModel,

@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DynamicData" Version="6.12.13" />
-    <PackageReference Include="Fody" Version="5.1.1">
+    <PackageReference Include="DynamicData" Version="6.13.1" />
+    <PackageReference Include="Fody" Version="5.2.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -20,13 +20,14 @@
     <PackageReference Include="ReactiveUI.Fody" Version="9.20.1" />
     <PackageReference Include="ReactiveUI.XamForms" Version="9.20.1" />
     <PackageReference Include="Splat" Version="8.2.4" />
-    <PackageReference Include="Syncfusion.Licensing" Version="17.2.0.40" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.40" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.2.0.40" />
+    <PackageReference Include="Syncfusion.Licensing" Version="17.2.0.41" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.41" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.2.0.41" />
     <PackageReference Include="System.Reactive" Version="4.1.6" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.673156" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.1.0.673156" />
   </ItemGroup>
 
   <ItemGroup>

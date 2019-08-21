@@ -1,7 +1,5 @@
-﻿using Cybatica.Empatica;
-using E4linkBinding;
+﻿using E4linkBinding;
 using Foundation;
-using Splat;
 using Syncfusion.SfChart.XForms.iOS.Renderers;
 using UIKit;
 using Xamarin.Forms;
@@ -26,9 +24,8 @@ namespace Cybatica.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Forms.Init();
+            FormsMaterial.Init();
             _ = new AppBootstrapper();
-            var empaticaHandler = Locator.Current.GetService<IEmpaticaHandler>();
-            empaticaHandler.Authenticate(AppPrivateInformations.EmpaticaApiKey);
 
             SfChartRenderer.Init();
 
@@ -38,11 +35,13 @@ namespace Cybatica.iOS
 
         public override void DidEnterBackground(UIApplication uiApplication)
         {
+            base.DidEnterBackground(uiApplication);
             EmpaticaAPI.PrepareForBackground();
         }
 
         public override void OnActivated(UIApplication uiApplication)
         {
+            base.OnActivated(uiApplication);
             EmpaticaAPI.PrepareForResume();
         }
     }

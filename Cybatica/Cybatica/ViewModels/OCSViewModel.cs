@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive;
+using System.Reactive.Linq;
 using Cybatica.Models;
 using Cybatica.Services;
 using ReactiveUI;
@@ -20,18 +21,28 @@ namespace Cybatica.ViewModels
             _ocsModel = cybaticaHandler.OcsModel;
 
             this.WhenAnyValue(x => x._ocsModel.Ocs)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Ocs);
 
             this.WhenAnyValue(x => x._ocsModel.NnMean)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.NnMean);
 
             this.WhenAnyValue(x => x._ocsModel.SdNn)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.SdNn);
 
             this.WhenAnyValue(x => x._ocsModel.MeanEda)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.MeanEda);
 
             this.WhenAnyValue(x => x._ocsModel.PeakEda)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.PeakEda);
 
             ChartCommand = ReactiveCommand.CreateFromTask(async () =>

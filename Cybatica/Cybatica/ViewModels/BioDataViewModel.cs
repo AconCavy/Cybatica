@@ -1,4 +1,6 @@
-﻿using System.Reactive;
+﻿using System;
+using System.Reactive;
+using System.Reactive.Linq;
 using Cybatica.Empatica;
 using Cybatica.Models;
 using Cybatica.Services;
@@ -19,21 +21,33 @@ namespace Cybatica.ViewModels
             _bioData = cybaticaHandler.BioDataModel;
 
             _ = this.WhenAnyValue(x => x._bioData.Bvp)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Bvp);
 
             _ = this.WhenAnyValue(x => x._bioData.Ibi)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Ibi);
 
             _ = this.WhenAnyValue(x => x._bioData.Hr)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Hr);
 
             _ = this.WhenAnyValue(x => x._bioData.Gsr)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Gsr);
 
             _ = this.WhenAnyValue(x => x._bioData.Temperature)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Temperature);
 
             _ = this.WhenAnyValue(x => x._bioData.Acceleration)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Acceleration);
 
             ChartCommand = ReactiveCommand.CreateFromTask(async () =>

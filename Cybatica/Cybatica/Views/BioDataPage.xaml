@@ -8,6 +8,7 @@
     xmlns:theme="clr-namespace:Cybatica.Resources"
     x:Class="Cybatica.Views.BioDataPage"
     x:TypeArguments="vm:BioDataViewModel"
+    Visual="Material"
     Title="BIO DATA">
 
     <ContentPage.Resources>

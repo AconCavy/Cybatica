@@ -5,8 +5,6 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V4.App;
-using Cybatica.Empatica;
-using Splat;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Platform = Xamarin.Essentials.Platform;
@@ -28,9 +26,8 @@ namespace Cybatica.Droid
             base.OnCreate(savedInstanceState);
             Forms.Init(this, savedInstanceState);
 
+            FormsMaterial.Init(this, savedInstanceState);
             _ = new AppBootstrapper();
-            var empaticaHandler = Locator.Current.GetService<IEmpaticaHandler>();
-            empaticaHandler.Authenticate(AppPrivateInformations.EmpaticaApiKey);
 
             if (ApplicationContext.CheckCallingOrSelfPermission(
                     Manifest.Permission.AccessCoarseLocation) != Permission.Granted)

@@ -43,7 +43,7 @@ namespace Cybatica.Views
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.Acceleration,
                     v => v.Acceleration.Text,
-                    x => $"{x.XValue:F2}, {x.YValue:F2}, {x.ZValue:F2}"));
+                    x => $"x:{x.XValue:F2}, y:{x.YValue:F2}, z:{x.ZValue:F2}"));
 
                 disposable(this.BindCommand(ViewModel,
                     vm => vm.ChartCommand,

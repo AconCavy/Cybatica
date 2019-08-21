@@ -8,6 +8,7 @@
     xmlns:theme="clr-namespace:Cybatica.Resources"
     x:Class="Cybatica.Views.HomePage"
     x:TypeArguments="vm:HomeViewModel"
+    Visual="Material"
     Title="HOME">
 
     <ContentPage.Resources>

@@ -25,6 +25,7 @@ namespace Cybatica.ViewModels
         public HomeViewModel(INavigation navigation)
         {
             _cybaticaHandler = Locator.Current.GetService<ICybaticaHandler>();
+            _cybaticaHandler.Discover();
             _stopwatch = new Stopwatch();
 
             this.WhenAnyValue(x => x.Time)
@@ -120,6 +121,7 @@ namespace Cybatica.ViewModels
 
         private async Task ConnectAsync()
         {
+            _cybaticaHandler.Discover();
             var devices = _cybaticaHandler.Devices.Select(x => x.SerialNumber).ToArray();
 
             var result = await Application.Current.MainPage.DisplayActionSheet(

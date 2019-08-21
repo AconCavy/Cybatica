@@ -8,6 +8,7 @@
     xmlns:resource="clr-namespace:Cybatica.Resources"
     x:Class="Cybatica.Views.OcsPage"
     x:TypeArguments="vm:OcsViewModel"
+    Visual="Material"
     Title="ONSET OF CYBERSICKNESS">
 
     <ContentPage.Resources>
@@ -40,7 +41,7 @@
                          Grid.ColumnSpan="2">
                 <Label Style="{StaticResource HeadText}"
                        Text="ONSET OF CYBERSICKNESS" />
-                <Label x:Name="OCs"
+                <Label x:Name="Ocs"
                        Style="{StaticResource NormalText}"
                        Text="0" />
             </StackLayout>
@@ -50,7 +51,7 @@
                          Grid.Column="0">
                 <Label Style="{StaticResource HeadText}"
                        Text="NN MEAN" />
-                <Label x:Name="Nnmean"
+                <Label x:Name="NnMean"
                        Style="{StaticResource NormalText}"
                        Text="0" />
             </StackLayout>
@@ -60,7 +61,7 @@
                          Grid.Column="1">
                 <Label Style="{StaticResource HeadText}"
                        Text="SDNN" />
-                <Label x:Name="Sdnn"
+                <Label x:Name="SdNn"
                        Style="{StaticResource NormalText}"
                        Text="0" />
             </StackLayout>

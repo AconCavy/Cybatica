@@ -9,6 +9,7 @@
     xmlns:resource="clr-namespace:Cybatica.Resources"
     x:Class="Cybatica.Views.MainPage"
     x:TypeArguments="vm:MainViewModel"
+    Visual="Material"
     Title="Main Page"
     SelectedTabColor="#E8AEB7">
 

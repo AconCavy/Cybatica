@@ -9,6 +9,7 @@
     xmlns:theme="clr-namespace:Cybatica.Resources"
     x:Class="Cybatica.Views.AboutPage"
     x:TypeArguments="vm:AboutViewModel"
+    Visual="Material"
     Title="ABOUT">
 
     <ContentPage.Resources>
@@ -48,7 +49,7 @@
 
                         <StackLayout>
                             <Label Style="{StaticResource HeadText}"
-                                   Text="DynamicData.6.12.3" />
+                                   Text="DynamicData" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -63,7 +64,7 @@
 
                         <StackLayout>
                             <Label Style="{StaticResource HeadText}"
-                                   Text="Fody.5.1.1" />
+                                   Text="Fody" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -78,7 +79,7 @@
 
                         <StackLayout>
                             <Label Style="{StaticResource HeadText}"
-                                   Text="NETStandard.Library.2.0.3" />
+                                   Text="NETStandard.Library" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -93,7 +94,7 @@
 
                         <StackLayout>
                             <Label Style="{StaticResource HeadText}"
-                                   Text="ReactiveUI.9.20.1" />
+                                   Text="ReactiveUI" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -108,7 +109,7 @@
 
                         <StackLayout>
                             <Label Style="{StaticResource HeadText}"
-                                   Text="ReactiveUI.Fody.9.20.1" />
+                                   Text="ReactiveUI.Fody" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -123,7 +124,7 @@
 
                         <StackLayout>
                             <Label Style="{StaticResource HeadText}"
-                                   Text="ReactiveUI.XamForms.9.20.1" />
+                                   Text="ReactiveUI.XamForms" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -138,7 +139,7 @@
 
                         <StackLayout>
                             <Label Style="{StaticResource HeadText}"
-                                   Text="Splat.8.2.4" />
+                                   Text="Splat" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -153,7 +154,7 @@
 
                         <StackLayout IsVisible="{OnPlatform Android=True, iOS=False}">
                             <Label Style="{StaticResource HeadText}"
-                                   Text="Square.OkHttp3.3.8.1" />
+                                   Text="Square.OkHttp" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -166,7 +167,7 @@
 
                         <StackLayout IsEnabled="{OnPlatform Android=True, iOS=False}">
                             <Label Style="{StaticResource HeadText}"
-                                   Text="Square.OkIO.1.13.0" />
+                                   Text="Square.OkIO" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -179,7 +180,7 @@
 
                         <StackLayout>
                             <Label Style="{StaticResource HeadText}"
-                                   Text="Syncfusion.Licensing.17.2.0.40" />
+                                   Text="Syncfusion.Licensing" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -192,7 +193,7 @@
 
                         <StackLayout>
                             <Label Style="{StaticResource HeadText}"
-                                   Text="Syncfusion.Xamarin.Core.17.2.0.40" />
+                                   Text="Syncfusion.Xamarin.Core" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -205,7 +206,7 @@
 
                         <StackLayout>
                             <Label Style="{StaticResource HeadText}"
-                                   Text="Syncfusion.Xamarin.SfChart.17.2.0.40" />
+                                   Text="Syncfusion.Xamarin.SfChart" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -218,7 +219,7 @@
 
                         <StackLayout IsVisible="{OnPlatform Android=False, iOS=True}">
                             <Label Style="{StaticResource HeadText}"
-                                   Text="System.ComponentModel.Annotations.4.5.0" />
+                                   Text="System.ComponentModel.Annotations" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -233,7 +234,7 @@
 
                         <StackLayout IsVisible="{OnPlatform Android=False, iOS=True}">
                             <Label Style="{StaticResource HeadText}"
-                                   Text="System.Numerics.Vectors.4.5.0" />
+                                   Text="System.Numerics.Vectors" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -248,7 +249,7 @@
 
                         <StackLayout>
                             <Label Style="{StaticResource HeadText}"
-                                   Text="System.Reactive.4.1.6" />
+                                   Text="System.Reactive" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -263,7 +264,7 @@
 
                         <StackLayout IsVisible="{OnPlatform Android=False, iOS=True}">
                             <Label Style="{StaticResource HeadText}"
-                                   Text="System.Runtime.InteropServices.WindowsRuntime.4.3.0" />
+                                   Text="System.Runtime.InteropServices.WindowsRuntime" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -276,7 +277,7 @@
 
                         <StackLayout>
                             <Label Style="{StaticResource HeadText}"
-                                   Text="System.Threading.Tasks.Extensions.4.5.3" />
+                                   Text="System.Threading.Tasks.Extensions" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -291,7 +292,7 @@
 
                         <StackLayout IsVisible="{OnPlatform Android=True, iOS=False}">
                             <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Android.Support.Design.28.0.0.1" />
+                                   Text="Xamarin.Android.Support.Design" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -306,7 +307,7 @@
 
                         <StackLayout IsVisible="{OnPlatform Android=True, iOS=False}">
                             <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Android.Support.v4.28.0.0.1" />
+                                   Text="Xamarin.Android.Support.v4" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -321,7 +322,7 @@
 
                         <StackLayout IsVisible="{OnPlatform Android=True, iOS=False}">
                             <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Android.Support.v7.AppCompat.28.0.0.1" />
+                                   Text="Xamarin.Android.Support.v7.AppCompat" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -334,7 +335,7 @@
 
                         <StackLayout IsVisible="{OnPlatform Android=True, iOS=False}">
                             <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Android.Support.v7.CardView.28.0.0.1" />
+                                   Text="Xamarin.Android.Support.v7.CardView" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -349,7 +350,7 @@
 
                         <StackLayout IsVisible="{OnPlatform Android=True, iOS=False}">
                             <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Android.Support.v7MediaRouter.28.0.0.1" />
+                                   Text="Xamarin.Android.Support.v7MediaRouter" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -364,7 +365,7 @@
 
                         <StackLayout>
                             <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Essentials.1.2.0" />
+                                   Text="Xamarin.Essentials" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -379,7 +380,7 @@
 
                         <StackLayout>
                             <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Forms.4.1.0.673156" />
+                                   Text="Xamarin.Forms" />
                             <Label Style="{StaticResource NormalText}">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -391,6 +392,37 @@
                             <Label Style="{StaticResource NormalText}"
                                    Text="Copyright (c) .NET Foundation and Contributors" />
                         </StackLayout>
+
+                        <StackLayout>
+                            <Label Style="{StaticResource HeadText}"
+                                   Text="Xamarin.Forms.Visual.Material" />
+                            <Label Style="{StaticResource NormalText}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <util:HyperlinkSpan Text="MIT License"
+                                                            Url="https://github.com/xamarin/Xamarin.Forms/blob/master/LICENSE" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Style="{StaticResource NormalText}"
+                                   Text="Copyright (c) .NET Foundation and Contributors" />
+                        </StackLayout>
+
+                        <StackLayout IsVisible="{OnPlatform Android=False, iOS=True}">
+                            <Label Style="{StaticResource HeadText}"
+                                   Text="Xamarin.iOS.MaterialComponents" />
+                            <Label Style="{StaticResource NormalText}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <util:HyperlinkSpan Text="MIT License"
+                                                            Url="https://github.com/xamarin/XamarinComponents/blob/master/iOS/MaterialComponents/License.md" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Style="{StaticResource NormalText}"
+                                   Text="Copyright (c) .NET Foundation and Contributors" />
+                        </StackLayout>
+
 
 
                     </StackLayout>

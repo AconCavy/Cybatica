@@ -9,6 +9,7 @@
     xmlns:theme="clr-namespace:Cybatica.Resources"
     x:Class="Cybatica.Views.OcsChartPage"
     x:TypeArguments="vm:OcsChartViewModel"
+    Visual="Material"
     Title="OCS CHART">
 
     <ContentPage.Resources>
@@ -52,7 +53,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:FastLineSeries x:Name="OCs" Color="{StaticResource Accent}" XBindingPath="Timestamp"
+                        <chart:FastLineSeries x:Name="Ocs" Color="{StaticResource Accent}" XBindingPath="Timestamp"
                                               YBindingPath="Value" EnableAnimation="True" />
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
@@ -80,7 +81,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:AreaSeries x:Name="SdNn" Color="{StaticResource Accent}" XBindingPath="Timestamp"
+                        <chart:FastLineSeries x:Name="SdNn" Color="{StaticResource Accent}" XBindingPath="Timestamp"
                                           YBindingPath="Value" EnableAnimation="True" />
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
@@ -108,7 +109,7 @@
                         </chart:NumericalAxis>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:AreaSeries x:Name="MeanEda" Color="{StaticResource Accent}" XBindingPath="Timestamp"
+                        <chart:FastLineSeries x:Name="MeanEda" Color="{StaticResource Accent}" XBindingPath="Timestamp"
                                           YBindingPath="Value" EnableAnimation="True" />
                     </chart:SfChart.Series>
                     <chart:SfChart.ChartBehaviors>
