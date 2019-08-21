@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CoreFoundation;
 using Cybatica.Empatica;
 using E4linkBinding;
 using Foundation;
@@ -25,24 +24,19 @@ namespace Cybatica.iOS.Empatica
             if (!IsAllDevicesDisconnected()) return;
             _devices.Clear();
             _devices.AddRange(devices.OfType<EmpaticaDeviceManager>().ToList());
-
-            DispatchQueue.MainQueue.DispatchAsync(() =>
-            {
-                if (IsAllDevicesDisconnected()) EmpaticaAPI.DiscoverDevicesWithDelegate(this);
-            });
         }
 
-        public override void DidUpdateBLEStatus(E4linkBinding.BLEStatus status)
+        public override void DidUpdateBLEStatus(BLEStatus status)
         {
             switch (status)
             {
-                case E4linkBinding.BLEStatus.NotAvailable:
+                case BLEStatus.NotAvailable:
                     _bleStatusAction(BleStatus.NotAvailable);
                     break;
-                case E4linkBinding.BLEStatus.Ready:
+                case BLEStatus.Ready:
                     _bleStatusAction(BleStatus.Ready);
                     break;
-                case E4linkBinding.BLEStatus.Scanning:
+                case BLEStatus.Scanning:
                     _bleStatusAction(BleStatus.Scanning);
                     break;
             }

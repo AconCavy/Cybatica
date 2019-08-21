@@ -20,6 +20,8 @@ namespace Cybatica.Services
 
         void Disconnect();
 
+        void Discover();
+
         void InitializeSession();
 
         void StartSession();

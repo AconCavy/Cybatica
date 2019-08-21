@@ -117,6 +117,7 @@ namespace Cybatica.Models
 
         public OcsModel OcsModel { get; set; }
 
+
         public void InitializeSession()
         {
             EmpaticaSession.InitializeSession();
@@ -131,6 +132,11 @@ namespace Cybatica.Models
         public void Disconnect()
         {
             _empaticaHandler.Disconnect();
+        }
+
+        public void Discover()
+        {
+            _empaticaHandler.Discover();
         }
 
         public void StartSession()
