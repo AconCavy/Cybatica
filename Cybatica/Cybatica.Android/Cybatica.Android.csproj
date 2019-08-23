@@ -48,7 +48,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EmpaLinkBinding">
-      <HintPath>..\..\..\EmpaLinkBinding\EmpaLinkBinding\bin\Debug\EmpaLinkBinding.dll</HintPath>
+      <HintPath>..\..\..\EmpaLinkBinding\EmpaLinkBinding\bin\Release\EmpaLinkBinding.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />

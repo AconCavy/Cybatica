@@ -25,7 +25,6 @@ namespace Cybatica.ViewModels
         public HomeViewModel(INavigation navigation)
         {
             _cybaticaHandler = Locator.Current.GetService<ICybaticaHandler>();
-            _cybaticaHandler.Discover();
             _stopwatch = new Stopwatch();
 
             this.WhenAnyValue(x => x.Time)

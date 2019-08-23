@@ -18,7 +18,7 @@ namespace Cybatica.Droid.Empatica
         private readonly EmpaDeviceManager _deviceManager;
         private readonly List<EmpaticaDevice> _devices;
         private bool _isCapturing;
-
+        private bool _isScanning;
         private double _startedTime;
 
         public EmpaticaHandler()
@@ -26,6 +26,8 @@ namespace Cybatica.Droid.Empatica
             _deviceManager = new EmpaDeviceManager(Application.Context, this, this);
             _devices = new List<EmpaticaDevice>();
         }
+
+        public Action RequestBluetoothAction { get; set; }
 
         #region IEmpaticaHandler
 
@@ -68,7 +70,12 @@ namespace Cybatica.Droid.Empatica
 
         public async void Connect(Cybatica.Empatica.EmpaticaDevice device)
         {
-            _deviceManager.StopScanning();
+            if (_isScanning)
+            {
+                _deviceManager.StopScanning();
+                _isScanning = false;
+            }
+
             try
             {
                 var target = _devices.Find(x => x.SerialNumber.Equals(device.SerialNumber));
@@ -86,11 +93,14 @@ namespace Cybatica.Droid.Empatica
         public void Disconnect()
         {
             _deviceManager.Disconnect();
+            _deviceManager.CleanUp();
         }
 
         public void Discover()
         {
+            if (_isScanning) return;
             _deviceManager.StartScanning();
+            _isScanning = true;
         }
 
         public void StartSession(double startedTime)
@@ -157,8 +167,10 @@ namespace Cybatica.Droid.Empatica
         public void DidDiscoverDevice(EmpaticaDevice device, string deviceLabel, int rssi, bool allowed)
         {
             if (!allowed) return;
-            _devices.Clear();
+            if (_devices.Any(x => device.SerialNumber.Equals(x.SerialNumber))) return;
             _devices.Add(device);
+            _deviceManager.StopScanning();
+            _isScanning = false;
         }
 
         public async void DidEstablishConnection()
@@ -171,6 +183,7 @@ namespace Cybatica.Droid.Empatica
 
         public void DidRequestEnableBluetooth()
         {
+            RequestBluetoothAction?.Invoke();
         }
 
         public void DidUpdateOnWristStatus([IntDef(Type = "Com.Empatica.Empalink.Config.IEmpaSensorStatus",

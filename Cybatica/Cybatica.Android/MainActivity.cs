@@ -1,10 +1,14 @@
 ﻿using Android;
 using Android.App;
+using Android.Bluetooth;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V4.App;
+using Cybatica.Droid.Empatica;
+using Cybatica.Empatica;
+using Splat;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Platform = Xamarin.Essentials.Platform;
@@ -29,9 +33,16 @@ namespace Cybatica.Droid
             FormsMaterial.Init(this, savedInstanceState);
             _ = new AppBootstrapper();
 
+            if (Locator.Current.GetService<IEmpaticaHandler>() is EmpaticaHandler empaticaHandler)
+                empaticaHandler.RequestBluetoothAction = () =>
+                {
+                    var enableBtIntent = new Intent(BluetoothAdapter.ActionRequestEnable);
+                    StartActivityForResult(enableBtIntent, RequestEnableBt);
+                };
+
             if (ApplicationContext.CheckCallingOrSelfPermission(
                     Manifest.Permission.AccessCoarseLocation) != Permission.Granted)
-                ActivityCompat.RequestPermissions(this, new[] {Manifest.Permission.AccessCoarseLocation},
+                ActivityCompat.RequestPermissions(this, new[] { Manifest.Permission.AccessCoarseLocation },
                     RequestPermissionAccessCoarseLocation);
 
             LoadApplication(new App());
