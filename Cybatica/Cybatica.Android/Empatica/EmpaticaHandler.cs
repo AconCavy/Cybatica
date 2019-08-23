@@ -145,7 +145,7 @@ namespace Cybatica.Droid.Empatica
         public void DidReceiveIBI(float ibi, double timestamp)
         {
             if (!_isCapturing) return;
-            IbiAction?.Invoke(new Ibi(ibi, timestamp - _startedTime));
+            IbiAction?.Invoke(new Ibi(ibi * 1000, timestamp - _startedTime));
         }
 
         public void DidReceiveTag(double timestamp)

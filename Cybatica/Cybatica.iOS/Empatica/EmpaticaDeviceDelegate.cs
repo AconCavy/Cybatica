@@ -71,7 +71,7 @@ namespace Cybatica.iOS.Empatica
         public override void DidReceiveIBI(float ibi, double timestamp, EmpaticaDeviceManager device)
         {
             if (!_isCapturing) return;
-            IbiAction?.Invoke(new Ibi(ibi, timestamp - _startedTime));
+            IbiAction?.Invoke(new Ibi(ibi * 1000, timestamp - _startedTime));
         }
 
         public override void DidReceiveTagAtTimestamp(double timestamp, EmpaticaDeviceManager device)
