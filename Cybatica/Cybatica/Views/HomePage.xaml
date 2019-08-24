@@ -9,7 +9,8 @@
     x:Class="Cybatica.Views.HomePage"
     x:TypeArguments="vm:HomeViewModel"
     Visual="Material"
-    Title="HOME">
+    Title="Home"
+    BackgroundColor="{StaticResource Gray100}">
 
     <ContentPage.Resources>
         <ResourceDictionary>

@@ -11,7 +11,7 @@
     x:TypeArguments="vm:MainViewModel"
     Visual="Material"
     Title="Main Page"
-    SelectedTabColor="#E8AEB7">
+    SelectedTabColor="{StaticResource Secondary}">
 
     <TabbedPage.Resources>
         <ResourceDictionary>
@@ -24,24 +24,24 @@
     <TabbedPage.Children>
 
         <NavigationPage Title="Home"
-                        BarBackgroundColor="{StaticResource Base3}"
-                        BarTextColor="{StaticResource Black1}">
+                        BarBackgroundColor="{StaticResource Primary}"
+                        BarTextColor="{StaticResource Black}">
             <x:Arguments>
                 <v:HomePage />
             </x:Arguments>
         </NavigationPage>
 
         <NavigationPage Title="OCS"
-                        BarBackgroundColor="{StaticResource Base3}"
-                        BarTextColor="{StaticResource Black1}">
+                        BarBackgroundColor="{StaticResource Primary}"
+                        BarTextColor="{StaticResource Black}">
             <x:Arguments>
                 <v:OcsPage />
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="Bio-Data"
-                        BarBackgroundColor="{StaticResource Base3}"
-                        BarTextColor="{StaticResource Black1}">
+        <NavigationPage Title="Bio Data"
+                        BarBackgroundColor="{StaticResource Primary}"
+                        BarTextColor="{StaticResource Black}">
             <x:Arguments>
                 <v:BioDataPage />
             </x:Arguments>

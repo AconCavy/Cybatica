@@ -9,7 +9,8 @@
     x:Class="Cybatica.Views.OcsPage"
     x:TypeArguments="vm:OcsViewModel"
     Visual="Material"
-    Title="ONSET OF CYBERSICKNESS">
+    Title="Onset of Cybersickness"
+    BackgroundColor="{StaticResource Gray100}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -21,7 +22,9 @@
 
     <ContentPage.Content>
 
-        <Grid Margin="8,8,8,8" RowSpacing="8" ColumnSpacing="8">
+        <Grid Margin="8,8,8,8"
+              RowSpacing="8"
+              ColumnSpacing="8">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -36,55 +39,66 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Column="0"
-                         Grid.ColumnSpan="2">
-                <Label Style="{StaticResource HeadText}"
-                       Text="ONSET OF CYBERSICKNESS" />
-                <Label x:Name="Ocs"
-                       Style="{StaticResource NormalText}"
-                       Text="0" />
-            </StackLayout>
+            <Frame Style="{StaticResource Card}"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2">
+                <StackLayout>
+                    <Label Style="{StaticResource HeadText}"
+                           Text="ONSET OF CYBERSICKNESS" />
+                    <Label x:Name="Ocs"
+                           Style="{StaticResource NormalText}"
+                           Text="0" />
+                </StackLayout>
+            </Frame>
 
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="1"
-                         Grid.Column="0">
-                <Label Style="{StaticResource HeadText}"
-                       Text="NN MEAN" />
-                <Label x:Name="NnMean"
-                       Style="{StaticResource NormalText}"
-                       Text="0" />
-            </StackLayout>
+            <Frame Style="{StaticResource Card}"
+                   Grid.Row="1"
+                   Grid.Column="0">
+                <StackLayout>
+                    <Label Style="{StaticResource HeadText}"
+                           Text="NN MEAN" />
+                    <Label x:Name="NnMean"
+                           Style="{StaticResource NormalText}"
+                           Text="0" />
+                </StackLayout>
+            </Frame>
 
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="1"
-                         Grid.Column="1">
-                <Label Style="{StaticResource HeadText}"
-                       Text="SDNN" />
-                <Label x:Name="SdNn"
-                       Style="{StaticResource NormalText}"
-                       Text="0" />
-            </StackLayout>
+            <Frame Style="{StaticResource Card}"
+                   Grid.Row="1"
+                   Grid.Column="1">
+                <StackLayout>
+                    <Label Style="{StaticResource HeadText}"
+                           Text="SDNN" />
+                    <Label x:Name="SdNn"
+                           Style="{StaticResource NormalText}"
+                           Text="0" />
+                </StackLayout>
+            </Frame>
 
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="2"
-                         Grid.Column="0">
-                <Label Style="{StaticResource HeadText}"
-                       Text="MEAN EDA" />
-                <Label x:Name="MeanEda"
-                       Style="{StaticResource NormalText}"
-                       Text="0" />
-            </StackLayout>
+            <Frame Style="{StaticResource Card}"
+                   Grid.Row="2"
+                   Grid.Column="0">
+                <StackLayout>
+                    <Label Style="{StaticResource HeadText}"
+                           Text="MEAN EDA" />
+                    <Label x:Name="MeanEda"
+                           Style="{StaticResource NormalText}"
+                           Text="0" />
+                </StackLayout>
+            </Frame>
 
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="2"
-                         Grid.Column="1">
-                <Label Style="{StaticResource HeadText}"
-                       Text="PEAK EDA" />
-                <Label x:Name="PeakEda"
-                       Style="{StaticResource NormalText}"
-                       Text="0" />
-            </StackLayout>
+            <Frame Style="{StaticResource Card}"
+                   Grid.Row="2"
+                   Grid.Column="1">
+                <StackLayout>
+                    <Label Style="{StaticResource HeadText}"
+                           Text="PEAK EDA" />
+                    <Label x:Name="PeakEda"
+                           Style="{StaticResource NormalText}"
+                           Text="0" />
+                </StackLayout>
+            </Frame>
 
             <Button x:Name="Chart"
                     Style="{StaticResource Button}"

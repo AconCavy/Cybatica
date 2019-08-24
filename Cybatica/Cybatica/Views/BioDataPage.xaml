@@ -9,7 +9,8 @@
     x:Class="Cybatica.Views.BioDataPage"
     x:TypeArguments="vm:BioDataViewModel"
     Visual="Material"
-    Title="BIO DATA">
+    Title="Bio Data"
+    BackgroundColor="{StaticResource Gray100}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -38,65 +39,77 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="0"
-                         Grid.Column="0">
-                <Label Style="{StaticResource HeadText}"
-                       Text="BVP" />
-                <Label x:Name="Bvp"
-                       Style="{StaticResource NormalText}"
-                       Text="0" />
-            </StackLayout>
+            <Frame Style="{StaticResource Card}"
+                   Grid.Row="0"
+                   Grid.Column="0">
+                <StackLayout>
+                    <Label Style="{StaticResource HeadText}"
+                           Text="BVP" />
+                    <Label x:Name="Bvp"
+                           Style="{StaticResource NormalText}"
+                           Text="0" />
+                </StackLayout>
+            </Frame>
 
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="0"
-                         Grid.Column="1">
-                <Label Style="{StaticResource HeadText}"
-                       Text="IBI" />
-                <Label x:Name="Ibi"
-                       Style="{StaticResource NormalText}"
-                       Text="0" />
-            </StackLayout>
+            <Frame Style="{StaticResource Card}"
+                   Grid.Row="0"
+                   Grid.Column="1">
+                <StackLayout>
+                    <Label Style="{StaticResource HeadText}"
+                           Text="IBI" />
+                    <Label x:Name="Ibi"
+                           Style="{StaticResource NormalText}"
+                           Text="0" />
+                </StackLayout>
+            </Frame>
 
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="1"
-                         Grid.Column="0">
-                <Label Style="{StaticResource HeadText}"
-                       Text="HR" />
-                <Label x:Name="Hr"
-                       Style="{StaticResource NormalText}"
-                       Text="0" />
-            </StackLayout>
+            <Frame Style="{StaticResource Card}"
+                   Grid.Row="1"
+                   Grid.Column="0">
+                <StackLayout>
+                    <Label Style="{StaticResource HeadText}"
+                           Text="HR" />
+                    <Label x:Name="Hr"
+                           Style="{StaticResource NormalText}"
+                           Text="0" />
+                </StackLayout>
+            </Frame>
 
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="1"
-                         Grid.Column="1">
-                <Label Style="{StaticResource HeadText}"
-                       Text="EDA" />
-                <Label x:Name="Gsr"
-                       Style="{StaticResource NormalText}"
-                       Text="1" />
-            </StackLayout>
+            <Frame Style="{StaticResource Card}"
+                   Grid.Row="1"
+                   Grid.Column="1">
+                <StackLayout>
+                    <Label Style="{StaticResource HeadText}"
+                           Text="EDA" />
+                    <Label x:Name="Gsr"
+                           Style="{StaticResource NormalText}"
+                           Text="1" />
+                </StackLayout>
+            </Frame>
 
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="2"
-                         Grid.Column="0">
-                <Label Style="{StaticResource HeadText}"
-                       Text="TEMPERATURE" />
-                <Label x:Name="Temperature"
-                       Style="{StaticResource NormalText}"
-                       Text="1" />
-            </StackLayout>
+            <Frame Style="{StaticResource Card}"
+                   Grid.Row="2"
+                   Grid.Column="0">
+                <StackLayout>
+                    <Label Style="{StaticResource HeadText}"
+                           Text="TEMPERATURE" />
+                    <Label x:Name="Temperature"
+                           Style="{StaticResource NormalText}"
+                           Text="1" />
+                </StackLayout>
+            </Frame>
 
-            <StackLayout Style="{StaticResource Panel}"
-                         Grid.Row="2"
-                         Grid.Column="1">
-                <Label Style="{StaticResource HeadText}"
-                       Text="ACCELERATION" />
-                <Label x:Name="Acceleration"
-                       Style="{StaticResource NormalText}"
-                       Text="0,0,0" />
-            </StackLayout>
+            <Frame Style="{StaticResource Card}"
+                   Grid.Row="2"
+                   Grid.Column="1">
+                <StackLayout>
+                    <Label Style="{StaticResource HeadText}"
+                           Text="ACCELERATION" />
+                    <Label x:Name="Acceleration"
+                           Style="{StaticResource NormalText}"
+                           Text="0,0,0" />
+                </StackLayout>
+            </Frame>
 
             <Button x:Name="Chart"
                     Style="{StaticResource Button}"
