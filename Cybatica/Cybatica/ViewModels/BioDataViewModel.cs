@@ -15,7 +15,7 @@ namespace Cybatica.ViewModels
     {
         private readonly BioDataModel _bioData;
 
-        public BioDataViewModel(INavigation navigation)
+        public BioDataViewModel()
         {
             var cybaticaHandler = Locator.Current.GetService<ICybaticaHandler>();
             _bioData = cybaticaHandler.BioDataModel;
@@ -50,11 +50,8 @@ namespace Cybatica.ViewModels
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Acceleration);
 
-            ChartCommand = ReactiveCommand.CreateFromTask(async () =>
-            {
-                var page = Locator.Current.GetService<IViewFor<BioDataChartViewModel>>() as Page;
-                await navigation.PushAsync(page);
-            });
+            ChartCommand =
+                ReactiveCommand.CreateFromTask(async () => { await Shell.Current.GoToAsync("bioDataChart"); });
         }
 
         [Reactive] public Bvp Bvp { [ObservableAsProperty] get; private set; }

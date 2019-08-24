@@ -10,7 +10,7 @@ namespace Cybatica.Views
     {
         public BioDataPage()
         {
-            ViewModel = new BioDataViewModel(Navigation);
+            ViewModel = new BioDataViewModel();
             InitializeComponent();
 
             this.WhenActivated(disposable =>

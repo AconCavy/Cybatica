@@ -10,8 +10,7 @@ namespace Cybatica.Views
     {
         public OcsPage()
         {
-            ViewModel = new OcsViewModel(Navigation);
-
+            ViewModel = new OcsViewModel();
             InitializeComponent();
 
             this.WhenActivated(disposable =>

@@ -22,7 +22,7 @@ namespace Cybatica.ViewModels
         private IDisposable _cleanUp;
         private SessionType _sessionType;
 
-        public HomeViewModel(INavigation navigation)
+        public HomeViewModel()
         {
             _cybaticaHandler = Locator.Current.GetService<ICybaticaHandler>();
             _stopwatch = new Stopwatch();
@@ -50,11 +50,7 @@ namespace Cybatica.ViewModels
             var canDisconnectExecute = this.WhenAnyValue(x => x.IsConnecting);
             DisconnectCommand = ReactiveCommand.CreateFromTask(DisconnectAsync, canDisconnectExecute);
 
-            AboutCommand = ReactiveCommand.CreateFromTask(async () =>
-            {
-                var page = Locator.Current.GetService<IViewFor<AboutViewModel>>() as Page;
-                await navigation.PushAsync(page);
-            });
+            AboutCommand = ReactiveCommand.CreateFromTask(async () => { await Shell.Current.GoToAsync("about"); });
         }
 
         [Reactive] public TimeSpan ElapsedTime { [ObservableAsProperty] get; private set; }

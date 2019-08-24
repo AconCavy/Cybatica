@@ -14,10 +14,9 @@ namespace Cybatica.ViewModels
     {
         private readonly OcsModel _ocsModel;
 
-        public OcsViewModel(INavigation navigation)
+        public OcsViewModel()
         {
             var cybaticaHandler = Locator.Current.GetService<ICybaticaHandler>();
-
             _ocsModel = cybaticaHandler.OcsModel;
 
             this.WhenAnyValue(x => x._ocsModel.Ocs)
@@ -45,11 +44,7 @@ namespace Cybatica.ViewModels
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.PeakEda);
 
-            ChartCommand = ReactiveCommand.CreateFromTask(async () =>
-            {
-                var page = Locator.Current.GetService<IViewFor<OcsChartViewModel>>() as Page;
-                await navigation.PushAsync(page);
-            });
+            ChartCommand = ReactiveCommand.CreateFromTask(async () => { await Shell.Current.GoToAsync("ocsChart"); });
         }
 
         [Reactive] public float Ocs { [ObservableAsProperty] get; private set; }

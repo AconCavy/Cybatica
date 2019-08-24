@@ -12,12 +12,12 @@ namespace Cybatica
         {
             ExperimentalFeatures.Enable(ExperimentalFeatures.ShareFileRequest);
             SyncfusionLicenseProvider.RegisterLicense(AppPrivateInformations.SyncfusionLicenseKey);
-            var appBootstrapper = new AppBootstrapper();
+            var _ = new AppBootstrapper();
             var empaticaHandler = Locator.Current.GetService<IEmpaticaHandler>();
             empaticaHandler.Authenticate(AppPrivateInformations.EmpaticaApiKey);
             InitializeComponent();
 
-            MainPage = appBootstrapper.CreateMainPage();
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()

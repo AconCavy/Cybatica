@@ -10,8 +10,7 @@ namespace Cybatica.Views
     {
         public HomePage()
         {
-            ViewModel = new HomeViewModel(Navigation);
-
+            ViewModel = new HomeViewModel();
             InitializeComponent();
 
             this.WhenActivated(disposable =>

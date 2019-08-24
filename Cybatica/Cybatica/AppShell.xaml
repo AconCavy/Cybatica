@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Shell
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resource="clr-namespace:Cybatica.Resources"
+    xmlns:views="clr-namespace:Cybatica.Views"
+    x:Class="Cybatica.AppShell"
+    Shell.BackgroundColor="{StaticResource Primary}"
+    Shell.TitleColor="{StaticResource Black}"
+    Shell.ForegroundColor="{StaticResource Black}"
+    Shell.TabBarBackgroundColor="{StaticResource Gray300}"
+    Shell.TabBarTitleColor="{StaticResource Secondary}"
+    Shell.TabBarUnselectedColor="{StaticResource Black}">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <resource:AppTheme />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar>
+
+        <Tab Title="Home">
+            <ShellContent Route="home">
+                <views:HomePage />
+            </ShellContent>
+        </Tab>
+
+        <Tab Title="OCS">
+            <ShellContent Route="ocs">
+                <views:OcsPage />
+            </ShellContent>
+        </Tab>
+
+        <Tab Title="Bio Data">
+            <ShellContent Route="bioData">
+                <views:BioDataPage />
+            </ShellContent>
+        </Tab>
+
+    </TabBar>
+
+</Shell>
