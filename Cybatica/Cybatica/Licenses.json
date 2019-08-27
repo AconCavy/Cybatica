@@ -1,0 +1,218 @@
+[
+  {
+    "name": "DynamicData",
+    "android": true,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/reactiveui/DynamicData/blob/master/LICENSE",
+    "copyright": "Copyright (c) 2011-2018 Roland Pheasant"
+  },
+  {
+    "name": "Fody",
+    "android": false,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/Fody/Fody/blob/master/License.txt",
+    "copyright": "Copyright (c) Simon Cropp and contributors"
+  },
+  {
+    "name": "material design icons",
+    "android": true,
+    "ios": true,
+    "license_type": "Apache License Version 2.0",
+    "url": "https://github.com/google/material-design-icons/blob/master/LICENSE",
+    "copyright": ""
+  },
+  {
+    "name": "NETStandard.Library",
+    "android": true,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/dotnet/standard/blob/master/LICENSE.TXT",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "Newtonsoft.Json",
+    "android": true,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md",
+    "copyright": "Copyright (c) 2007 James Newton-King"
+  },
+  {
+    "name": "ReactiveUI",
+    "android": true,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/reactiveui/ReactiveUI/blob/master/LICENSE",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "ReactiveUI.Fody",
+    "android": true,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/reactiveui/ReactiveUI/blob/master/LICENSE",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "ReactiveUI.XamForms",
+    "android": true,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/reactiveui/ReactiveUI/blob/master/LICENSE",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "Splat",
+    "android": false,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/reactiveui/splat/blob/master/LICENSE",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "Square.Picasso",
+    "android": true,
+    "ios": false,
+    "license_type": "Apache License Version 2.0",
+    "url": "https://github.com/mattleibow/square-bindings/blob/master/LICENSE.txt",
+    "copyright": ""
+  },
+  {
+    "name": "Syncfusion.Licensing",
+    "android": true,
+    "ios": true,
+    "license_type": "License",
+    "url": "https://www.syncfusion.com/license/studio/17.2.0.34/syncfusion_essential_studio_eula.pdf",
+    "copyright": ""
+  },
+  {
+    "name": "Syncfusion.Xamarin.Core",
+    "android": true,
+    "ios": true,
+    "license_type": "License",
+    "url": "https://www.syncfusion.com/license/studio/17.2.0.34/syncfusion_essential_studio_eula.pdf",
+    "copyright": ""
+  },
+  {
+    "name": "Syncfusion.Xamarin.SfChart",
+    "android": true,
+    "ios": true,
+    "license_type": "License",
+    "url": "https://www.syncfusion.com/license/studio/17.2.0.34/syncfusion_essential_studio_eula.pdf",
+    "copyright": ""
+  },
+  {
+    "name": "System.ComponentModel.Annotations",
+    "android": false,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/dotnet/corefx/blob/master/LICENSE.TXT",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "System.Numerics.Vectors",
+    "android": false,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/dotnet/corefx/blob/master/LICENSE.TXT",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "System.Reactive",
+    "android": true,
+    "ios": true,
+    "license_type": "Apache License Version 2.0",
+    "url": "https://github.com/dotnet/reactive/blob/master/LICENSE",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "System.Runtime.InteropServices.WindowsRuntime",
+    "android": false,
+    "ios": true,
+    "license_type": "License",
+    "url": "https://dotnet.microsoft.com/ja/dotnet_library_license.htm",
+    "copyright": " "
+  },
+  {
+    "name": "System.Threading.Tasks.Extensions",
+    "android": true,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/dotnet/corefx/blob/master/LICENSE.TXT",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "Xamarin.Android.Support.Design",
+    "android": true,
+    "ios": false,
+    "license_type": "MIT License",
+    "url": "https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "Xamarin.Android.Support.v4",
+    "android": true,
+    "ios": false,
+    "license_type": "MIT License",
+    "url": "https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "Xamarin.Android.Support.v7.AppCompat",
+    "android": true,
+    "ios": false,
+    "license_type": "MIT License",
+    "url": "https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "Xamarin.Android.Support.v7.CardView",
+    "android": true,
+    "ios": false,
+    "license_type": "MIT License",
+    "url": "https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "Xamarin.Android.Support.v7.MediaRouter",
+    "android": true,
+    "ios": false,
+    "license_type": "MIT License",
+    "url": "https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "Xamarin.Essentials",
+    "android": true,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/xamarin/Essentials/blob/master/LICENSE",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "Xamarin.Forms",
+    "android": true,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/xamarin/Xamarin.Forms/blob/master/LICENSE",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "Xamarin.Forms.Visual.Material",
+    "android": true,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/xamarin/Xamarin.Forms/blob/master/LICENSE",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  },
+  {
+    "name": "Xamarin.iOS.MaterialComponents",
+    "android": false,
+    "ios": true,
+    "license_type": "MIT License",
+    "url": "https://github.com/xamarin/XamarinComponents/blob/master/iOS/MaterialComponents/License.md",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
+  }
+]

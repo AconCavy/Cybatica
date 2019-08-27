@@ -7,6 +7,7 @@
     xmlns:vm="clr-namespace:Cybatica.ViewModels"
     xmlns:util="clr-namespace:Cybatica.Utilities"
     xmlns:theme="clr-namespace:Cybatica.Resources"
+    xmlns:system="clr-namespace:System;assembly=netstandard"
     x:Class="Cybatica.Views.AboutPage"
     x:TypeArguments="vm:AboutViewModel"
     Visual="Material"
@@ -22,415 +23,46 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-
         <StackLayout Padding="8,8,8,8">
+            <Frame Style="{StaticResource Card}">
+                <StackLayout>
+                    <Label Text="Cybatica"
+                           Style="{StaticResource HeadText}" />
+                    <Label Style="{StaticResource NormalText}"
+                           Text="Copyright (c) 2019 Takuro Magaki All Rights Reserved." />
+                    <Label Style="{StaticResource NormalText}"
+                           Text="Contact: g2118038@fun.ac.jp" />
+                </StackLayout>
+            </Frame>
 
-            <StackLayout>
+            <Label Style="{StaticResource HeadText}"
+                   Text="Third-Party Licenses" />
 
-                <Label Style="{StaticResource HeadText}"
-                       Text="Cybatica" />
-
-                <Label Style="{StaticResource NormalText}"
-                       Text="Copyright (c) 2019 Takuro Magaki All Rights Reserved." />
-
-                <Label Style="{StaticResource NormalText}"
-                       Text="Contact: g2118038@fun.ac.jp" />
-
-            </StackLayout>
-
-            <StackLayout>
-
-                <Label Style="{StaticResource HeadText}"
-                       Text="Third-Party Licenses" />
-
-                <ScrollView Orientation="Vertical"
-                            Margin="8,8,8,8">
-
-                    <StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="DynamicData" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/reactiveui/DynamicData/blob/master/LICENSE" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) Roland Pheasant 2011-2018 All rights reserved." />
+            <CollectionView x:Name="Licenses">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="0,8">
+                            <Frame Style="{StaticResource Card}">
+                                <StackLayout>
+                                    <Label Text="{Binding Name}"
+                                           Style="{StaticResource HeadText}" />
+                                    <Label Style="{StaticResource NormalText}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <util:HyperlinkSpan Text="{Binding LicenseType}"
+                                                                    Url="{Binding Url}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Text="{Binding Copyright}"
+                                           Style="{StaticResource NormalText}"
+                                           FontSize="Small" />
+                                </StackLayout>
+                            </Frame>
                         </StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Fody" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/Fody/Fody/blob/master/License.txt" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) Simon Cropp and contributors" />
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="NETStandard.Library" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/dotnet/standard/blob/master/LICENSE.TXT" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="ReactiveUI" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/reactiveui/ReactiveUI/blob/master/LICENSE" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="ReactiveUI.Fody" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/reactiveui/ReactiveUI/blob/master/LICENSE" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="ReactiveUI.XamForms" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/reactiveui/ReactiveUI/blob/master/LICENSE" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Splat" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/reactiveui/splat/blob/master/LICENSE" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout IsVisible="{OnPlatform Android=True, iOS=False}">
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Square.OkHttp" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="Apache License Version 2.0"
-                                                            Url="https://github.com/mattleibow/square-bindings/blob/master/LICENSE" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-
-                        <StackLayout IsEnabled="{OnPlatform Android=True, iOS=False}">
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Square.OkIO" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="Apache License Version 2.0"
-                                                            Url="https://github.com/mattleibow/square-bindings/blob/master/LICENSE" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Syncfusion.Licensing" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="License"
-                                                            Url="https://www.syncfusion.com/license/studio/17.2.0.34/syncfusion_essential_studio_eula.pdf" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Syncfusion.Xamarin.Core" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="License"
-                                                            Url="https://www.syncfusion.com/license/studio/17.2.0.34/syncfusion_essential_studio_eula.pdf" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Syncfusion.Xamarin.SfChart" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="License"
-                                                            Url="https://www.syncfusion.com/license/studio/17.2.0.34/syncfusion_essential_studio_eula.pdf" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-
-                        <StackLayout IsVisible="{OnPlatform Android=False, iOS=True}">
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="System.ComponentModel.Annotations" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/dotnet/corefx/blob/master/LICENSE.TXT" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout IsVisible="{OnPlatform Android=False, iOS=True}">
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="System.Numerics.Vectors" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/dotnet/corefx/blob/master/LICENSE.TXT" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="System.Reactive" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="Apache License Version 2.0"
-                                                            Url="https://github.com/dotnet/reactive/blob/master/LICENSE" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout IsVisible="{OnPlatform Android=False, iOS=True}">
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="System.Runtime.InteropServices.WindowsRuntime" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="License"
-                                                            Url="https://dotnet.microsoft.com/ja/dotnet_library_license.htm" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="System.Threading.Tasks.Extensions" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/dotnet/corefx/blob/master/LICENSE.TXT" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout IsVisible="{OnPlatform Android=True, iOS=False}">
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Android.Support.Design" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout IsVisible="{OnPlatform Android=True, iOS=False}">
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Android.Support.v4" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout IsVisible="{OnPlatform Android=True, iOS=False}">
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Android.Support.v7.AppCompat" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-
-                        <StackLayout IsVisible="{OnPlatform Android=True, iOS=False}">
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Android.Support.v7.CardView" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout IsVisible="{OnPlatform Android=True, iOS=False}">
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Android.Support.v7MediaRouter" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Essentials" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/xamarin/Essentials/blob/master/LICENSE" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Forms" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/xamarin/Xamarin.Forms/blob/master/LICENSE" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.Forms.Visual.Material" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/xamarin/Xamarin.Forms/blob/master/LICENSE" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-                        <StackLayout IsVisible="{OnPlatform Android=False, iOS=True}">
-                            <Label Style="{StaticResource HeadText}"
-                                   Text="Xamarin.iOS.MaterialComponents" />
-                            <Label Style="{StaticResource NormalText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <util:HyperlinkSpan Text="MIT License"
-                                                            Url="https://github.com/xamarin/XamarinComponents/blob/master/iOS/MaterialComponents/License.md" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Style="{StaticResource NormalText}"
-                                   Text="Copyright (c) .NET Foundation and Contributors" />
-                        </StackLayout>
-
-
-                    </StackLayout>
-
-                </ScrollView>
-
-            </StackLayout>
-
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
 
     </ContentPage.Content>

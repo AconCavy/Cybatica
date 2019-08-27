@@ -1,4 +1,5 @@
 ﻿using Cybatica.ViewModels;
+using ReactiveUI;
 using ReactiveUI.XamForms;
 using Xamarin.Forms.Xaml;
 
@@ -11,6 +12,13 @@ namespace Cybatica.Views
         {
             ViewModel = new AboutViewModel();
             InitializeComponent();
+
+            this.WhenActivated(disposable =>
+            {
+                disposable(this.OneWayBind(ViewModel,
+                    vm => vm.Licenses,
+                    v => v.Licenses.ItemsSource));
+            });
         }
     }
 }
