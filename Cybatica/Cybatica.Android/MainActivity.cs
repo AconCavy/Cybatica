@@ -25,8 +25,8 @@ namespace Cybatica.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Forms.SetFlags("CollectionView_Experimental", "FastRenderers_Experimental");
             Forms.Init(this, savedInstanceState);
-
             FormsMaterial.Init(this, savedInstanceState);
             _ = new AppBootstrapper();
 
@@ -39,7 +39,7 @@ namespace Cybatica.Droid
 
             if (ApplicationContext.CheckCallingOrSelfPermission(
                     Manifest.Permission.AccessCoarseLocation) != Permission.Granted)
-                ActivityCompat.RequestPermissions(this, new[] { Manifest.Permission.AccessCoarseLocation },
+                ActivityCompat.RequestPermissions(this, new[] {Manifest.Permission.AccessCoarseLocation},
                     RequestPermissionAccessCoarseLocation);
 
             LoadApplication(new App());

@@ -23,6 +23,7 @@ namespace Cybatica.iOS
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Forms.SetFlags("CollectionView_Experimental", "FastRenderers_Experimental");
             Forms.Init();
             FormsMaterial.Init();
             _ = new AppBootstrapper();

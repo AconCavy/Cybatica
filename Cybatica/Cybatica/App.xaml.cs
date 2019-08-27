@@ -10,7 +10,6 @@ namespace Cybatica
     {
         public App()
         {
-            ExperimentalFeatures.Enable(ExperimentalFeatures.ShareFileRequest);
             SyncfusionLicenseProvider.RegisterLicense(AppPrivateInformations.SyncfusionLicenseKey);
             var _ = new AppBootstrapper();
             var empaticaHandler = Locator.Current.GetService<IEmpaticaHandler>();

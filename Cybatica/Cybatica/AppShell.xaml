@@ -9,8 +9,8 @@
     Shell.BackgroundColor="{StaticResource Primary}"
     Shell.TitleColor="{StaticResource Black}"
     Shell.ForegroundColor="{StaticResource Black}"
-    Shell.TabBarBackgroundColor="{StaticResource Gray300}"
-    Shell.TabBarTitleColor="{StaticResource Secondary}"
+    Shell.TabBarBackgroundColor="{StaticResource Primary}"
+    Shell.TabBarTitleColor="{StaticResource SecondaryDark}"
     Shell.TabBarUnselectedColor="{StaticResource Black}">
 
     <Shell.Resources>
@@ -23,19 +23,22 @@
 
     <TabBar>
 
-        <Tab Title="Home">
+        <Tab Title="Home"
+             Icon="icon_home.png">
             <ShellContent Route="home">
                 <views:HomePage />
             </ShellContent>
         </Tab>
 
-        <Tab Title="OCS">
+        <Tab Title="OCS"
+             Icon="icon_ocs.png">
             <ShellContent Route="ocs">
                 <views:OcsPage />
             </ShellContent>
         </Tab>
 
-        <Tab Title="Bio Data">
+        <Tab Title="Bio Data"
+             Icon="icon_bio.png">
             <ShellContent Route="bioData">
                 <views:BioDataPage />
             </ShellContent>
