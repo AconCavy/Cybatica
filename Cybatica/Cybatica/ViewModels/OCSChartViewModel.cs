@@ -49,7 +49,7 @@ namespace Cybatica.ViewModels
 
         public void Dispose()
         {
-            _cleanUp.Dispose();
+            _cleanUp?.Dispose();
         }
     }
 }

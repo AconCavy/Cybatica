@@ -49,6 +49,5 @@
         <Setter Property="FontSize" Value="Medium" />
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="FontFamily" Value="Arial" />
-        <Setter Property="Margin" Value="8,8,8,8" />
     </Style>
 </ResourceDictionary>

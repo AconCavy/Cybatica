@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace Cybatica.ViewModels
 {
-    public class OcsViewModel : ReactiveObject, IDisposable
+    public class OcsViewModel : ReactiveObject
     {
         private readonly OcsModel _ocsModel;
 
@@ -55,9 +55,5 @@ namespace Cybatica.ViewModels
 
 
         public ReactiveCommand<Unit, Unit> ChartCommand { get; }
-
-        public void Dispose()
-        {
-        }
     }
 }

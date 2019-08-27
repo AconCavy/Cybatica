@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Cybatica.Services;
 using Cybatica.Utilities;
 using ReactiveUI;
@@ -58,12 +58,12 @@ namespace Cybatica.ViewModels
         [Reactive] public bool IsBaseStored { get; private set; }
         [Reactive] public bool IsCapturing { get; private set; }
 
-        public ReactiveCommand<Unit, Unit> StartBaseSessionCommand { get; }
-        public ReactiveCommand<Unit, Unit> StartDataSessionCommand { get; }
-        public ReactiveCommand<Unit, Unit> StopSessionCommand { get; }
-        public ReactiveCommand<Unit, Unit> ConnectCommand { get; }
-        public ReactiveCommand<Unit, Unit> DisconnectCommand { get; }
-        public ReactiveCommand<Unit, Unit> AboutCommand { get; }
+        public ICommand StartBaseSessionCommand { get; }
+        public ICommand StartDataSessionCommand { get; }
+        public ICommand StopSessionCommand { get; }
+        public ICommand ConnectCommand { get; }
+        public ICommand DisconnectCommand { get; }
+        public ICommand AboutCommand { get; }
 
         [Reactive] private TimeSpan Time { get; set; }
 
@@ -155,7 +155,7 @@ namespace Cybatica.ViewModels
 
             _cybaticaHandler.Disconnect();
 
-            if (IsCapturing) await StopSessionCommand.Execute();
+            if (IsCapturing) await StopSessionAsync();
 
             IsConnecting = false;
             IsBaseStored = false;

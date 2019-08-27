@@ -10,7 +10,7 @@
     x:Class="Cybatica.Views.OcsChartPage"
     x:TypeArguments="vm:OcsChartViewModel"
     Visual="Material"
-    Title="OCS chart"
+    Title="OCS Chart"
     BackgroundColor="{StaticResource Gray100}">
 
     <ContentPage.Resources>
@@ -23,7 +23,7 @@
                 <Setter Property="HeightRequest" Value="300" />
                 <Setter Property="BackgroundColor" Value="{StaticResource Gray100}" />
                 <Setter Property="AreaBackgroundColor" Value="{StaticResource Gray100}" />
-                <Setter Property="ChartPadding" Value="-8,-8,24,-8" />
+                <Setter Property="ChartPadding" Value="{OnPlatform Android=&quot;-8,8,24,-8&quot;, iOS=&quot;0,0,16,0&quot;}"/>
             </Style>
 
         </ResourceDictionary>

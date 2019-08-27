@@ -20,32 +20,32 @@ namespace Cybatica.ViewModels
             var cybaticaHandler = Locator.Current.GetService<ICybaticaHandler>();
             _bioData = cybaticaHandler.BioDataModel;
 
-            _ = this.WhenAnyValue(x => x._bioData.Bvp)
+            this.WhenAnyValue(x => x._bioData.Bvp)
                 .Sample(TimeSpan.FromSeconds(1))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Bvp);
 
-            _ = this.WhenAnyValue(x => x._bioData.Ibi)
+            this.WhenAnyValue(x => x._bioData.Ibi)
                 .Sample(TimeSpan.FromSeconds(1))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Ibi);
 
-            _ = this.WhenAnyValue(x => x._bioData.Hr)
+            this.WhenAnyValue(x => x._bioData.Hr)
                 .Sample(TimeSpan.FromSeconds(1))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Hr);
 
-            _ = this.WhenAnyValue(x => x._bioData.Gsr)
+            this.WhenAnyValue(x => x._bioData.Gsr)
                 .Sample(TimeSpan.FromSeconds(1))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Gsr);
 
-            _ = this.WhenAnyValue(x => x._bioData.Temperature)
+            this.WhenAnyValue(x => x._bioData.Temperature)
                 .Sample(TimeSpan.FromSeconds(1))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Temperature);
 
-            _ = this.WhenAnyValue(x => x._bioData.Acceleration)
+            this.WhenAnyValue(x => x._bioData.Acceleration)
                 .Sample(TimeSpan.FromSeconds(1))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Acceleration);
