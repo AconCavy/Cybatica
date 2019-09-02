@@ -15,7 +15,7 @@ using Platform = Xamarin.Essentials.Platform;
 
 namespace Cybatica.Droid
 {
-    [Activity(Label = "Cybatica", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true,
+    [Activity(Label = "Cybatica", Icon = "@mipmap/icon_cybatica", Theme = "@style/MainTheme", MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {

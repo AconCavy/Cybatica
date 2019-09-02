@@ -56,9 +56,7 @@
 		<true/>
 	</dict>
 	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/AppIcon.appiconset</string>
-	<key>XSLaunchImageAssets</key>
-	<string>Assets.xcassets/LaunchImages.launchimage</string>
+	<string>Assets.xcassets/AppIcons.appiconset</string>
 	<key>MinimumOSVersion</key>
 	<string>12.0</string>
 </dict>
