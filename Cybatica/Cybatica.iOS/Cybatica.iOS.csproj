@@ -217,6 +217,9 @@
     <ImageAsset Include="Assets.xcassets\icon_bio.imageset\icon_bio@2x.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\icon_cybatica.imageset\icon_cybatica.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\icon_home.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -233,6 +236,9 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\icon_ocs.imageset\icon_ocs@2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\icon_cybatica.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Contents.json">
@@ -386,6 +392,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon_cybatica_40%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_cybatica.png" />
   </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
