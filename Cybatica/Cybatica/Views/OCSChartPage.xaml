@@ -23,7 +23,8 @@
                 <Setter Property="HeightRequest" Value="300" />
                 <Setter Property="BackgroundColor" Value="{StaticResource Gray100}" />
                 <Setter Property="AreaBackgroundColor" Value="{StaticResource Gray100}" />
-                <Setter Property="ChartPadding" Value="{OnPlatform Android=&quot;-8,8,24,-8&quot;, iOS=&quot;0,0,16,0&quot;}"/>
+                <Setter Property="ChartPadding"
+                        Value="{OnPlatform Android=&quot;-8,8,24,-8&quot;, iOS=&quot;0,0,16,0&quot;}" />
             </Style>
 
         </ResourceDictionary>
@@ -44,7 +45,7 @@
                                               BackgroundColor="{StaticResource Gray100}" />
                         </chart:SfChart.Title>
                         <chart:SfChart.PrimaryAxis>
-                            <chart:NumericalAxis AutoScrollingDelta="10">
+                            <chart:NumericalAxis AutoScrollingDelta="5">
                                 <chart:NumericalAxis.Title>
                                     <chart:ChartAxisTitle Text="Timestamp"
                                                           TextColor="{StaticResource Gray900}" />
@@ -63,7 +64,8 @@
                                               Color="{StaticResource Secondary}"
                                               XBindingPath="Timestamp"
                                               YBindingPath="Value"
-                                              EnableAnimation="True" />
+                                              EnableAnimation="True"
+                                              StrokeWidth="1" />
                         <chart:SfChart.ChartBehaviors>
                             <chart:ChartTrackballBehavior ShowLabel="True"
                                                           ShowLine="True" />
@@ -81,7 +83,7 @@
                                               BackgroundColor="{StaticResource Gray100}" />
                         </chart:SfChart.Title>
                         <chart:SfChart.PrimaryAxis>
-                            <chart:NumericalAxis AutoScrollingDelta="10">
+                            <chart:NumericalAxis AutoScrollingDelta="5">
                                 <chart:NumericalAxis.Title>
                                     <chart:ChartAxisTitle Text="Timestamp"
                                                           TextColor="{StaticResource Gray900}" />
@@ -100,7 +102,8 @@
                                               Color="{StaticResource Secondary}"
                                               XBindingPath="Timestamp"
                                               YBindingPath="Value"
-                                              EnableAnimation="True" />
+                                              EnableAnimation="True"
+                                              StrokeWidth="1" />
                         <chart:SfChart.ChartBehaviors>
                             <chart:ChartTrackballBehavior ShowLabel="True"
                                                           ShowLine="True" />
@@ -118,7 +121,7 @@
                                               BackgroundColor="{StaticResource Gray100}" />
                         </chart:SfChart.Title>
                         <chart:SfChart.PrimaryAxis>
-                            <chart:NumericalAxis AutoScrollingDelta="10">
+                            <chart:NumericalAxis AutoScrollingDelta="5">
                                 <chart:NumericalAxis.Title>
                                     <chart:ChartAxisTitle Text="Timestamp"
                                                           TextColor="{StaticResource Gray900}" />
@@ -137,7 +140,8 @@
                                               Color="{StaticResource Secondary}"
                                               XBindingPath="Timestamp"
                                               YBindingPath="Value"
-                                              EnableAnimation="True" />
+                                              EnableAnimation="True"
+                                              StrokeWidth="1" />
                         <chart:SfChart.ChartBehaviors>
                             <chart:ChartTrackballBehavior ShowLabel="True"
                                                           ShowLine="True" />
