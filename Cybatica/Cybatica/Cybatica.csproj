@@ -1,14 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <Optimize>false</Optimize>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,18 +22,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="ReactiveUI" Version="9.20.1" />
-    <PackageReference Include="ReactiveUI.Fody" Version="9.20.1" />
-    <PackageReference Include="ReactiveUI.XamForms" Version="9.20.1" />
-    <PackageReference Include="Syncfusion.Licensing" Version="17.2.0.46" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.46" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.2.0.46" />
+    <PackageReference Include="ReactiveUI" Version="10.3.6" />
+    <PackageReference Include="ReactiveUI.Fody" Version="10.3.6" />
+    <PackageReference Include="ReactiveUI.XamForms" Version="10.3.6" />
+    <PackageReference Include="Syncfusion.Licensing" Version="17.3.0.14" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.3.0.14" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.3.0.14" />
     <PackageReference Include="System.Reactive" Version="4.1.6" />
+    <PackageReference Include="System.Text.Json" Version="4.6.0" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.3.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.709244" />
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.1.0.709244" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.848062" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.2.0.848062" />
   </ItemGroup>
 
   <ItemGroup>

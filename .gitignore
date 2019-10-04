@@ -257,4 +257,4 @@ paket-files/
 .cr/
 
 # Private informations
-/Cybatica/Cybatica/AppPrivateInformations.cs
+/Cybatica/Cybatica/AppPrivateInformation.cs
