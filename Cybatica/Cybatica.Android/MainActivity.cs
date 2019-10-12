@@ -16,7 +16,7 @@ using Platform = Xamarin.Essentials.Platform;
 namespace Cybatica.Droid
 {
     [Activity(Label = "Cybatica", Theme = "@style/MainTheme", Icon = "@mipmap/icon_cybatica",
-        MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+        MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {
         private const int RequestEnableBt = 1;
