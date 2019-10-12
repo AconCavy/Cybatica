@@ -4,7 +4,7 @@ using Xamarin.Forms.Platform.Android;
 
 namespace Cybatica.Droid
 {
-    [Activity(Theme = "@style/MainTheme.Splash", Icon = "@mipmap/icon_cybatica", MainLauncher = false,
+    [Activity(Theme = "@style/MainTheme.Splash", Icon = "@mipmap/icon_cybatica", MainLauncher = true,
         NoHistory = true)]
     public class SplashActivity : FormsAppCompatActivity
     {
