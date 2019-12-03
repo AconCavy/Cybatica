@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Reactive.Linq;
 using Cybatica.Empatica;
 using ReactiveUI;
@@ -57,8 +56,6 @@ namespace Cybatica.Mocks
 
         public BleStatus BleStatus { get; private set; }
 
-        public ReadOnlyCollection<EmpaticaDevice> Devices => new ReadOnlyCollection<EmpaticaDevice>(_devices);
-
         public Action<BatteryLevel> BatteryLevelAction { get; set; }
 
         public Action<Bvp> BvpAction { get; set; }
@@ -109,6 +106,11 @@ namespace Cybatica.Mocks
             _cleanUp?.Dispose();
             _cleanUp = null;
             _isCapturing = false;
+        }
+
+        public IEnumerable<EmpaticaDevice> GetDiscoveredDevices()
+        {
+            return _devices;
         }
     }
 }

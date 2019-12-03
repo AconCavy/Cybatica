@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using CoreFoundation;
 using Cybatica.Empatica;
@@ -54,15 +53,13 @@ namespace Cybatica.iOS.Empatica
 
         public BleStatus BleStatus { get; private set; }
 
-        public ReadOnlyCollection<EmpaticaDevice> Devices =>
-            new ReadOnlyCollection<EmpaticaDevice>(
-                _devices.Select(x => new EmpaticaDevice(
-                        x.SerialNumber,
-                        x.Name,
-                        x.AdvertisingName,
-                        x.HardwareId,
-                        x.FirmwareVersion))
-                    .ToList());
+        public IEnumerable<EmpaticaDevice> Devices =>
+            _devices.Select(x => new EmpaticaDevice(
+                x.SerialNumber,
+                x.Name,
+                x.AdvertisingName,
+                x.HardwareId,
+                x.FirmwareVersion));
 
         public Action<BatteryLevel> BatteryLevelAction
         {
@@ -152,6 +149,7 @@ namespace Cybatica.iOS.Empatica
             }
 
             _deviceManager = null;
+            _devices.Clear();
         }
 
         public void Discover()
@@ -168,6 +166,16 @@ namespace Cybatica.iOS.Empatica
         public void StopSession()
         {
             _empaticaDeviceDelegate.StopSession();
+        }
+
+        public IEnumerable<EmpaticaDevice> GetDiscoveredDevices()
+        {
+            return _devices.Select(x => new EmpaticaDevice(
+                x.SerialNumber,
+                x.Name,
+                x.AdvertisingName,
+                x.HardwareId,
+                x.FirmwareVersion));
         }
 
         #endregion
