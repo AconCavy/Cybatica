@@ -1,0 +1,130 @@
+[
+  {
+    "Parameter": "Discomfort",
+    "NnMean": 0.1010010673,
+    "SdNn": 0.1226295789,
+    "MeanEda": 0.0258707508,
+    "PeakEda": 0.0044971685,
+    "Intercept": 0.5217708015
+  },
+  {
+    "Parameter": "Fatigue",
+    "NnMean": 0.1952963431,
+    "SdNn": -0.0925521252,
+    "MeanEda": -0.1946586089,
+    "PeakEda": 0.1115281632,
+    "Intercept": 0.7504304715
+  },
+  {
+    "Parameter": "Headache",
+    "NnMean": -2.3578279878,
+    "SdNn": 0.2400831777,
+    "MeanEda": -0.1125993828,
+    "PeakEda": 0.0472312451,
+    "Intercept": 2.1961693209
+  },
+  {
+    "Parameter": "EyeStrain",
+    "NnMean": -1.9283029729,
+    "SdNn": 0.1056238322,
+    "MeanEda": -0.3586948793,
+    "PeakEda": 0.1909733711,
+    "Intercept": 2.4720275505
+  },
+  {
+    "Parameter": "DifficultyFocusing",
+    "NnMean": -3.5099816377,
+    "SdNn": 0.3142833777,
+    "MeanEda": -0.1815993626,
+    "PeakEda": 0.0868859227,
+    "Intercept": 3.6971999209
+  },
+  {
+    "Parameter": "IncreasedSalivation",
+    "NnMean": -2.1849940446,
+    "SdNn": 0.1145321605,
+    "MeanEda": -0.0488496195,
+    "PeakEda": -0.0124790421,
+    "Intercept": 2.7404654578
+  },
+  {
+    "Parameter": "Sweating",
+    "NnMean": 2.9479153133,
+    "SdNn": -0.1473914917,
+    "MeanEda": -0.2160906416,
+    "PeakEda": 0.1399445253,
+    "Intercept": -2.2729066612
+  },
+  {
+    "Parameter": "Nausea",
+    "NnMean": -2.0453610413,
+    "SdNn": 0.1206159899,
+    "MeanEda": 0.1493433217,
+    "PeakEda": -0.115145728,
+    "Intercept": 2.4655145335
+  },
+  {
+    "Parameter": "DifficultyConcentrating",
+    "NnMean": 0.3172135812,
+    "SdNn": -0.0501450639,
+    "MeanEda": -0.1621174727,
+    "PeakEda": 0.1219091405,
+    "Intercept": -0.0418684435
+  },
+  {
+    "Parameter": "HeadFullness",
+    "NnMean": -0.9083144921,
+    "SdNn": 0.1495877995,
+    "MeanEda": -0.2032671601,
+    "PeakEda": 0.1318857797,
+    "Intercept": 1.0797321251
+  },
+  {
+    "Parameter": "BlurredVision",
+    "NnMean": -1.9500992579,
+    "SdNn": 0.1734059893,
+    "MeanEda": -0.4745343493,
+    "PeakEda": 0.2852821423,
+    "Intercept": 2.3151478439
+  },
+  {
+    "Parameter": "OpenedDizziness",
+    "NnMean": 0.4607564647,
+    "SdNn": 0.0419825026,
+    "MeanEda": -0.2256908866,
+    "PeakEda": 0.0916728257,
+    "Intercept": 0.1480966121
+  },
+  {
+    "Parameter": "ClosedDizziness",
+    "NnMean": -0.7032245752,
+    "SdNn": 0.0255694318,
+    "MeanEda": -0.2521230061,
+    "PeakEda": 0.1519310256,
+    "Intercept": 1.03909136
+  },
+  {
+    "Parameter": "Vertigo",
+    "NnMean": 2.764209698,
+    "SdNn": -0.1100899441,
+    "MeanEda": -0.614770626,
+    "PeakEda": 0.380013653,
+    "Intercept": -1.7790730208
+  },
+  {
+    "Parameter": "StomachAwareness",
+    "NnMean": 0.8897924129,
+    "SdNn": -0.1453499982,
+    "MeanEda": 0.0506848905,
+    "PeakEda": 0.0044094142,
+    "Intercept": -0.5252511288
+  },
+  {
+    "Parameter": "Burping",
+    "NnMean": 0.0,
+    "SdNn": 0.0,
+    "MeanEda": 0.0,
+    "PeakEda": 0.0,
+    "Intercept": 0.0
+  }
+]
