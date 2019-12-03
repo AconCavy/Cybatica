@@ -24,9 +24,8 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource Gray100}" />
                 <Setter Property="AreaBackgroundColor" Value="{StaticResource Gray100}" />
                 <Setter Property="ChartPadding"
-                        Value="{OnPlatform Android=&quot;-8,8,24,-8&quot;, iOS=&quot;0,0,16,0&quot;}" />
+                        Value="{OnPlatform Android='-8,8,24,-8', iOS='0,0,16,0'}" />
             </Style>
-
         </ResourceDictionary>
     </ContentPage.Resources>
 
