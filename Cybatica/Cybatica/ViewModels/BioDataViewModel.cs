@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Reactive;
 using System.Reactive.Linq;
+using System.Windows.Input;
 using Cybatica.Empatica;
-using Cybatica.Models;
 using Cybatica.Services;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -13,54 +12,58 @@ namespace Cybatica.ViewModels
 {
     public class BioDataViewModel : ReactiveObject
     {
-        private readonly BioDataModel _bioData;
+        private readonly ICybaticaHandler _cybaticaHandler;
 
-        public BioDataViewModel()
+        public BioDataViewModel(ICybaticaHandler cybaticaHandler = null)
         {
-            var cybaticaHandler = Locator.Current.GetService<ICybaticaHandler>();
-            _bioData = cybaticaHandler.BioDataModel;
+            _cybaticaHandler = cybaticaHandler ?? Locator.Current.GetService<ICybaticaHandler>();
 
-            this.WhenAnyValue(x => x._bioData.Bvp)
-                .Sample(TimeSpan.FromSeconds(1))
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .ToPropertyEx(this, x => x.Bvp);
-
-            this.WhenAnyValue(x => x._bioData.Ibi)
-                .Sample(TimeSpan.FromSeconds(1))
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .ToPropertyEx(this, x => x.Ibi);
-
-            this.WhenAnyValue(x => x._bioData.Hr)
-                .Sample(TimeSpan.FromSeconds(1))
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .ToPropertyEx(this, x => x.Hr);
-
-            this.WhenAnyValue(x => x._bioData.Gsr)
-                .Sample(TimeSpan.FromSeconds(1))
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .ToPropertyEx(this, x => x.Gsr);
-
-            this.WhenAnyValue(x => x._bioData.Temperature)
-                .Sample(TimeSpan.FromSeconds(1))
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .ToPropertyEx(this, x => x.Temperature);
-
-            this.WhenAnyValue(x => x._bioData.Acceleration)
+            this.WhenAnyValue(x => x._cybaticaHandler.Acceleration)
+                .SubscribeOn(RxApp.TaskpoolScheduler)
                 .Sample(TimeSpan.FromSeconds(1))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Acceleration);
 
-            ChartCommand =
-                ReactiveCommand.CreateFromTask(async () => { await Shell.Current.GoToAsync("bioDataChart"); });
+            this.WhenAnyValue(x => x._cybaticaHandler.Bvp)
+                .SubscribeOn(RxApp.TaskpoolScheduler)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .ToPropertyEx(this, x => x.Bvp);
+
+            this.WhenAnyValue(x => x._cybaticaHandler.Gsr)
+                .SubscribeOn(RxApp.TaskpoolScheduler)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .ToPropertyEx(this, x => x.Gsr);
+
+            this.WhenAnyValue(x => x._cybaticaHandler.Hr)
+                .SubscribeOn(RxApp.TaskpoolScheduler)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .ToPropertyEx(this, x => x.Hr);
+
+            this.WhenAnyValue(x => x._cybaticaHandler.Ibi)
+                .SubscribeOn(RxApp.TaskpoolScheduler)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .ToPropertyEx(this, x => x.Ibi);
+
+            this.WhenAnyValue(x => x._cybaticaHandler.Temperature)
+                .SubscribeOn(RxApp.TaskpoolScheduler)
+                .Sample(TimeSpan.FromSeconds(1))
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .ToPropertyEx(this, x => x.Temperature);
+
+            ChartCommand = ReactiveCommand.CreateFromTask(async () => { await Shell.Current.GoToAsync("bioChart"); });
         }
 
-        [Reactive] public Bvp Bvp { [ObservableAsProperty] get; private set; }
-        [Reactive] public Ibi Ibi { [ObservableAsProperty] get; private set; }
-        [Reactive] public Hr Hr { [ObservableAsProperty] get; private set; }
-        [Reactive] public Gsr Gsr { [ObservableAsProperty] get; private set; }
-        [Reactive] public Temperature Temperature { [ObservableAsProperty] get; private set; }
         [Reactive] public Acceleration Acceleration { [ObservableAsProperty] get; private set; }
+        [Reactive] public Bvp Bvp { [ObservableAsProperty] get; private set; }
+        [Reactive] public Gsr Gsr { [ObservableAsProperty] get; private set; }
+        [Reactive] public Hr Hr { [ObservableAsProperty] get; private set; }
+        [Reactive] public Ibi Ibi { [ObservableAsProperty] get; private set; }
+        [Reactive] public Temperature Temperature { [ObservableAsProperty] get; private set; }
 
-        public ReactiveCommand<Unit, Unit> ChartCommand { get; }
+        public ICommand ChartCommand { get; }
     }
 }

@@ -1,51 +1,48 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using Cybatica.Models;
+﻿using Cybatica.Models;
 using Cybatica.Services;
 using DynamicData;
 using ReactiveUI;
 using Splat;
+using System;
+using System.Collections.ObjectModel;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace Cybatica.ViewModels
 {
     public class OcsChartViewModel : ReactiveObject, IDisposable
     {
-        private readonly ReadOnlyObservableCollection<AnalysisData> _meanEda;
+        public ReadOnlyObservableCollection<AnalysisData> Ocs => _ocs;
+        public ReadOnlyObservableCollection<AnalysisData> SdNn => _sdNn;
+        public ReadOnlyObservableCollection<AnalysisData> MeanEda => _meanEda;
+
+        private readonly IDisposable _cleanUp;
+        private readonly ICybaticaHandler _cybaticaHandler;
         private readonly ReadOnlyObservableCollection<AnalysisData> _ocs;
         private readonly ReadOnlyObservableCollection<AnalysisData> _sdNn;
-        private readonly IDisposable _cleanUp;
+        private readonly ReadOnlyObservableCollection<AnalysisData> _meanEda;
 
-        public OcsChartViewModel()
+        public OcsChartViewModel(ICybaticaHandler cybaticaHandler = null)
         {
-            var handler = Locator.Current.GetService<ICybaticaHandler>();
-            var session = handler.OcsSession;
+            _cybaticaHandler = cybaticaHandler ?? Locator.Current.GetService<ICybaticaHandler>();
 
-            var ocs = session.Ocs.Connect()
-                .SubscribeOn(RxApp.TaskpoolScheduler)
+            var ocs = _cybaticaHandler.OcsConnectable
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _ocs)
                 .Subscribe();
 
-            var sdNn = session.SdNn.Connect()
-                .SubscribeOn(RxApp.TaskpoolScheduler)
+            var sdNn = _cybaticaHandler.SdNnConnectable
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _sdNn)
                 .Subscribe();
 
-            var meanEda = session.MeanEda.Connect()
-                .SubscribeOn(RxApp.TaskpoolScheduler)
+            var meanEda = _cybaticaHandler.MeanEdaConnectable
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _meanEda)
                 .Subscribe();
 
             _cleanUp = new CompositeDisposable(ocs, sdNn, meanEda);
         }
-
-        public ReadOnlyObservableCollection<AnalysisData> Ocs => _ocs;
-        public ReadOnlyObservableCollection<AnalysisData> SdNn => _sdNn;
-        public ReadOnlyObservableCollection<AnalysisData> MeanEda => _meanEda;
 
         public void Dispose()
         {
