@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Reactive;
 using System.Reactive.Linq;
+using System.Windows.Input;
 using Cybatica.Models;
 using Cybatica.Services;
 using ReactiveUI;
@@ -12,34 +12,38 @@ namespace Cybatica.ViewModels
 {
     public class OcsViewModel : ReactiveObject
     {
-        private readonly OcsModel _ocsModel;
+        private readonly ICybaticaHandler _cybaticaHandler;
 
-        public OcsViewModel()
+        public OcsViewModel(ICybaticaHandler cybaticaHandler = null)
         {
-            var cybaticaHandler = Locator.Current.GetService<ICybaticaHandler>();
-            _ocsModel = cybaticaHandler.OcsModel;
+            _cybaticaHandler = cybaticaHandler ?? Locator.Current.GetService<ICybaticaHandler>();
 
-            this.WhenAnyValue(x => x._ocsModel.Ocs)
+            this.WhenAnyValue(x => x._cybaticaHandler.Ocs)
+                .SubscribeOn(RxApp.TaskpoolScheduler)
                 .Sample(TimeSpan.FromSeconds(1))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.Ocs);
 
-            this.WhenAnyValue(x => x._ocsModel.NnMean)
+            this.WhenAnyValue(x => x._cybaticaHandler.NnMean)
+                .SubscribeOn(RxApp.TaskpoolScheduler)
                 .Sample(TimeSpan.FromSeconds(1))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.NnMean);
 
-            this.WhenAnyValue(x => x._ocsModel.SdNn)
+            this.WhenAnyValue(x => x._cybaticaHandler.SdNn)
+                .SubscribeOn(RxApp.TaskpoolScheduler)
                 .Sample(TimeSpan.FromSeconds(1))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.SdNn);
 
-            this.WhenAnyValue(x => x._ocsModel.MeanEda)
+            this.WhenAnyValue(x => x._cybaticaHandler.MeanEda)
+                .SubscribeOn(RxApp.TaskpoolScheduler)
                 .Sample(TimeSpan.FromSeconds(1))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.MeanEda);
 
-            this.WhenAnyValue(x => x._ocsModel.PeakEda)
+            this.WhenAnyValue(x => x._cybaticaHandler.PeakEda)
+                .SubscribeOn(RxApp.TaskpoolScheduler)
                 .Sample(TimeSpan.FromSeconds(1))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToPropertyEx(this, x => x.PeakEda);
@@ -47,13 +51,12 @@ namespace Cybatica.ViewModels
             ChartCommand = ReactiveCommand.CreateFromTask(async () => { await Shell.Current.GoToAsync("ocsChart"); });
         }
 
-        [Reactive] public float Ocs { [ObservableAsProperty] get; private set; }
-        [Reactive] public float NnMean { [ObservableAsProperty] get; private set; }
-        [Reactive] public float SdNn { [ObservableAsProperty] get; private set; }
-        [Reactive] public float MeanEda { [ObservableAsProperty] get; private set; }
-        [Reactive] public float PeakEda { [ObservableAsProperty] get; private set; }
+        [Reactive] public AnalysisData Ocs { [ObservableAsProperty] get; private set; }
+        [Reactive] public AnalysisData NnMean { [ObservableAsProperty] get; private set; }
+        [Reactive] public AnalysisData SdNn { [ObservableAsProperty] get; private set; }
+        [Reactive] public AnalysisData MeanEda { [ObservableAsProperty] get; private set; }
+        [Reactive] public AnalysisData PeakEda { [ObservableAsProperty] get; private set; }
 
-
-        public ReactiveCommand<Unit, Unit> ChartCommand { get; }
+        public ICommand ChartCommand { get; }
     }
 }

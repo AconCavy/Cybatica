@@ -1,21 +1,12 @@
-﻿using System.Collections.ObjectModel;
-using Cybatica.Empatica;
+﻿using Cybatica.Empatica;
+using System;
+using System.Collections.Generic;
 using Cybatica.Models;
 
 namespace Cybatica.Services
 {
-    public interface ICybaticaHandler
+    public interface ICybaticaHandler : IEmpaticaModel, IEmpaticaSessionConnector, IOcsModel, IOcsSessionConnector, IDisposable
     {
-        EmpaticaSession EmpaticaSession { get; }
-
-        OcsSession OcsSession { get; }
-
-        BioDataModel BioDataModel { get; }
-
-        OcsModel OcsModel { get; }
-
-        ReadOnlyCollection<EmpaticaDevice> Devices { get; }
-
         void Connect(EmpaticaDevice device);
 
         void Disconnect();
@@ -24,8 +15,16 @@ namespace Cybatica.Services
 
         void InitializeSession();
 
-        void StartSession();
+        void StartSession(SessionType sessionType);
 
         void StopSession();
+
+        IEnumerable<EmpaticaDevice> GetDiscoveredDevices();
+
+        void Export();
+
+        TimeSpan ElapsedTime { get; }
+
+        SessionType CurrentSessionType { get; }
     }
 }
