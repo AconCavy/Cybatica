@@ -1,5 +1,6 @@
 ﻿using Cybatica.Models;
 using Cybatica.Services;
+using Cybatica.Utilities;
 using ReactiveUI;
 using Splat;
 
@@ -17,6 +18,8 @@ namespace Cybatica
             // Services
             Locator.CurrentMutable.RegisterLazySingleton(
                 () => new CybaticaHandler(), typeof(ICybaticaHandler));
+            Locator.CurrentMutable.RegisterLazySingleton(
+                () => new ShareDataExporter("Cybatica", "csv"), typeof(IDataExporter));
         }
     }
 }
