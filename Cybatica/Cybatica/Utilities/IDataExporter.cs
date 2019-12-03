@@ -1,7 +1,7 @@
 ﻿using Cybatica.Empatica;
 using Cybatica.Models;
 
-namespace Cybatica.Services
+namespace Cybatica.Utilities
 {
     public interface IDataExporter
     {

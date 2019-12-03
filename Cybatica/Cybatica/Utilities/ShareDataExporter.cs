@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Cybatica.Empatica;
+using Cybatica.Models;
+using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
-using Cybatica.Empatica;
-using Cybatica.Models;
-using Cybatica.Services;
-using ReactiveUI;
 using Xamarin.Essentials;
 
 namespace Cybatica.Utilities
