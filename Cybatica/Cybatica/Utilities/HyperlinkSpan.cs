@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Cybatica.Utilities
@@ -14,7 +15,7 @@ namespace Cybatica.Utilities
             TextColor = Color.Blue;
             GestureRecognizers.Add(new TapGestureRecognizer
             {
-                Command = new Command(() => Device.OpenUri(new Uri(Url)))
+                Command = new Command(() => Browser.OpenAsync(new Uri(Url), BrowserLaunchMode.SystemPreferred))
             });
         }
 
