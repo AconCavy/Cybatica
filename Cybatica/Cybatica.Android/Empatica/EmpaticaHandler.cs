@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Android.App;
 using Android.Runtime;
@@ -36,16 +35,6 @@ namespace Cybatica.Droid.Empatica
         public SensorStatus SensorStatus { get; private set; }
 
         public BleStatus BleStatus { get; private set; }
-
-        public ReadOnlyCollection<Cybatica.Empatica.EmpaticaDevice> Devices =>
-            new ReadOnlyCollection<Cybatica.Empatica.EmpaticaDevice>(
-                _devices.Select(x => new Cybatica.Empatica.EmpaticaDevice(
-                        x.SerialNumber,
-                        x.Name,
-                        x.AdvertisingName,
-                        x.HardwareId,
-                        x.FirmwareVersion))
-                    .ToList());
 
         public Action<BatteryLevel> BatteryLevelAction { get; set; }
 
@@ -94,6 +83,7 @@ namespace Cybatica.Droid.Empatica
         {
             _deviceManager.Disconnect();
             _deviceManager.CleanUp();
+            _devices.Clear();
         }
 
         public void Discover()
@@ -112,6 +102,16 @@ namespace Cybatica.Droid.Empatica
         public void StopSession()
         {
             _isCapturing = false;
+        }
+
+        public IEnumerable<Cybatica.Empatica.EmpaticaDevice> GetDiscoveredDevices()
+        {
+            return _devices.Select(x => new Cybatica.Empatica.EmpaticaDevice(
+                x.SerialNumber,
+                x.Name,
+                x.AdvertisingName,
+                x.HardwareId,
+                x.FirmwareVersion));
         }
 
         #endregion
@@ -169,8 +169,6 @@ namespace Cybatica.Droid.Empatica
             if (!allowed) return;
             if (_devices.Any(x => device.SerialNumber.Equals(x.SerialNumber))) return;
             _devices.Add(device);
-            _deviceManager.StopScanning();
-            _isScanning = false;
         }
 
         public async void DidEstablishConnection()

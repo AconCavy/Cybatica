@@ -12,40 +12,37 @@ namespace Cybatica.ViewModels
 {
     public class BioDataChartViewModel : ReactiveObject, IDisposable
     {
+        public ReadOnlyObservableCollection<Bvp> Bvp => _bvp;
+        public ReadOnlyObservableCollection<Gsr> Gsr => _gsr;
+        public ReadOnlyObservableCollection<Temperature> Temperature => _temperature;
+
+        private readonly IDisposable _cleanUp;
+        private readonly ICybaticaHandler _cybaticaHandler;
         private readonly ReadOnlyObservableCollection<Bvp> _bvp;
         private readonly ReadOnlyObservableCollection<Gsr> _gsr;
         private readonly ReadOnlyObservableCollection<Temperature> _temperature;
-        private readonly IDisposable _cleanUp;
 
-        public BioDataChartViewModel()
+        public BioDataChartViewModel(ICybaticaHandler cybaticaHandler = null)
         {
-            var handler = Locator.Current.GetService<ICybaticaHandler>();
-            var session = handler.EmpaticaSession;
+            _cybaticaHandler = cybaticaHandler ?? Locator.Current.GetService<ICybaticaHandler>();
 
-            var bvp = session.Bvp.Connect()
-                .SubscribeOn(RxApp.TaskpoolScheduler)
+            var bvp = _cybaticaHandler.BvpConnectable
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _bvp)
                 .Subscribe();
 
-            var gsr = session.Gsr.Connect()
-                .SubscribeOn(RxApp.TaskpoolScheduler)
+            var gsr = _cybaticaHandler.GsrConnectable
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _gsr)
                 .Subscribe();
 
-            var temperature = session.Temperature.Connect()
-                .SubscribeOn(RxApp.TaskpoolScheduler)
+            var temperature = _cybaticaHandler.TemperatureConnectable
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _temperature)
                 .Subscribe();
 
             _cleanUp = new CompositeDisposable(bvp, gsr, temperature);
         }
-
-        public ReadOnlyObservableCollection<Bvp> Bvp => _bvp;
-        public ReadOnlyObservableCollection<Gsr> Gsr => _gsr;
-        public ReadOnlyObservableCollection<Temperature> Temperature => _temperature;
 
         public void Dispose()
         {

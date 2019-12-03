@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Cybatica.Empatica
 {
@@ -10,8 +10,6 @@ namespace Cybatica.Empatica
         SensorStatus SensorStatus { get; }
 
         BleStatus BleStatus { get; }
-
-        ReadOnlyCollection<EmpaticaDevice> Devices { get; }
 
         Action<BatteryLevel> BatteryLevelAction { get; set; }
 
@@ -40,5 +38,7 @@ namespace Cybatica.Empatica
         void StartSession(double startedTime);
 
         void StopSession();
+
+        IEnumerable<EmpaticaDevice> GetDiscoveredDevices();
     }
 }

@@ -33,31 +33,22 @@
 	<string>Cybatica</string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>external-accessory</string>
 		<string>bluetooth-central</string>
 		<string>bluetooth-peripheral</string>
-	</array>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeName</key>
-			<string>NSAppTransportSecurity</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>Dictionary</string>
-			</array>
-		</dict>
+		<string>fetch</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Bluetooth is used to connect to Empatica E4 devices.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Bluetooth is used to connect to Empatica E4 devices.</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcons.appiconset</string>
 	<key>MinimumOSVersion</key>
-	<string>12.0</string>
+	<string>13.0</string>
 </dict>
 </plist>

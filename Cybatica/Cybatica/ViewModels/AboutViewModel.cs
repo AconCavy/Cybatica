@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json;
 using Cybatica.Models;
-using Newtonsoft.Json;
 using ReactiveUI;
 using Xamarin.Forms;
 
@@ -13,33 +12,30 @@ namespace Cybatica.ViewModels
 {
     public class AboutViewModel : ReactiveObject
     {
+        private static string _licensesJson = "";
+
         public AboutViewModel()
         {
-            var assembly = typeof(AboutViewModel).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream("Cybatica.Licenses.json");
-
-            using (var reader = new StreamReader(stream ?? throw new InvalidOperationException()))
+            if (_licensesJson.Equals(string.Empty))
             {
-                var json = reader.ReadToEnd();
-                var array = JsonConvert.DeserializeObject<License[]>(json);
-                IEnumerable<License> filter;
-                switch (Device.RuntimePlatform)
-                {
-                    case Device.Android:
-                        filter = array.Where(x => x.IsVisibleAndroid);
-                        break;
-                    case Device.iOS:
-                        filter = array.Where(x => x.IsVisibleiOS);
-                        break;
-                    default:
-                        filter = array;
-                        break;
-                }
+                var assembly = typeof(AboutViewModel).GetTypeInfo().Assembly;
+                var stream = assembly.GetManifestResourceStream("Cybatica.Licenses.json");
 
-                Licenses = new ObservableCollection<License>(filter.OrderBy(x => x.Name));
+                using var reader = new StreamReader(stream ?? throw new InvalidOperationException());
+                _licensesJson = reader.ReadToEnd();
             }
+            
+            var array = JsonSerializer.Deserialize<License[]>(_licensesJson);
+            var filter = Device.RuntimePlatform switch
+            {
+                Device.Android => array.Where(x => x.IsVisibleAndroid),
+                Device.iOS => array.Where(x => x.IsVisibleiOS),
+                _ => array
+            };
+
+            Licenses = new ObservableCollection<License>(filter.OrderBy(x => x.Name));
         }
 
-        public ObservableCollection<License> Licenses { get; set; }
+        public ObservableCollection<License> Licenses { get; }
     }
 }

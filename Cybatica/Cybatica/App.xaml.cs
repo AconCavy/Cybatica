@@ -1,7 +1,6 @@
 ﻿using Cybatica.Empatica;
 using Splat;
 using Syncfusion.Licensing;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Cybatica
@@ -10,10 +9,10 @@ namespace Cybatica
     {
         public App()
         {
-            SyncfusionLicenseProvider.RegisterLicense(AppPrivateInformations.SyncfusionLicenseKey);
+            SyncfusionLicenseProvider.RegisterLicense(AppPrivateInformation.SyncfusionLicenseKey);
             var _ = new AppBootstrapper();
             var empaticaHandler = Locator.Current.GetService<IEmpaticaHandler>();
-            empaticaHandler.Authenticate(AppPrivateInformations.EmpaticaApiKey);
+            empaticaHandler.Authenticate(AppPrivateInformation.EmpaticaApiKey);
             InitializeComponent();
 
             MainPage = new AppShell();

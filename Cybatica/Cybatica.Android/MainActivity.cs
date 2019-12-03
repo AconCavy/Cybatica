@@ -15,8 +15,8 @@ using Platform = Xamarin.Essentials.Platform;
 
 namespace Cybatica.Droid
 {
-    [Activity(Label = "Cybatica", Theme = "@style/MainTheme",
-        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Cybatica", Theme = "@style/MainTheme", Icon = "@mipmap/icon_cybatica",
+        MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {
         private const int RequestEnableBt = 1;
@@ -25,7 +25,7 @@ namespace Cybatica.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Forms.SetFlags("CollectionView_Experimental", "FastRenderers_Experimental");
+            Forms.SetFlags("CollectionView_Experimental");
             Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
             _ = new AppBootstrapper();

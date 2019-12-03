@@ -18,27 +18,27 @@ namespace Cybatica.Views
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.Ocs,
                     v => v.Ocs.Text,
-                    x => x.ToString("F2")));
+                    x => x.Value.ToString("F2")));
 
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.NnMean,
                     v => v.NnMean.Text,
-                    x => x.ToString("F2")));
+                    x => x.Value.ToString("F2")));
 
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.SdNn,
                     v => v.SdNn.Text,
-                    x => x.ToString("F2")));
+                    x => x.Value.ToString("F2")));
 
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.MeanEda,
                     v => v.MeanEda.Text,
-                    x => x.ToString("F2")));
+                    x => x.Value.ToString("F2")));
 
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.PeakEda,
                     v => v.PeakEda.Text,
-                    x => x.ToString("F2")));
+                    x => x.Value.ToString("F2")));
 
                 disposable(this.BindCommand(ViewModel,
                     vm => vm.ChartCommand,

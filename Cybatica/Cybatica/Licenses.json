@@ -32,12 +32,12 @@
     "copyright": "Copyright (c) .NET Foundation and Contributors"
   },
   {
-    "name": "Newtonsoft.Json",
+    "name": "System.Text.Json",
     "android": true,
     "ios": true,
     "license_type": "MIT License",
-    "url": "https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md",
-    "copyright": "Copyright (c) 2007 James Newton-King"
+    "url": "https://github.com/dotnet/corefx/blob/master/LICENSE.TXT",
+    "copyright": "Copyright (c) .NET Foundation and Contributors"
   },
   {
     "name": "ReactiveUI",
