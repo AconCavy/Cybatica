@@ -12,14 +12,20 @@ namespace Cybatica.ViewModels
 {
     public class AboutViewModel : ReactiveObject
     {
+        private static string _licensesJson = "";
+
         public AboutViewModel()
         {
-            var assembly = typeof(AboutViewModel).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream("Cybatica.Licenses.json");
+            if (_licensesJson.Equals(string.Empty))
+            {
+                var assembly = typeof(AboutViewModel).GetTypeInfo().Assembly;
+                var stream = assembly.GetManifestResourceStream("Cybatica.Licenses.json");
 
-            using var reader = new StreamReader(stream ?? throw new InvalidOperationException());
-            var json = reader.ReadToEnd();
-            var array = JsonSerializer.Deserialize<License[]>(json);
+                using var reader = new StreamReader(stream ?? throw new InvalidOperationException());
+                _licensesJson = reader.ReadToEnd();
+            }
+            
+            var array = JsonSerializer.Deserialize<License[]>(_licensesJson);
             var filter = Device.RuntimePlatform switch
             {
                 Device.Android => array.Where(x => x.IsVisibleAndroid),
@@ -30,6 +36,6 @@ namespace Cybatica.ViewModels
             Licenses = new ObservableCollection<License>(filter.OrderBy(x => x.Name));
         }
 
-        public ObservableCollection<License> Licenses { get; set; }
+        public ObservableCollection<License> Licenses { get; }
     }
 }
