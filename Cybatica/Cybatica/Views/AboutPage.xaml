@@ -23,43 +23,65 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout Padding="8,8,8,8">
-            <Frame Style="{StaticResource Card}">
-                <StackLayout>
-                    <Label Text="Cybatica"
-                           Style="{StaticResource HeadText}" />
-                    <Label Style="{StaticResource NormalText}"
-                           Text="Copyright (c) 2019 Takuro Magaki All Rights Reserved." />
-                    <Label Style="{StaticResource NormalText}"
-                           Text="Contact: g2118038@fun.ac.jp" />
-                </StackLayout>
-            </Frame>
+        <StackLayout Padding="16,16,16,0">
+            <Label Style="{StaticResource HeadText}"
+                   Text="Licenses" />
+
+            <Label Text="Cybatica"
+                   Style="{StaticResource HeadText}"
+                   FontSize="Medium"/>
+
+            <Label Style="{StaticResource NormalText}"
+                   Text="Copyright (c) 2019 Takuro Magaki All Rights Reserved."
+                   FontSize="Small"/>
+
+            <Label Style="{StaticResource NormalText}"
+                   Text="Contact: g2118038@fun.ac.jp"
+                   FontSize="Small"/>
+
+            <Label />
 
             <Label Style="{StaticResource HeadText}"
                    Text="Third-Party Licenses" />
 
+
             <CollectionView x:Name="Licenses">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="0,8">
-                            <Frame Style="{StaticResource Card}">
-                                <StackLayout>
-                                    <Label Text="{Binding Name}"
-                                           Style="{StaticResource HeadText}" />
-                                    <Label Style="{StaticResource NormalText}">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <util:HyperlinkSpan Text="{Binding LicenseType}"
-                                                                    Url="{Binding Url}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label Text="{Binding Copyright}"
-                                           Style="{StaticResource NormalText}"
-                                           FontSize="Small" />
-                                </StackLayout>
-                            </Frame>
-                        </StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="28" />
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="36" />
+                                <RowDefinition Height="4" />
+                            </Grid.RowDefinitions>
+
+                            <Label Text="{Binding Name}"
+                                   Style="{StaticResource HeadText}"
+                                   FontSize="Medium"
+                                   VerticalTextAlignment="End"
+                                   Grid.Row="0" />
+                            <Label Style="{StaticResource NormalText}"
+                                   FontSize="Small"
+                                   VerticalTextAlignment="End"
+                                   Grid.Row="1">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <util:HyperlinkSpan Text="{Binding LicenseType}"
+                                                            Url="{Binding Url}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="{Binding Copyright}"
+                                   Style="{StaticResource NormalText}"
+                                   FontSize="Small"
+                                   VerticalTextAlignment="Start"
+                                   Grid.Row="2" />
+                            <BoxView HeightRequest="1"
+                                     Color="{StaticResource Gray300}"
+                                     VerticalOptions="End"
+                                     Grid.Row="3" />
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
