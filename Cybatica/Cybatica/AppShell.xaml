@@ -23,26 +23,20 @@
 
     <TabBar>
 
-        <Tab Title="Home"
-             Icon="icon_home.png">
-            <ShellContent Route="home">
-                <views:HomePage />
-            </ShellContent>
-        </Tab>
+        <ShellContent Title="Home"
+                      Icon="icon_home.png"
+                      Route="home"
+                      ContentTemplate="{DataTemplate views:HomePage}" />
 
-        <Tab Title="OCS"
-             Icon="icon_ocs.png">
-            <ShellContent Route="ocs">
-                <views:OcsPage />
-            </ShellContent>
-        </Tab>
+        <ShellContent Title="OCS"
+                      Icon="icon_ocs.png"
+                      Route="ocs"
+                      ContentTemplate="{DataTemplate views:OcsPage}" />
 
-        <Tab Title="Bio Data"
-             Icon="icon_bio.png">
-            <ShellContent Route="bioData">
-                <views:BioDataPage />
-            </ShellContent>
-        </Tab>
+        <ShellContent Title="Bio Data"
+                      Icon="icon_bio.png"
+                      Route="bio"
+                      ContentTemplate="{DataTemplate views:BioDataPage}" />
 
     </TabBar>
 

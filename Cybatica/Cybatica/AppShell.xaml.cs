@@ -15,9 +15,9 @@ namespace Cybatica
 
         private static void RegisterRoute()
         {
-            Routing.RegisterRoute("about", typeof(AboutPage));
+            Routing.RegisterRoute("homeAbout", typeof(AboutPage));
             Routing.RegisterRoute("ocsChart", typeof(OcsChartPage));
-            Routing.RegisterRoute("bioDataChart", typeof(BioDataChartPage));
+            Routing.RegisterRoute("bioChart", typeof(BioDataChartPage));
         }
     }
 }
