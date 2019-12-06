@@ -7,6 +7,8 @@ namespace Cybatica.Services
 {
     public interface ICybaticaHandler : IEmpaticaModel, IEmpaticaSessionConnector, IOcsModel, IOcsSessionConnector, IDisposable
     {
+        bool IsBaseSessionStored { get; }
+
         void Connect(EmpaticaDevice device);
 
         void Disconnect();

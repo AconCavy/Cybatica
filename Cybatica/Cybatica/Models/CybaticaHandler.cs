@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using Cybatica.Empatica;
+﻿using Cybatica.Empatica;
 using Cybatica.Services;
 using Cybatica.Utilities;
 using DynamicData;
@@ -12,6 +6,12 @@ using DynamicData.Aggregation;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Splat;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using Xamarin.Essentials;
 
 namespace Cybatica.Models
@@ -104,81 +104,99 @@ namespace Cybatica.Models
                 Temperature = temperature;
             };
 
-            var ocs = Observable.Interval(TimeSpan.FromSeconds(1))
+            var observer = Observable.Interval(TimeSpan.FromSeconds(1))
                 .SubscribeOn(RxApp.TaskpoolScheduler)
-                .Where(_ => _isDataSession)
-                .Sample(TimeSpan.FromSeconds(1))
                 .Where(_ => _isCapturing)
-                .Subscribe(time =>
+                .Publish();
+
+            var ocs = observer
+                .Where(_ => _isDataSession)
+                .Subscribe(_ =>
                 {
-                    var nnMeanRatio = _ocsSession.NnMean.Items.LastOrDefault().Value / _baseNnMeanAve;
-                    var sdNnRatio = _ocsSession.SdNn.Items.LastOrDefault().Value / _baseSdNnAve;
-                    var meanEdaRatio = _ocsSession.MeanEda.Items.LastOrDefault().Value / _baseMeanEdaAve;
-                    var peakEdaRatio = _ocsSession.PeakEda.Items.LastOrDefault().Value / _basePeakEdaAve;
+                    var tmp = _ocsSession.NnMean.Items.LastOrDefault().Value;
+                    var nnMeanRatio = Math.Abs(tmp) < 0.001f ? 1f : tmp / _baseNnMeanAve;
+                    tmp = _ocsSession.SdNn.Items.LastOrDefault().Value;
+                    var sdNnRatio = Math.Abs(tmp) < 0.001f ? 1f : tmp / _baseSdNnAve;
+                    tmp = _ocsSession.MeanEda.Items.LastOrDefault().Value;
+                    var meanEdaRatio = Math.Abs(tmp) < 0.001f ? 1f : tmp / _baseMeanEdaAve;
+                    tmp = _ocsSession.PeakEda.Items.LastOrDefault().Value;
+                    var peakEdaRatio = Math.Abs(tmp) < 0.001f ? 1f : tmp / _basePeakEdaAve;
                     var calculatedOcs =
                         new AnalysisData(calculator.CalculateOcs(nnMeanRatio, sdNnRatio,
-                                meanEdaRatio, peakEdaRatio), time);
+                                meanEdaRatio, peakEdaRatio), DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime);
                     _ocsSession.AddOcs(calculatedOcs);
                     Ocs = calculatedOcs;
                 });
 
-            var filteredIbi = IbiConnectable
-                .SubscribeOn(RxApp.TaskpoolScheduler)
-                .Sample(TimeSpan.FromSeconds(1))
-                .Filter(_ => _isCapturing)
-                .Filter(x => x.Timestamp > DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime - 60);
-
-            var nnMean = filteredIbi
-                .Avg(x => x.Value)
-                .Subscribe(x =>
+            var analysisData = observer
+                .Subscribe(_ =>
                 {
-                    var data = new AnalysisData(x, DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime);
-                    _ocsSession.AddNnMean(data);
-                    NnMean = data;
+                    var time = DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime;
+                    var ibi = _empaticaSession.Ibi.Items
+                        .Skip(1)
+                        .Where(x => x.Value > 0 && x.Timestamp > time - 60)
+                        .Select(x => x.Value)
+                        .ToArray();
+                    var gsr = _empaticaSession.Gsr.Items
+                        .Skip(1)
+                        .Where(x => x.Value > 0 && x.Timestamp > time - 60)
+                        .Select(x => x.Value)
+                        .ToArray();
+
+                    var nnMean = new AnalysisData(ibi.AverageEx(), time);
+                    _ocsSession.AddNnMean(nnMean);
+                    NnMean = nnMean;
+
+                    var sdNn = new AnalysisData(ibi.StdDev(), time);
+                    _ocsSession.AddSdNn(sdNn);
+                    SdNn = sdNn;
+
+                    var meanEda = new AnalysisData(gsr.AverageEx(), time);
+                    _ocsSession.AddMeanEda(meanEda);
+                    MeanEda = meanEda;
+
+                    var peakEda = new AnalysisData(gsr.MaxEx(), time);
+                    _ocsSession.AddPeakEda(peakEda);
+                    PeakEda = peakEda;
+
                 });
 
-            var sdNn = filteredIbi
-                .StdDev(x => x.Value)
-                .Subscribe(x =>
-                {
-                    var data = new AnalysisData((float)x, DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime);
-                    _ocsSession.AddSdNn(data);
-                    SdNn = data;
-                });
+            _cleanUp = new CompositeDisposable(observer.Connect(), ocs, analysisData);
+        }
 
-            var filteredGsr = GsrConnectable
-                .SubscribeOn(RxApp.TaskpoolScheduler)
-                .Sample(TimeSpan.FromSeconds(1))
-                .Filter(_ => _isCapturing)
-                .Filter(x => x.Timestamp > DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime - 60);
+        private void ResetModels()
+        {
+            Acceleration = default;
+            BatteryLevel = default;
+            Bvp = default;
+            Gsr = default;
+            Hr = default;
+            Ibi = default;
+            Tag = default;
+            Temperature = default;
 
-            var meanEda = filteredGsr
-                .Avg(x => x.Value)
-                .Subscribe(x =>
-                {
-                    var data = new AnalysisData(x, DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime);
-                    _ocsSession.AddMeanEda(data);
-                    MeanEda = data;
-                });
-
-            var peakEda = filteredGsr
-                .Maximum(x => x.Value)
-                .Subscribe(x =>
-                {
-                    var data = new AnalysisData(x, DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime);
-                    _ocsSession.AddPeakEda(data);
-                    PeakEda = data;
-                });
-
-            _cleanUp = new CompositeDisposable(ocs, nnMean, sdNn, meanEda, peakEda);
+            Ocs = default;
+            NnMean = default;
+            SdNn = default;
+            MeanEda = default;
+            PeakEda = default;
         }
 
         private void ConfigureBaseData()
         {
-            _baseNnMeanAve = _ocsSession.NnMean.Items.Where(x => 60 < x.Timestamp).Average(x => x.Value);
-            _baseSdNnAve = _ocsSession.SdNn.Items.Where(x => 60 < x.Timestamp).Average(x => x.Value);
-            _baseMeanEdaAve = _ocsSession.MeanEda.Items.Where(x => 60 < x.Timestamp).Average(x => x.Value);
-            _basePeakEdaAve = _ocsSession.PeakEda.Items.Where(x => 60 < x.Timestamp).Average(x => x.Value);
+            try
+            {
+                _baseNnMeanAve = _ocsSession.NnMean.Items.Where(x => 60 < x.Timestamp).Average(x => x.Value);
+                _baseSdNnAve = _ocsSession.SdNn.Items.Where(x => 60 < x.Timestamp).Average(x => x.Value);
+                _baseMeanEdaAve = _ocsSession.MeanEda.Items.Where(x => 60 < x.Timestamp).Average(x => x.Value);
+                _basePeakEdaAve = _ocsSession.PeakEda.Items.Where(x => 60 < x.Timestamp).Average(x => x.Value);
+                IsBaseSessionStored = true;
+            }
+            catch (InvalidOperationException)
+            {
+                IsBaseSessionStored = false;
+                throw new InsufficientDataException();
+            }
         }
 
         #region IDisposable
@@ -204,6 +222,8 @@ namespace Cybatica.Models
         #endregion
 
         #region ICybaticaHandler
+
+        public bool IsBaseSessionStored { get; private set; }
 
         public void InitializeSession()
         {
@@ -237,6 +257,8 @@ namespace Cybatica.Models
 
             _isDataSession = CurrentSessionType.Equals(SessionType.Data);
 
+            ResetModels();
+
             _stopwatch.Reset();
             _stopwatch.Start();
             _stopwatchDisposable = Observable.Interval(TimeSpan.FromSeconds(0.01))
@@ -249,17 +271,18 @@ namespace Cybatica.Models
 
         public void StopSession()
         {
+            _empaticaHandler.StopSession();
+            _stopwatch.Stop();
+            _stopwatchDisposable?.Dispose();
+            _stopwatchDisposable = null;
+            _isCapturing = false;
+
             if (CurrentSessionType.Equals(SessionType.Base))
             {
                 ConfigureBaseData();
             }
 
             CurrentSessionType = SessionType.None;
-            _empaticaHandler.StopSession();
-            _stopwatch.Stop();
-            _stopwatchDisposable?.Dispose();
-            _stopwatchDisposable = null;
-            _isCapturing = false;
         }
 
         public IEnumerable<EmpaticaDevice> GetDiscoveredDevices()
