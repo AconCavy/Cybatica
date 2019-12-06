@@ -1,123 +1,123 @@
 [
   {
     "Parameter": "Discomfort",
-    "NnMean": 0.1010010673,
-    "SdNn": 0.1226295789,
-    "MeanEda": 0.0258707508,
-    "PeakEda": 0.0044971685,
-    "Intercept": 0.5217708015
+    "NnMean": 0.101,
+    "SdNn": 0.123,
+    "MeanEda": 0.026,
+    "PeakEda": 0.004,
+    "Intercept": 0.522
   },
   {
     "Parameter": "Fatigue",
-    "NnMean": 0.1952963431,
-    "SdNn": -0.0925521252,
-    "MeanEda": -0.1946586089,
-    "PeakEda": 0.1115281632,
-    "Intercept": 0.7504304715
+    "NnMean": 0.195,
+    "SdNn": -0.093,
+    "MeanEda": -0.195,
+    "PeakEda": 0.112,
+    "Intercept": 0.75
   },
   {
     "Parameter": "Headache",
-    "NnMean": -2.3578279878,
-    "SdNn": 0.2400831777,
-    "MeanEda": -0.1125993828,
-    "PeakEda": 0.0472312451,
-    "Intercept": 2.1961693209
+    "NnMean": -2.358,
+    "SdNn": 0.24,
+    "MeanEda": -0.113,
+    "PeakEda": 0.047,
+    "Intercept": 2.196
   },
   {
     "Parameter": "EyeStrain",
-    "NnMean": -1.9283029729,
-    "SdNn": 0.1056238322,
-    "MeanEda": -0.3586948793,
-    "PeakEda": 0.1909733711,
-    "Intercept": 2.4720275505
+    "NnMean": -1.928,
+    "SdNn": 0.106,
+    "MeanEda": -0.359,
+    "PeakEda": 0.191,
+    "Intercept": 2.472
   },
   {
     "Parameter": "DifficultyFocusing",
-    "NnMean": -3.5099816377,
-    "SdNn": 0.3142833777,
-    "MeanEda": -0.1815993626,
-    "PeakEda": 0.0868859227,
-    "Intercept": 3.6971999209
+    "NnMean": -3.51,
+    "SdNn": 0.314,
+    "MeanEda": -0.182,
+    "PeakEda": 0.087,
+    "Intercept": 3.697
   },
   {
     "Parameter": "IncreasedSalivation",
-    "NnMean": -2.1849940446,
-    "SdNn": 0.1145321605,
-    "MeanEda": -0.0488496195,
-    "PeakEda": -0.0124790421,
-    "Intercept": 2.7404654578
+    "NnMean": -2.185,
+    "SdNn": 0.115,
+    "MeanEda": -0.049,
+    "PeakEda": -0.012,
+    "Intercept": 2.74
   },
   {
     "Parameter": "Sweating",
-    "NnMean": 2.9479153133,
-    "SdNn": -0.1473914917,
-    "MeanEda": -0.2160906416,
-    "PeakEda": 0.1399445253,
-    "Intercept": -2.2729066612
+    "NnMean": 2.948,
+    "SdNn": -0.147,
+    "MeanEda": -0.216,
+    "PeakEda": 0.14,
+    "Intercept": -2.273
   },
   {
     "Parameter": "Nausea",
-    "NnMean": -2.0453610413,
-    "SdNn": 0.1206159899,
-    "MeanEda": 0.1493433217,
-    "PeakEda": -0.115145728,
-    "Intercept": 2.4655145335
+    "NnMean": -2.045,
+    "SdNn": 0.121,
+    "MeanEda": 0.149,
+    "PeakEda": -0.115,
+    "Intercept": 2.466
   },
   {
     "Parameter": "DifficultyConcentrating",
-    "NnMean": 0.3172135812,
-    "SdNn": -0.0501450639,
-    "MeanEda": -0.1621174727,
-    "PeakEda": 0.1219091405,
-    "Intercept": -0.0418684435
+    "NnMean": 0.317,
+    "SdNn": -0.05,
+    "MeanEda": -0.162,
+    "PeakEda": 0.122,
+    "Intercept": -0.042
   },
   {
     "Parameter": "HeadFullness",
-    "NnMean": -0.9083144921,
-    "SdNn": 0.1495877995,
-    "MeanEda": -0.2032671601,
-    "PeakEda": 0.1318857797,
-    "Intercept": 1.0797321251
+    "NnMean": -0.908,
+    "SdNn": 0.15,
+    "MeanEda": -0.203,
+    "PeakEda": 0.132,
+    "Intercept": 1.08
   },
   {
     "Parameter": "BlurredVision",
-    "NnMean": -1.9500992579,
-    "SdNn": 0.1734059893,
-    "MeanEda": -0.4745343493,
-    "PeakEda": 0.2852821423,
-    "Intercept": 2.3151478439
+    "NnMean": -1.95,
+    "SdNn": 0.173,
+    "MeanEda": -0.475,
+    "PeakEda": 0.285,
+    "Intercept": 2.315
   },
   {
     "Parameter": "OpenedDizziness",
-    "NnMean": 0.4607564647,
-    "SdNn": 0.0419825026,
-    "MeanEda": -0.2256908866,
-    "PeakEda": 0.0916728257,
-    "Intercept": 0.1480966121
+    "NnMean": 0.461,
+    "SdNn": 0.042,
+    "MeanEda": -0.226,
+    "PeakEda": 0.092,
+    "Intercept": 0.148
   },
   {
     "Parameter": "ClosedDizziness",
-    "NnMean": -0.7032245752,
-    "SdNn": 0.0255694318,
-    "MeanEda": -0.2521230061,
-    "PeakEda": 0.1519310256,
-    "Intercept": 1.03909136
+    "NnMean": -0.703,
+    "SdNn": 0.026,
+    "MeanEda": -0.252,
+    "PeakEda": 0.152,
+    "Intercept": 1.039
   },
   {
     "Parameter": "Vertigo",
-    "NnMean": 2.764209698,
-    "SdNn": -0.1100899441,
-    "MeanEda": -0.614770626,
-    "PeakEda": 0.380013653,
-    "Intercept": -1.7790730208
+    "NnMean": 2.764,
+    "SdNn": -0.11,
+    "MeanEda": -0.615,
+    "PeakEda": 0.38,
+    "Intercept": -1.779
   },
   {
     "Parameter": "StomachAwareness",
-    "NnMean": 0.8897924129,
-    "SdNn": -0.1453499982,
-    "MeanEda": 0.0506848905,
-    "PeakEda": 0.0044094142,
-    "Intercept": -0.5252511288
+    "NnMean": 0.89,
+    "SdNn": -0.145,
+    "MeanEda": 0.051,
+    "PeakEda": 0.004,
+    "Intercept": -0.525
   },
   {
     "Parameter": "Burping",

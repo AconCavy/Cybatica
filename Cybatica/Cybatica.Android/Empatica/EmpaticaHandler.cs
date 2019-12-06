@@ -88,7 +88,6 @@ namespace Cybatica.Droid.Empatica
 
         public void Discover()
         {
-            if (_isScanning) return;
             _deviceManager.StartScanning();
             _isScanning = true;
         }

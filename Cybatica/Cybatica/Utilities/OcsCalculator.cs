@@ -37,7 +37,7 @@ namespace Cybatica.Utilities
                 var parameter = _parameters.Find(x => x.Name.Equals(parameterName));
                 var score = Math.Clamp(nnMean * parameter.NnMean + sdNn * parameter.SdNn + meanEda * parameter.MeanEda
                             + peakEda * parameter.PeakEda + parameter.Intercept, 0, 3);
-                scores.Add(parameterName, score);
+                scores.Add(parameterName, (float)Math.Floor(score));
             }
 
             string[] nauseaCategory =
@@ -59,7 +59,6 @@ namespace Cybatica.Utilities
             var nausea = scores.Where(x => nauseaCategory.Contains(x.Key)).Sum(x => x.Value);
             var oculomotor = scores.Where(x => oculomotorCategory.Contains(x.Key)).Sum(x => x.Value);
             var disorientation = scores.Where(x => disorientationCategory.Contains(x.Key)).Sum(x => x.Value);
-
             return 7.34f * (nausea + oculomotor + disorientation);
         }
     }
