@@ -1,14 +1,14 @@
-﻿using System;
-using System.Diagnostics;
+﻿using Cybatica.Models;
+using Cybatica.Services;
+using Cybatica.Utilities;
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
+using Splat;
+using System;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Cybatica.Models;
-using Cybatica.Services;
-using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
-using Splat;
 using Xamarin.Forms;
 
 namespace Cybatica.ViewModels
@@ -91,10 +91,20 @@ namespace Cybatica.ViewModels
 
             if (!result) return;
 
-            if (_cybaticaHandler.CurrentSessionType.Equals(SessionType.Base))
-                IsBaseStored = true;
-
-            _cybaticaHandler.StopSession();
+            try
+            {
+                _cybaticaHandler.StopSession();
+            }
+            catch (InsufficientDataException)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                "Insufficient data",
+                "Please record the base session for at least 1 minute.",
+                "OK");
+                return;
+            }
+            
+            IsBaseStored = _cybaticaHandler.IsBaseSessionStored;
             IsCapturing = false;
 
             result = await Application.Current.MainPage.DisplayAlert(
