@@ -37,7 +37,7 @@ namespace Cybatica.Utilities
                 var parameter = _parameters.Find(x => x.Name.Equals(parameterName));
                 var score = Math.Clamp(nnMean * parameter.NnMean + sdNn * parameter.SdNn + meanEda * parameter.MeanEda
                             + peakEda * parameter.PeakEda + parameter.Intercept, 0, 3);
-                scores.Add(parameterName, (float)Math.Floor(score));
+                scores.Add(parameterName, score);
             }
 
             string[] nauseaCategory =
@@ -45,21 +45,30 @@ namespace Cybatica.Utilities
                 "Discomfort", "IncreasedSalivation", "Sweating", "Nausea", "DifficultyConcentrating",
                 "StomachAwareness", "Burping"
             };
+//            {
+//                "Sweating", "DifficultyConcentrating"
+//            };
             string[] oculomotorCategory =
             {
                 "Discomfort", "Fatigue", "Headache", "EyeStrain", "DifficultyFocusing", "DifficultyConcentrating",
                 "BlurredVision"
             };
+//            {
+//                "Headache", "EyeStrain", "DifficultyFocusing", "DifficultyConcentrating", "BlurredVision"
+//            };
             string[] disorientationCategory =
             {
                 "DifficultyFocusing", "Nausea", "HeadFullness", "BlurredVision", "OpenedDizziness",
-                "ClosedDizziness", "Burping"
+                "ClosedDizziness", "Vertigo"
             };
+//            {
+//                "DifficultyFocusing", "HeadFullness", "BlurredVision", "ClosedDizziness", "Vertigo"
+//            };
 
-            var nausea = scores.Where(x => nauseaCategory.Contains(x.Key)).Sum(x => x.Value);
-            var oculomotor = scores.Where(x => oculomotorCategory.Contains(x.Key)).Sum(x => x.Value);
-            var disorientation = scores.Where(x => disorientationCategory.Contains(x.Key)).Sum(x => x.Value);
-            return 7.34f * (nausea + oculomotor + disorientation);
+            var nausea = scores.Where(x => nauseaCategory.Contains(x.Key)).Sum(x => Math.Round(x.Value, MidpointRounding.AwayFromZero));
+            var oculomotor = scores.Where(x => oculomotorCategory.Contains(x.Key)).Sum(x => Math.Round(x.Value, MidpointRounding.AwayFromZero));
+            var disorientation = scores.Where(x => disorientationCategory.Contains(x.Key)).Sum(x => Math.Round(x.Value, MidpointRounding.AwayFromZero));
+            return 3.74f * (float) (nausea + oculomotor + disorientation);
         }
     }
 }
