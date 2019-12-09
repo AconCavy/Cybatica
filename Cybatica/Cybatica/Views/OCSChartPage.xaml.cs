@@ -20,8 +20,8 @@ namespace Cybatica.Views
                     v => v.Ocs.ItemsSource));
 
                 disposable(this.OneWayBind(ViewModel,
-                    vm => vm.SdNn,
-                    v => v.SdNn.ItemsSource));
+                    vm => vm.NnMean,
+                    v => v.NnMean.ItemsSource));
 
                 disposable(this.OneWayBind(ViewModel,
                     vm => vm.MeanEda,

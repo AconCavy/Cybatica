@@ -76,7 +76,7 @@
                 <Frame Style="{StaticResource Card}">
                     <chart:SfChart Style="{StaticResource Chart}">
                         <chart:SfChart.Title>
-                            <chart:ChartTitle Text="SDNN"
+                            <chart:ChartTitle Text="NN MEAN"
                                               TextColor="{StaticResource SecondaryDark}"
                                               FontAttributes="Bold"
                                               BackgroundColor="{StaticResource Gray100}" />
@@ -97,7 +97,7 @@
                                 </chart:NumericalAxis.Title>
                             </chart:NumericalAxis>
                         </chart:SfChart.SecondaryAxis>
-                        <chart:FastLineSeries x:Name="SdNn"
+                        <chart:FastLineSeries x:Name="NnMean"
                                               Color="{StaticResource Secondary}"
                                               XBindingPath="Timestamp"
                                               YBindingPath="Value"
