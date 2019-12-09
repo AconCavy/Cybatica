@@ -101,6 +101,7 @@ namespace Cybatica.ViewModels
                 "Insufficient data",
                 "Please record the base session for at least 1 minute.",
                 "OK");
+                IsCapturing = false;
                 return;
             }
             
