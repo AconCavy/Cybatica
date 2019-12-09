@@ -113,17 +113,13 @@ namespace Cybatica.Models
                 .Where(_ => _isDataSession)
                 .Subscribe(_ =>
                 {
-                    var tmp = _ocsSession.NnMean.Items.LastOrDefault().Value;
-                    var nnMeanRatio = Math.Abs(tmp) < 0.001f ? 1f : tmp / _baseNnMeanAve;
-                    tmp = _ocsSession.SdNn.Items.LastOrDefault().Value;
-                    var sdNnRatio = Math.Abs(tmp) < 0.001f ? 1f : tmp / _baseSdNnAve;
-                    tmp = _ocsSession.MeanEda.Items.LastOrDefault().Value;
-                    var meanEdaRatio = Math.Abs(tmp) < 0.001f ? 1f : tmp / _baseMeanEdaAve;
-                    tmp = _ocsSession.PeakEda.Items.LastOrDefault().Value;
-                    var peakEdaRatio = Math.Abs(tmp) < 0.001f ? 1f : tmp / _basePeakEdaAve;
+                    var nnMeanRatio = _ocsSession.NnMean.Items.LastOrDefault().Value / _baseNnMeanAve;
+                    var sdNnRatio = _ocsSession.SdNn.Items.LastOrDefault().Value / _baseSdNnAve;
+                    var meanEdaRatio = _ocsSession.MeanEda.Items.LastOrDefault().Value / _baseMeanEdaAve;
+                    var peakEdaRatio = _ocsSession.PeakEda.Items.LastOrDefault().Value / _basePeakEdaAve;
                     var calculatedOcs =
-                        new AnalysisData(calculator.CalculateOcs(nnMeanRatio, sdNnRatio,
-                                meanEdaRatio, peakEdaRatio), DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime);
+                        new AnalysisData(calculator.CalculateOcs(nnMeanRatio, sdNnRatio, meanEdaRatio, peakEdaRatio),
+                            DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime);
                     _ocsSession.AddOcs(calculatedOcs);
                     Ocs = calculatedOcs;
                 });
@@ -261,7 +257,7 @@ namespace Cybatica.Models
 
             _stopwatch.Reset();
             _stopwatch.Start();
-            _stopwatchDisposable = Observable.Interval(TimeSpan.FromSeconds(0.01))
+            _stopwatchDisposable = Observable.Interval(TimeSpan.FromMilliseconds(10))
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Subscribe(_ => ElapsedTime = _stopwatch.Elapsed);
