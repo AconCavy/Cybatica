@@ -1,130 +1,130 @@
 [
   {
-    "Parameter": "Discomfort",
-    "NnMean": 0.004,
-    "SdNn": 0.13,
-    "MeanEda": 0.025,
-    "PeakEda": 0.005,
-    "Intercept": 0.609
+    "Symptom": "Discomfort",
+    "NnMean": 0.52,
+    "SdNn": 0.16,
+    "MeanEda": 0.09,
+    "PeakEda": -0.0,
+    "Intercept": 0
   },
   {
-    "Parameter": "Fatigue",
-    "NnMean": 0.055,
-    "SdNn": -0.082,
-    "MeanEda": -0.196,
-    "PeakEda": 0.112,
-    "Intercept": 0.877
+    "Symptom": "Fatigue",
+    "NnMean": 0.97,
+    "SdNn": -0.22,
+    "MeanEda": -0.03,
+    "PeakEda": 0.01,
+    "Intercept": 0
   },
   {
-    "Parameter": "Headache",
-    "NnMean": -2.767,
-    "SdNn": 0.272,
-    "MeanEda": -0.117,
-    "PeakEda": 0.048,
-    "Intercept": 2.565
+    "Symptom": "Headache",
+    "NnMean": -0.17,
+    "SdNn": 0.29,
+    "MeanEda": -0.04,
+    "PeakEda": 0.0,
+    "Intercept": 0
   },
   {
-    "Parameter": "EyeStrain",
-    "NnMean": -2.389,
-    "SdNn": 0.141,
-    "MeanEda": -0.364,
-    "PeakEda": 0.191,
-    "Intercept": 2.888
+    "Symptom": "EyeStrain",
+    "NnMean": 0.78,
+    "SdNn": -0.15,
+    "MeanEda": -0.11,
+    "PeakEda": 0.01,
+    "Intercept": 0
   },
   {
-    "Parameter": "DifficultyFocusing",
-    "NnMean": -4.199,
-    "SdNn": 0.368,
-    "MeanEda": -0.189,
-    "PeakEda": 0.088,
-    "Intercept": 4.319
+    "Symptom": "DifficultyFocusing",
+    "NnMean": 0.24,
+    "SdNn": 0.34,
+    "MeanEda": -0.07,
+    "PeakEda": 0.01,
+    "Intercept": 0
   },
   {
-    "Parameter": "IncreasedSalivation",
-    "NnMean": -2.696,
-    "SdNn": 0.154,
-    "MeanEda": -0.054,
-    "PeakEda": -0.012,
-    "Intercept": 3.201
+    "Symptom": "IncreasedSalivation",
+    "NnMean": 0.88,
+    "SdNn": -0.11,
+    "MeanEda": -0.06,
+    "PeakEda": 0.0,
+    "Intercept": 0
   },
   {
-    "Parameter": "Sweating",
-    "NnMean": 3.372,
-    "SdNn": -0.18,
-    "MeanEda": -0.211,
-    "PeakEda": 0.14,
-    "Intercept": -2.655
+    "Symptom": "Sweating",
+    "NnMean": 0.34,
+    "SdNn": 0.06,
+    "MeanEda": -0.05,
+    "PeakEda": 0.01,
+    "Intercept": 0
   },
   {
-    "Parameter": "Nausea",
-    "NnMean": -2.505,
-    "SdNn": 0.156,
-    "MeanEda": 0.144,
-    "PeakEda": -0.115,
-    "Intercept": 2.88
+    "Symptom": "Nausea",
+    "NnMean": 0.6,
+    "SdNn": 0.09,
+    "MeanEda": -0.0,
+    "PeakEda": -0.0,
+    "Intercept": 0
   },
   {
-    "Parameter": "DifficultyConcentrating",
-    "NnMean": 0.325,
-    "SdNn": -0.051,
-    "MeanEda": -0.162,
-    "PeakEda": 0.122,
-    "Intercept": -0.049
+    "Symptom": "DifficultyConcentrating",
+    "NnMean": 0.29,
+    "SdNn": -0.1,
+    "MeanEda": -0.02,
+    "PeakEda": 0.01,
+    "Intercept": 0
   },
   {
-    "Parameter": "HeadFullness",
-    "NnMean": -1.11,
-    "SdNn": 0.165,
-    "MeanEda": -0.205,
-    "PeakEda": 0.132,
-    "Intercept": 1.261
+    "Symptom": "HeadFullness",
+    "NnMean": 0.15,
+    "SdNn": 0.1,
+    "MeanEda": 0.0,
+    "PeakEda": 0.01,
+    "Intercept": 0
   },
   {
-    "Parameter": "BlurredVision",
-    "NnMean": -2.382,
-    "SdNn": 0.207,
-    "MeanEda": -0.479,
-    "PeakEda": 0.286,
-    "Intercept": 2.704
+    "Symptom": "BlurredVision",
+    "NnMean": 0.33,
+    "SdNn": 0.18,
+    "MeanEda": -0.14,
+    "PeakEda": 0.02,
+    "Intercept": 0
   },
   {
-    "Parameter": "OpenedDizziness",
-    "NnMean": 0.433,
-    "SdNn": 0.044,
-    "MeanEda": -0.226,
-    "PeakEda": 0.092,
-    "Intercept": 0.173
+    "Symptom": "OpenedDizziness",
+    "NnMean": 0.56,
+    "SdNn": -0.02,
+    "MeanEda": -0.06,
+    "PeakEda": 0.0,
+    "Intercept": 0
   },
   {
-    "Parameter": "ClosedDizziness",
-    "NnMean": -0.897,
-    "SdNn": 0.041,
-    "MeanEda": -0.254,
-    "PeakEda": 0.152,
-    "Intercept": 1.214
+    "Symptom": "ClosedDizziness",
+    "NnMean": 0.42,
+    "SdNn": -0.1,
+    "MeanEda": -0.06,
+    "PeakEda": 0.01,
+    "Intercept": 0
   },
   {
-    "Parameter": "Vertigo",
-    "NnMean": 3.096,
-    "SdNn": -0.136,
-    "MeanEda": -0.611,
-    "PeakEda": 0.38,
-    "Intercept": -2.078
+    "Symptom": "Vertigo",
+    "NnMean": 0.6,
+    "SdNn": 0.04,
+    "MeanEda": -0.15,
+    "PeakEda": 0.02,
+    "Intercept": 0
   },
   {
-    "Parameter": "StomachAwareness",
-    "NnMean": 0.988,
-    "SdNn": -0.153,
-    "MeanEda": 0.052,
-    "PeakEda": 0.004,
-    "Intercept": -0.614
+    "Symptom": "StomachAwareness",
+    "NnMean": 0.44,
+    "SdNn": -0.22,
+    "MeanEda": 0.04,
+    "PeakEda": 0.0,
+    "Intercept": 0
   },
   {
-    "Parameter": "Burping",
+    "Symptom": "Burping",
     "NnMean": 0.0,
     "SdNn": 0.0,
     "MeanEda": 0.0,
     "PeakEda": 0.0,
-    "Intercept": 0.0
+    "Intercept": 0
   }
 ]

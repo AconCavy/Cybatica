@@ -45,25 +45,16 @@ namespace Cybatica.Utilities
                 "Discomfort", "IncreasedSalivation", "Sweating", "Nausea", "DifficultyConcentrating",
                 "StomachAwareness", "Burping"
             };
-//            {
-//                "Sweating", "DifficultyConcentrating"
-//            };
             string[] oculomotorCategory =
             {
                 "Discomfort", "Fatigue", "Headache", "EyeStrain", "DifficultyFocusing", "DifficultyConcentrating",
                 "BlurredVision"
             };
-//            {
-//                "Headache", "EyeStrain", "DifficultyFocusing", "DifficultyConcentrating", "BlurredVision"
-//            };
             string[] disorientationCategory =
             {
                 "DifficultyFocusing", "Nausea", "HeadFullness", "BlurredVision", "OpenedDizziness",
                 "ClosedDizziness", "Vertigo"
             };
-//            {
-//                "DifficultyFocusing", "HeadFullness", "BlurredVision", "ClosedDizziness", "Vertigo"
-//            };
 
             var nausea = scores.Where(x => nauseaCategory.Contains(x.Key)).Sum(x => x.Value);
             var oculomotor = scores.Where(x => oculomotorCategory.Contains(x.Key)).Sum(x => x.Value);
