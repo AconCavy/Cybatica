@@ -19,6 +19,7 @@ The application was developed using Xamarin.Forms.
 
 - Android 6.0+
 - iOS 12+
+- *At present, the provided SDK does not work properly after iOS 13.*
 
 ## Setup
 
@@ -76,3 +77,7 @@ using ObjCRuntime;
 ```
 
 Add .dll reference to project of `Cybatica.iOS`
+
+## Reference
+
+T. Magaki and M. Vallance, "Real time Monitoring Method for Cybersickness using Physiological Signals," In Proceedings of the 25th ACM Symposium on Virtual Reality Software and Technology (VRST), Parramatta, NSW, Australia, 2019. doi: 10.1145/3359996.3364700.
