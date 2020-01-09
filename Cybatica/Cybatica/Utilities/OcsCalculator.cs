@@ -34,7 +34,7 @@ namespace Cybatica.Utilities
 
             foreach (var parameterName in parameters)
             {
-                var parameter = _parameters.Find(x => x.Name.Equals(parameterName));
+                var parameter = _parameters.Find(x => x.Symptom.Equals(parameterName));
                 var score = Math.Clamp(nnMean * parameter.NnMean + sdNn * parameter.SdNn + meanEda * parameter.MeanEda
                             + peakEda * parameter.PeakEda, 0, 3);
                 scores.Add(parameterName, score);

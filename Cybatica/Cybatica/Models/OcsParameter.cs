@@ -4,7 +4,7 @@ namespace Cybatica.Models
 {
     public class OcsParameter
     {
-        [JsonPropertyName("Parameter")] public string Name { get; set; }
+        [JsonPropertyName("Symptom")] public string Symptom { get; set; }
         public float NnMean { get; set; }
         public float SdNn { get; set; }
         public float MeanEda { get; set; }
