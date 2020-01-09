@@ -113,10 +113,25 @@ namespace Cybatica.Models
                 .Where(_ => _isDataSession)
                 .Subscribe(_ =>
                 {
+<<<<<<< HEAD
                     var nnMeanRatio = _ocsSession.NnMean.Items.LastOrDefault().Value / _baseNnMeanAve;
                     var sdNnRatio = _ocsSession.SdNn.Items.LastOrDefault().Value / _baseSdNnAve;
                     var meanEdaRatio = _ocsSession.MeanEda.Items.LastOrDefault().Value / _baseMeanEdaAve;
                     var peakEdaRatio = _ocsSession.PeakEda.Items.LastOrDefault().Value / _basePeakEdaAve;
+=======
+                    var tmp = _ocsSession.NnMean.Items.LastOrDefault().Value;
+                    var nnMeanRatio = Math.Abs(tmp) > 0.01f ? tmp / _baseNnMeanAve : 1f;
+
+                    tmp = _ocsSession.SdNn.Items.LastOrDefault().Value;
+                    var sdNnRatio = Math.Abs(tmp) > 0.01f ? tmp / _baseSdNnAve : 1f;
+
+                    tmp = _ocsSession.MeanEda.Items.LastOrDefault().Value;
+                    var meanEdaRatio = Math.Abs(tmp) > 0.01f ? tmp / _baseMeanEdaAve : 1f;
+
+                    tmp = _ocsSession.PeakEda.Items.LastOrDefault().Value;
+                    var peakEdaRatio = Math.Abs(tmp) > 0.01f ? tmp / _basePeakEdaAve : 1f;
+
+>>>>>>> Modify OCS
                     var calculatedOcs =
                         new AnalysisData(calculator.CalculateOcs(nnMeanRatio, sdNnRatio, meanEdaRatio, peakEdaRatio),
                             DateTimeOffset.Now.ToUnixTimeSeconds() - _startedTime);
